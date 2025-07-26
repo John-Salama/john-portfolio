@@ -238,87 +238,121 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Experience Section */}
+            {/* Experience Timeline */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
               className="mb-8"
             >
-              <h3 className="text-xl font-bold mb-4 bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
-                Experience
+              <h3 className="text-xl font-bold mb-6 bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
+                Experience Timeline
               </h3>
-              <div className="space-y-4">
+              <div className="relative">
+                {/* Timeline Line */}
+                <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-500 to-blue-500"></div>
+
                 {/* Current Position */}
-                <div className="bg-white/5 dark:bg-black/5 backdrop-blur-sm border border-white/10 dark:border-white/5 rounded-xl p-4">
-                  <h4 className="font-semibold text-lg text-gray-900 dark:text-white mb-1">
-                    Software Developer
-                  </h4>
-                  <p className="text-purple-600 dark:text-purple-400 font-medium mb-2">
-                    Research and Development Center (Egyptian Air Defense
-                    Military Commands)
-                  </p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
-                    May 2024 - Present · Full-time
-                  </p>
-                  <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
-                    Developing advanced missile systems simulators for military
-                    training.
-                  </p>
-                  <div className="flex flex-wrap gap-1">
-                    {[
-                      "React.js",
-                      "Electron.js",
-                      "Node.js",
-                      "GIS",
-                      "C++",
-                      "C#",
-                    ].map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-2 py-1 bg-green-500/20 text-green-700 dark:text-green-300 text-xs rounded-full"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.8 }}
+                  className="relative flex items-start mb-8"
+                >
+                  {/* Timeline Dot */}
+                  <div className="relative z-10 w-8 h-8 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center mr-4 shadow-lg">
+                    <div className="w-3 h-3 bg-white rounded-full"></div>
                   </div>
-                </div>
+
+                  {/* Content */}
+                  <div className="flex-1 bg-white/5 dark:bg-black/5 backdrop-blur-sm border border-white/10 dark:border-white/5 rounded-xl p-4 ml-2">
+                    <div className="flex items-center justify-between mb-2">
+                      <h4 className="font-semibold text-lg text-gray-900 dark:text-white">
+                        Software Developer
+                      </h4>
+                      <span className="px-3 py-1 bg-green-500/20 text-green-700 dark:text-green-300 text-xs rounded-full font-medium">
+                        Current
+                      </span>
+                    </div>
+                    <p className="text-purple-600 dark:text-purple-400 font-medium mb-2">
+                      Research and Development Center (Egyptian Air Defense
+                      Military Commands)
+                    </p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                      May 2024 - Present · Full-time
+                    </p>
+                    <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
+                      Developing advanced missile systems simulators for
+                      military training.
+                    </p>
+                    <div className="flex flex-wrap gap-1">
+                      {[
+                        "React.js",
+                        "Electron.js",
+                        "Node.js",
+                        "GIS",
+                        "C++",
+                        "C#",
+                      ].map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-2 py-1 bg-green-500/20 text-green-700 dark:text-green-300 text-xs rounded-full"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
 
                 {/* Previous Position */}
-                <div className="bg-white/5 dark:bg-black/5 backdrop-blur-sm border border-white/10 dark:border-white/5 rounded-xl p-4">
-                  <h4 className="font-semibold text-lg text-gray-900 dark:text-white mb-1">
-                    Software Developer
-                  </h4>
-                  <p className="text-purple-600 dark:text-purple-400 font-medium mb-2">
-                    CTC (Helwan University)
-                  </p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
-                    07/2023 - 12/2023
-                  </p>
-                  <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
-                    Full Stack Web Developer (MERN) at Communication and
-                    Technology Center - Helwan University, Developed Web
-                    Application for The University
-                  </p>
-                  <div className="flex flex-wrap gap-1">
-                    {[
-                      "JavaScript",
-                      "React",
-                      "Node.js",
-                      "Express.js",
-                      "MongoDB",
-                      "Tailwind CSS",
-                      "REST API",
-                    ].map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-2 py-1 bg-orange-500/20 text-orange-700 dark:text-orange-300 text-xs rounded-full"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 1.0 }}
+                  className="relative flex items-start"
+                >
+                  {/* Timeline Dot */}
+                  <div className="relative z-10 w-8 h-8 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center mr-4 shadow-lg">
+                    <div className="w-3 h-3 bg-white rounded-full"></div>
                   </div>
-                </div>
+
+                  {/* Content */}
+                  <div className="flex-1 bg-white/5 dark:bg-black/5 backdrop-blur-sm border border-white/10 dark:border-white/5 rounded-xl p-4 ml-2">
+                    <h4 className="font-semibold text-lg text-gray-900 dark:text-white mb-1">
+                      Software Developer
+                    </h4>
+                    <p className="text-purple-600 dark:text-purple-400 font-medium mb-2">
+                      CTC (Helwan University)
+                    </p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                      07/2023 - 12/2023 · 6 months
+                    </p>
+                    <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
+                      Full Stack Web Developer (MERN) at Communication and
+                      Technology Center - Helwan University, Developed Web
+                      Application for The University
+                    </p>
+                    <div className="flex flex-wrap gap-1">
+                      {[
+                        "JavaScript",
+                        "React",
+                        "Node.js",
+                        "Express.js",
+                        "MongoDB",
+                        "Tailwind CSS",
+                        "REST API",
+                      ].map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-2 py-1 bg-orange-500/20 text-orange-700 dark:text-orange-300 text-xs rounded-full"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
               </div>
             </motion.div>
 
