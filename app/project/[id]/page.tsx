@@ -70,17 +70,35 @@ interface Project {
   };
 }
 
-export default function ProjectPage({ params }: { params: { id: string } }) {
+interface ProjectPageProps {
+  params: Promise<{ id: string }>;
+}
+
+export default function ProjectPage({ params }: ProjectPageProps) {
   const [project, setProject] = useState<Project | null>(null);
   const [loading, setLoading] = useState(true);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [projectImages, setProjectImages] = useState<string[]>([]);
+  const [resolvedParams, setResolvedParams] = useState<{ id: string } | null>(
+    null
+  );
 
   useEffect(() => {
+    // Resolve the params promise first
+    params.then((resolvedParams) => {
+      setResolvedParams(resolvedParams);
+    });
+  }, [params]);
+
+  useEffect(() => {
+    if (!resolvedParams) return;
+
     fetch("/data/projects.json")
       .then((res) => res.json())
       .then((data) => {
-        const foundProject = data.find((p: Project) => p.id === params.id);
+        const foundProject = data.find(
+          (p: Project) => p.id === resolvedParams.id
+        );
         setProject(foundProject || null);
 
         // Load all available images for the project
@@ -168,7 +186,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
         console.error("Failed to load project:", err);
         setLoading(false);
       });
-  }, [params.id]);
+  }, [resolvedParams]);
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % projectImages.length);

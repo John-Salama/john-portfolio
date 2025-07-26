@@ -115,13 +115,23 @@ export default function Home() {
 
   useEffect(() => {
     fetch("/data/projects.json")
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json();
+      })
       .then((data) => setProjects(data))
-      .catch((err) => console.error("Failed to load projects:", err));
+      .catch((err) => {
+        console.error("Failed to load projects:", err);
+        // Fallback to empty array if fetch fails
+        setProjects([]);
+      });
 
     const darkMode =
       localStorage.getItem("darkMode") === "true" ||
-      window.matchMedia("(prefers-color-scheme: dark)").matches;
+      (!localStorage.getItem("darkMode") &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches);
     setIsDarkMode(darkMode);
     if (darkMode) {
       document.documentElement.classList.add("dark");
