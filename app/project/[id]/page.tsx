@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import {
   Github,
   ExternalLink,
@@ -205,11 +204,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex items-center justify-center">
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-          className="w-16 h-16 border-4 border-purple-500 border-t-transparent rounded-full"
-        />
+        <div className="w-16 h-16 border-4 border-purple-500 border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -218,42 +213,24 @@ export default function ProjectPage({ params }: ProjectPageProps) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex items-center justify-center px-4">
         <div className="text-center max-w-md mx-auto">
-          <motion.h1
-            className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
             Project Not Found
-          </motion.h1>
-          <motion.p
-            className="text-gray-600 dark:text-gray-400 mb-6 sm:mb-8 text-sm sm:text-base"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
+          </h1>
+          <p className="text-gray-600 dark:text-gray-400 mb-6 sm:mb-8 text-sm sm:text-base">
             The project you're looking for doesn't exist or has been moved.
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
+          </p>
+          <div>
             <Link
               href="/"
               className="group inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-full hover:from-purple-700 hover:to-blue-700 transition-all duration-300 hover:scale-105 hover:shadow-xl font-medium text-sm sm:text-base"
             >
-              <motion.div
-                className="flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 bg-white/20 rounded-full"
-                whileHover={{ rotate: -180, scale: 1.1 }}
-                transition={{ duration: 0.3 }}
-              >
+              <div className="flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 bg-white/20 rounded-full group-hover:rotate-180 group-hover:scale-110 transition-all duration-300">
                 <ArrowLeft size={14} className="sm:hidden" />
                 <ArrowLeft size={16} className="hidden sm:block" />
-              </motion.div>
+              </div>
               Back to Portfolio
             </Link>
-          </motion.div>
+          </div>
         </div>
       </div>
     );
@@ -263,83 +240,49 @@ export default function ProjectPage({ params }: ProjectPageProps) {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-12">
         {/* Back Button */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-6 sm:mb-8"
-        >
+        <div className="mb-6 sm:mb-8">
           <Link
             href="/"
             className="group inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/20 text-gray-700 dark:text-gray-300 rounded-full hover:bg-white/30 dark:hover:bg-black/30 transition-all duration-300 hover:scale-105 hover:shadow-lg"
           >
-            <motion.div
-              className="flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full text-white group-hover:from-purple-600 group-hover:to-blue-600 transition-all duration-300"
-              whileHover={{ rotate: -180, scale: 1.1 }}
-              transition={{ duration: 0.3 }}
-            >
+            <div className="flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full text-white group-hover:from-purple-600 group-hover:to-blue-600 transition-all duration-300 group-hover:rotate-180 group-hover:scale-110">
               <ArrowLeft size={14} className="sm:hidden" />
               <ArrowLeft size={16} className="hidden sm:block" />
-            </motion.div>
+            </div>
             <span className="font-medium text-sm sm:text-base">
               Back to Portfolio
             </span>
           </Link>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
+        <div>
           {/* Project Header */}
           <div className="mb-8 sm:mb-12">
             <div className="flex flex-col sm:flex-row sm:items-start justify-between mb-4 sm:mb-6 gap-4">
               <div>
-                <motion.h1
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-purple-600 via-blue-600 to-emerald-600 bg-clip-text text-transparent mb-3 sm:mb-4"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                >
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-purple-600 via-blue-600 to-emerald-600 bg-clip-text text-transparent mb-3 sm:mb-4">
                   {project.title}
-                </motion.h1>
+                </h1>
                 {project.featured && (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.6, delay: 0.4 }}
-                    className="inline-flex items-center gap-1 sm:gap-2 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-bold shadow-lg"
-                  >
+                  <div className="inline-flex items-center gap-1 sm:gap-2 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-bold shadow-lg">
                     <Star size={14} className="sm:hidden" />
                     <Star size={16} className="hidden sm:block" />
                     <span>Featured Project</span>
-                  </motion.div>
+                  </div>
                 )}
               </div>
             </div>
 
-            <motion.p
-              className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 leading-relaxed max-w-4xl"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
+            <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 leading-relaxed max-w-4xl">
               {project.description}
-            </motion.p>
+            </p>
           </div>
 
           {/* Image Slider */}
-          <motion.div
-            className="mb-8 sm:mb-12"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
+          <div className="mb-8 sm:mb-12">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8 text-center">
               Project Gallery
             </h2>
-
             <div className="relative">
               {/* Main Image Display */}
               <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl mb-4 sm:mb-6">
@@ -582,21 +525,17 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                   </div>
                 </div>
               )}
-            </div>
-          </motion.div>
+            </div>{" "}
+          </div>
 
           <div className="grid lg:grid-cols-3 gap-8 sm:gap-12">
             {/* Main Content */}
             <div className="lg:col-span-2 space-y-8 sm:space-y-12">
               {/* Project Links */}
-              <motion.section
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-              >
+              <section>
                 <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
                   Project Links
-                </h2>
+                </h2>{" "}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   {project.links.website && (
                     <a
@@ -699,41 +638,27 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                     </a>
                   )}
                 </div>
-              </motion.section>
+              </section>
 
               {/* Project Summary Section */}
               {(project.summary || project.testAccounts) && (
-                <motion.section
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.7 }}
-                >
+                <section>
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
                     {/* Summary */}
                     {project.summary && (
-                      <motion.div
-                        className="bg-white/10 dark:bg-black/10 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-2xl sm:rounded-3xl p-6 sm:p-8"
-                        initial={{ opacity: 0, x: -30 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.6, delay: 0.8 }}
-                      >
+                      <div className="bg-white/10 dark:bg-black/10 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-2xl sm:rounded-3xl p-6 sm:p-8">
                         <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
                           Project Summary
                         </h3>
                         <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-sm sm:text-base">
                           {project.summary}
                         </p>
-                      </motion.div>
+                      </div>
                     )}
 
                     {/* Test Accounts */}
                     {project.testAccounts && (
-                      <motion.div
-                        className="bg-gradient-to-br from-emerald-50/50 to-blue-50/50 dark:from-emerald-900/20 dark:to-blue-900/20 backdrop-blur-xl border border-emerald-200/30 dark:border-emerald-800/30 rounded-xl sm:rounded-2xl p-4 sm:p-6"
-                        initial={{ opacity: 0, x: 30 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.6, delay: 0.9 }}
-                      >
+                      <div className="bg-gradient-to-br from-emerald-50/50 to-blue-50/50 dark:from-emerald-900/20 dark:to-blue-900/20 backdrop-blur-xl border border-emerald-200/30 dark:border-emerald-800/30 rounded-xl sm:rounded-2xl p-4 sm:p-6">
                         <div className="flex items-center gap-2 mb-3 sm:mb-4">
                           <div className="w-5 h-5 sm:w-6 sm:h-6 bg-gradient-to-r from-emerald-500 to-blue-500 rounded-lg flex items-center justify-center">
                             <svg
@@ -760,15 +685,9 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                               const [email, password] =
                                 credentials.split(" / ");
                               return (
-                                <motion.div
+                                <div
                                   key={role}
                                   className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-white/50 dark:border-gray-700/50"
-                                  initial={{ opacity: 0, y: 10 }}
-                                  animate={{ opacity: 1, y: 0 }}
-                                  transition={{
-                                    duration: 0.3,
-                                    delay: 1.0 + index * 0.1,
-                                  }}
                                 >
                                   <div className="flex items-center gap-2 mb-2 sm:mb-3">
                                     <div className="w-3 h-3 sm:w-4 sm:h-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
@@ -856,27 +775,22 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                                       </div>
                                     </div>
                                   </div>
-                                </motion.div>
+                                </div>
                               );
                             }
                           )}
                         </div>
-                      </motion.div>
+                      </div>
                     )}
                   </div>
-                </motion.section>
+                </section>
               )}
             </div>
 
             {/* Sidebar */}
             <div className="space-y-6 sm:space-y-8">
               {/* Technologies Used */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.7 }}
-                className="bg-white/10 dark:bg-black/10 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-2xl sm:rounded-3xl p-6 sm:p-8"
-              >
+              <div className="bg-white/10 dark:bg-black/10 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-2xl sm:rounded-3xl p-6 sm:p-8">
                 <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6 flex items-center">
                   <Tag
                     className="mr-2 sm:mr-3 text-blue-500 sm:hidden"
@@ -890,23 +804,20 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                 </h3>
                 <div className="grid grid-cols-2 sm:grid-cols-1 gap-2 sm:gap-3">
                   {project.tech.map((tech, index) => (
-                    <motion.div
+                    <div
                       key={tech}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.4, delay: 0.8 + index * 0.1 }}
                       className="bg-white/10 dark:bg-black/10 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-lg sm:rounded-xl p-2 sm:p-3 text-center hover:scale-105 transition-transform duration-300"
                     >
                       <span className="text-xs sm:text-sm font-semibold text-gray-900 dark:text-white">
                         {tech}
                       </span>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </div>
   );
