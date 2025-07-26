@@ -666,16 +666,7 @@ export default function Home() {
                                 ease: "easeInOut",
                               }}
                             >
-                              <motion.div
-                                animate={{ rotate: [0, 360] }}
-                                transition={{
-                                  duration: 4,
-                                  repeat: Infinity,
-                                  ease: "linear",
-                                }}
-                              >
-                                <Star size={12} />
-                              </motion.div>
+                              <Star size={12} />
                               Featured
                             </motion.div>
                             <motion.div
@@ -737,22 +728,6 @@ export default function Home() {
                           }
                         >
                           {project.title}
-                          {project.featured && (
-                            <motion.span
-                              className="inline-block ml-2 text-yellow-500"
-                              animate={{
-                                rotate: [0, 20, -20, 0],
-                                scale: [1, 1.1, 1],
-                              }}
-                              transition={{
-                                duration: 2,
-                                repeat: Infinity,
-                                ease: "easeInOut",
-                              }}
-                            >
-                              ✨
-                            </motion.span>
-                          )}
                         </motion.h4>
                         <p
                           className={`text-gray-700 dark:text-gray-300 mb-4 text-sm ${
@@ -901,58 +876,6 @@ export default function Home() {
                       {/* Featured Project Special Elements */}
                       {project.featured && (
                         <>
-                          {/* Floating Sparkles Animation */}
-                          <motion.div
-                            className="absolute top-2 right-2 text-yellow-400 featured-sparkle"
-                            animate={{
-                              rotate: [0, 360],
-                              scale: [1, 1.3, 1],
-                              y: [0, -5, 0],
-                            }}
-                            transition={{
-                              duration: 4,
-                              repeat: Infinity,
-                              ease: "easeInOut",
-                            }}
-                          >
-                            <Sparkles size={16} />
-                          </motion.div>
-
-                          {/* Multiple Sparkles */}
-                          <motion.div
-                            className="absolute top-6 right-8 text-blue-400 opacity-70"
-                            animate={{
-                              rotate: [360, 0],
-                              scale: [0.8, 1.1, 0.8],
-                              x: [0, 3, 0],
-                            }}
-                            transition={{
-                              duration: 3,
-                              repeat: Infinity,
-                              ease: "easeInOut",
-                              delay: 1,
-                            }}
-                          >
-                            <Sparkles size={10} />
-                          </motion.div>
-
-                          <motion.div
-                            className="absolute top-12 right-4 text-purple-400 opacity-60"
-                            animate={{
-                              rotate: [0, 180, 0],
-                              scale: [1, 0.8, 1],
-                              y: [0, 2, 0],
-                            }}
-                            transition={{
-                              duration: 2.5,
-                              repeat: Infinity,
-                              ease: "easeInOut",
-                              delay: 2,
-                            }}
-                          >
-                            <Sparkles size={8} />
-                          </motion.div>
-
                           {/* Enhanced Glow Border Animation */}
                           <motion.div
                             className="absolute inset-0 rounded-2xl border-2 border-transparent featured-border opacity-50"
@@ -964,48 +887,6 @@ export default function Home() {
                               duration: 8,
                               repeat: Infinity,
                               ease: "linear",
-                            }}
-                          />
-
-                          {/* Multiple Pulsing Dots */}
-                          <motion.div
-                            className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full"
-                            animate={{
-                              scale: [1, 1.5, 1],
-                              opacity: [0.7, 1, 0.7],
-                            }}
-                            transition={{
-                              duration: 2,
-                              repeat: Infinity,
-                              ease: "easeInOut",
-                            }}
-                          />
-
-                          <motion.div
-                            className="absolute -top-1 -left-1 w-2 h-2 bg-gradient-to-r from-purple-400 to-blue-500 rounded-full"
-                            animate={{
-                              scale: [1, 1.3, 1],
-                              opacity: [0.5, 0.9, 0.5],
-                            }}
-                            transition={{
-                              duration: 1.5,
-                              repeat: Infinity,
-                              ease: "easeInOut",
-                              delay: 0.5,
-                            }}
-                          />
-
-                          <motion.div
-                            className="absolute -bottom-1 -right-1 w-2 h-2 bg-gradient-to-r from-emerald-400 to-green-500 rounded-full"
-                            animate={{
-                              scale: [1, 1.4, 1],
-                              opacity: [0.6, 1, 0.6],
-                            }}
-                            transition={{
-                              duration: 1.8,
-                              repeat: Infinity,
-                              ease: "easeInOut",
-                              delay: 1,
                             }}
                           />
                         </>
