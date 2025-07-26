@@ -16,6 +16,8 @@
     "links": {
       "website": "https://airaware-beta.vercel.app/Home",
       "github": "https://github.com/John-Salama/AirAware-API",
+      "github2": "https://github.com/John-Salama/air-aware-website",
+      "github3": "https://github.com/John-Salama/aqi-pollutant-calculator",
       "npm": "https://www.npmjs.com/package/aqi-pollutant-calculator",
       "behance": "https://www.behance.net/gallery/231163481/AirAware"
     },
@@ -37,6 +39,7 @@
     "links": {
       "website": "https://rcsandwitch.vercel.app/",
       "github": "https://github.com/John-Salama/rcsandwitch",
+      "github2": "https://github.com/John-Salama/RCSandwitchServer",
       "behance": "https://www.behance.net/gallery/231163617/RCsandwitch"
     },
     "image": "/data/rcsandwitch/1.png",
@@ -50,6 +53,7 @@
     "links": {
       "website": "https://error20.vercel.app/",
       "github": "https://github.com/John-Salama/error20",
+      "github2": "https://github.com/John-Salama/Error20_Mobile",
       "playstore": "https://play.google.com/store/apps/details?id=com.tohsakasu.Error20&pli=1",
       "behance": "https://www.behance.net/gallery/231163719/Error20"
     },
@@ -64,10 +68,11 @@
     "links": {
       "website": "https://ai-detector-demo.vercel.app/",
       "github": "https://github.com/John-Salama/ai-detector-demo",
+      "github2": "https://github.com/John-Salama/ai-text-detector",
       "npm": "https://www.npmjs.com/package/ai-text-detector"
     },
     "image": "/data/ai text detect/1.png",
-    "featured": false
+    "featured": true
   },
   {
     "id": "pinterest-clone",

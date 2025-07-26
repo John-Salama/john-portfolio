@@ -37,6 +37,8 @@ interface Project {
   links: {
     website?: string;
     github?: string;
+    github2?: string;
+    github3?: string;
     npm?: string;
     behance?: string;
     playstore?: string;
@@ -463,106 +465,555 @@ export default function Home() {
           {/* Right Side - Projects */}
           <div className="projects-container flex-1 overflow-y-auto px-6 py-8">
             {/* Projects Section */}
-            <div className="max-w-5xl mx-auto">
+            <div className="max-w-6xl mx-auto">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
                 className="mb-12"
               >
-                <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-6">
-                  My Projects
-                </h2>
-                <div className="w-24 h-1 bg-gradient-to-r from-purple-600 to-blue-600 mb-6"></div>
-                <p className="text-lg text-gray-600 dark:text-gray-300">
-                  Explore my portfolio of innovative projects built with modern
-                  technologies
-                </p>
+                <div className="text-center mb-8">
+                  <motion.h2
+                    className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-purple-600 via-blue-600 to-emerald-600 bg-clip-text text-transparent mb-4"
+                    animate={{
+                      backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                    }}
+                    transition={{
+                      duration: 5,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
+                  >
+                    My Projects
+                  </motion.h2>
+                  <motion.div
+                    className="w-32 h-1 bg-gradient-to-r from-purple-600 to-blue-600 mx-auto mb-6"
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ duration: 1, delay: 0.5 }}
+                  ></motion.div>
+                  <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                    Explore my portfolio of innovative projects built with
+                    cutting-edge technologies
+                  </p>
+                </div>
+
+                {/* Project Stats */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                  className="grid grid-cols-3 gap-4 mb-8"
+                >
+                  <div className="text-center bg-white/10 dark:bg-black/10 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-2xl p-4">
+                    <motion.div
+                      className="text-2xl font-bold text-purple-600 dark:text-purple-400"
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ duration: 0.6, delay: 0.8 }}
+                    >
+                      {allProjects.length}+
+                    </motion.div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                      Total Projects
+                    </div>
+                  </div>
+                  <div className="text-center bg-white/10 dark:bg-black/10 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-2xl p-4">
+                    <motion.div
+                      className="text-2xl font-bold text-blue-600 dark:text-blue-400"
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ duration: 0.6, delay: 1.0 }}
+                    >
+                      {featuredProjects.length}
+                    </motion.div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                      Featured
+                    </div>
+                  </div>
+                  <div className="text-center bg-white/10 dark:bg-black/10 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-2xl p-4">
+                    <motion.div
+                      className="text-2xl font-bold text-emerald-600 dark:text-emerald-400"
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ duration: 0.6, delay: 1.2 }}
+                    >
+                      10+
+                    </motion.div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                      Technologies
+                    </div>
+                  </div>
+                </motion.div>
               </motion.div>
 
-              {/* Project Cards Grid */}
-              <div
-                className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8"
-                id="projects"
+              {/* All Projects Section */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
               >
-                {allProjects.map((project, index) => (
-                  <motion.div
-                    key={project.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    className="bg-white/10 dark:bg-black/10 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-3xl p-6 hover:scale-105 transition-all duration-300 group"
-                  >
-                    {/* Project Image */}
-                    <div className="relative h-48 mb-4 rounded-2xl overflow-hidden">
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-300"
-                        sizes="400px"
-                      />
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
+                  <Code className="mr-3 text-blue-500" size={24} />
+                  All Projects
+                </h3>
+                <div
+                  className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"
+                  id="projects"
+                >
+                  {allProjects.map((project, index) => (
+                    <motion.div
+                      key={project.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                      className={`group relative ${
+                        project.featured
+                          ? "featured-project featured-glow holographic bg-gradient-to-br from-purple-500/20 via-blue-500/15 to-emerald-500/10 border-2 border-transparent shadow-2xl"
+                          : "bg-white/10 dark:bg-black/10 border border-white/20 dark:border-white/10"
+                      } backdrop-blur-xl rounded-2xl p-6 hover:scale-105 hover:shadow-2xl transition-all duration-500 cursor-pointer overflow-hidden`}
+                    >
+                      {/* Featured Project Enhanced Effects */}
                       {project.featured && (
-                        <div className="absolute top-3 right-3 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1">
-                          <Star size={12} />
-                          Featured
+                        <>
+                          {/* Enhanced Glow Effect */}
+                          <motion.div
+                            className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-blue-500/5 to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+                            animate={{
+                              background: [
+                                "linear-gradient(45deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.05), rgba(16, 185, 129, 0.1))",
+                                "linear-gradient(90deg, rgba(59, 130, 246, 0.1), rgba(16, 185, 129, 0.05), rgba(139, 92, 246, 0.1))",
+                                "linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(139, 92, 246, 0.05), rgba(59, 130, 246, 0.1))",
+                                "linear-gradient(45deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.05), rgba(16, 185, 129, 0.1))",
+                              ],
+                            }}
+                            transition={{
+                              duration: 6,
+                              repeat: Infinity,
+                              ease: "easeInOut",
+                            }}
+                          />
+
+                          {/* Floating Border Animation */}
+                          <motion.div
+                            className="absolute inset-0 rounded-2xl"
+                            style={{
+                              background:
+                                "linear-gradient(45deg, transparent, transparent 30%, rgba(139, 92, 246, 0.3) 50%, transparent 70%, transparent)",
+                              backgroundSize: "200% 200%",
+                            }}
+                            animate={{
+                              backgroundPosition: [
+                                "0% 0%",
+                                "100% 100%",
+                                "0% 0%",
+                              ],
+                            }}
+                            transition={{
+                              duration: 4,
+                              repeat: Infinity,
+                              ease: "linear",
+                            }}
+                          />
+                        </>
+                      )}
+
+                      {/* Animated Background for Featured Projects */}
+                      {project.featured && (
+                        <motion.div
+                          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"
+                          animate={{
+                            x: ["-100%", "100%"],
+                          }}
+                          transition={{
+                            duration: 3,
+                            repeat: Infinity,
+                            ease: "linear",
+                          }}
+                        />
+                      )}
+
+                      {/* Project Image */}
+                      <div
+                        className={`relative ${
+                          project.featured ? "h-44" : "h-40"
+                        } mb-4 rounded-xl overflow-hidden ${
+                          project.featured ? "shadow-xl" : ""
+                        }`}
+                      >
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          className="object-cover group-hover:scale-110 transition-transform duration-300"
+                          sizes="350px"
+                        />
+                        {project.featured && (
+                          <>
+                            <motion.div
+                              className="absolute top-3 left-3 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1 shadow-lg"
+                              animate={{
+                                boxShadow: [
+                                  "0 4px 15px rgba(245, 158, 11, 0.4)",
+                                  "0 6px 20px rgba(245, 158, 11, 0.6)",
+                                  "0 4px 15px rgba(245, 158, 11, 0.4)",
+                                ],
+                              }}
+                              transition={{
+                                duration: 2,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                              }}
+                            >
+                              <motion.div
+                                animate={{ rotate: [0, 360] }}
+                                transition={{
+                                  duration: 4,
+                                  repeat: Infinity,
+                                  ease: "linear",
+                                }}
+                              >
+                                <Star size={12} />
+                              </motion.div>
+                              Featured
+                            </motion.div>
+                            <motion.div
+                              className="absolute inset-0 bg-gradient-to-t from-purple-900/30 via-transparent to-yellow-400/10"
+                              animate={{
+                                background: [
+                                  "linear-gradient(to top, rgba(88, 28, 135, 0.3), transparent, rgba(245, 158, 11, 0.1))",
+                                  "linear-gradient(to top, rgba(59, 130, 246, 0.3), transparent, rgba(139, 92, 246, 0.1))",
+                                  "linear-gradient(to top, rgba(88, 28, 135, 0.3), transparent, rgba(245, 158, 11, 0.1))",
+                                ],
+                              }}
+                              transition={{
+                                duration: 5,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                              }}
+                            />
+                          </>
+                        )}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      </div>
+
+                      {/* Project Content */}
+                      <div className="relative z-10">
+                        <motion.h4
+                          className={`${
+                            project.featured ? "text-xl" : "text-lg"
+                          } font-bold mb-2 ${
+                            project.featured
+                              ? "bg-gradient-to-r from-purple-600 via-blue-600 to-emerald-600 bg-clip-text text-transparent group-hover:from-yellow-500 group-hover:via-orange-500 group-hover:to-red-500"
+                              : "text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400"
+                          } transition-all duration-500`}
+                          animate={
+                            project.featured
+                              ? {
+                                  backgroundPosition: [
+                                    "0% 50%",
+                                    "100% 50%",
+                                    "0% 50%",
+                                  ],
+                                }
+                              : {}
+                          }
+                          transition={
+                            project.featured
+                              ? {
+                                  duration: 4,
+                                  repeat: Infinity,
+                                  ease: "easeInOut",
+                                }
+                              : {}
+                          }
+                          style={
+                            project.featured
+                              ? {
+                                  backgroundSize: "200% 200%",
+                                }
+                              : {}
+                          }
+                        >
+                          {project.title}
+                          {project.featured && (
+                            <motion.span
+                              className="inline-block ml-2 text-yellow-500"
+                              animate={{
+                                rotate: [0, 20, -20, 0],
+                                scale: [1, 1.1, 1],
+                              }}
+                              transition={{
+                                duration: 2,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                              }}
+                            >
+                              ✨
+                            </motion.span>
+                          )}
+                        </motion.h4>
+                        <p
+                          className={`text-gray-700 dark:text-gray-300 mb-4 text-sm ${
+                            project.featured ? "line-clamp-3" : "line-clamp-2"
+                          }`}
+                        >
+                          {project.description}
+                        </p>
+
+                        {/* Tech Stack */}
+                        <div className="flex flex-wrap gap-1 mb-4">
+                          {project.tech
+                            .slice(0, project.featured ? 4 : 3)
+                            .map((tech, techIndex) => (
+                              <motion.span
+                                key={tech}
+                                whileHover={
+                                  project.featured
+                                    ? { scale: 1.1, y: -2 }
+                                    : { scale: 1.05 }
+                                }
+                                className={`px-2 py-1 text-xs rounded-full ${
+                                  project.featured
+                                    ? "bg-gradient-to-r from-purple-500/30 to-blue-500/30 text-purple-700 dark:text-purple-300 border border-purple-500/40 shadow-sm"
+                                    : "bg-blue-500/20 text-blue-700 dark:text-blue-300"
+                                }`}
+                              >
+                                {tech}
+                              </motion.span>
+                            ))}
+                          {project.tech.length > (project.featured ? 4 : 3) && (
+                            <span className="px-2 py-1 bg-gray-500/20 text-gray-700 dark:text-gray-300 text-xs rounded-full">
+                              +
+                              {project.tech.length - (project.featured ? 4 : 3)}
+                            </span>
+                          )}
                         </div>
-                      )}
-                    </div>
 
-                    {/* Project Content */}
-                    <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">
-                      {project.title}
-                    </h3>
-                    <p className="text-gray-700 dark:text-gray-300 mb-4 line-clamp-3">
-                      {project.description}
-                    </p>
+                        {/* Project Links */}
+                        <div className="flex flex-wrap gap-2">
+                          {project.links.website && (
+                            <motion.a
+                              href={project.links.website}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className={`flex items-center gap-1 px-3 py-2 text-xs font-medium rounded-lg transition-all ${
+                                project.featured
+                                  ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg hover:shadow-xl hover:from-purple-700 hover:to-blue-700"
+                                  : "bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:shadow-lg"
+                              }`}
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.95 }}
+                            >
+                              <ExternalLink size={12} />
+                              Demo
+                            </motion.a>
+                          )}
+                          {project.links.github && (
+                            <motion.a
+                              href={project.links.github}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className={`flex items-center gap-1 px-3 py-2 text-xs font-medium rounded-lg transition-all ${
+                                project.featured
+                                  ? "bg-white/30 dark:bg-black/30 backdrop-blur-sm border-2 border-purple-400/50 text-gray-700 dark:text-gray-300 hover:border-purple-500 hover:shadow-lg"
+                                  : "bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/20 text-gray-700 dark:text-gray-300 hover:shadow-lg"
+                              }`}
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.95 }}
+                            >
+                              <Github size={12} />
+                              {project.links.github2 ? "Frontend" : "Code"}
+                            </motion.a>
+                          )}
+                          {project.links.github2 && (
+                            <motion.a
+                              href={project.links.github2}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className={`flex items-center gap-1 px-2 py-2 text-xs font-medium rounded-lg transition-all ${
+                                project.featured
+                                  ? "bg-white/30 dark:bg-black/30 backdrop-blur-sm border border-purple-400/50 text-gray-700 dark:text-gray-300 hover:border-purple-500"
+                                  : "bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/20 text-gray-700 dark:text-gray-300"
+                              }`}
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.95 }}
+                            >
+                              <Github size={12} />
+                              {project.links.github3 ? "API" : "Server"}
+                            </motion.a>
+                          )}
+                          {project.links.npm && (
+                            <motion.a
+                              href={project.links.npm}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className={`flex items-center gap-1 px-2 py-2 text-xs font-medium rounded-lg transition-all ${
+                                project.featured
+                                  ? "bg-red-500/30 text-red-700 dark:text-red-300 border border-red-400/50 hover:bg-red-500/40"
+                                  : "bg-red-500/20 text-red-700 dark:text-red-300"
+                              }`}
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.95 }}
+                            >
+                              <Code size={12} />
+                              NPM
+                            </motion.a>
+                          )}
+                          {project.links.behance && (
+                            <motion.a
+                              href={project.links.behance}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className={`flex items-center gap-1 px-2 py-2 text-xs font-medium rounded-lg transition-all ${
+                                project.featured
+                                  ? "bg-blue-500/30 text-blue-700 dark:text-blue-300 border border-blue-400/50 hover:bg-blue-500/40"
+                                  : "bg-blue-500/20 text-blue-700 dark:text-blue-300"
+                              }`}
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.95 }}
+                            >
+                              <Palette size={12} />
+                              Design
+                            </motion.a>
+                          )}
+                          {project.links.playstore && (
+                            <motion.a
+                              href={project.links.playstore}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className={`flex items-center gap-1 px-2 py-2 text-xs font-medium rounded-lg transition-all ${
+                                project.featured
+                                  ? "bg-green-500/30 text-green-700 dark:text-green-300 border border-green-400/50 hover:bg-green-500/40"
+                                  : "bg-green-500/20 text-green-700 dark:text-green-300"
+                              }`}
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.95 }}
+                            >
+                              <Download size={12} />
+                              App
+                            </motion.a>
+                          )}
+                        </div>
+                      </div>
 
-                    {/* Tech Stack */}
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.tech.slice(0, 4).map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-3 py-1 bg-blue-500/20 text-blue-700 dark:text-blue-300 text-sm rounded-full"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
+                      {/* Featured Project Special Elements */}
+                      {project.featured && (
+                        <>
+                          {/* Floating Sparkles Animation */}
+                          <motion.div
+                            className="absolute top-2 right-2 text-yellow-400 featured-sparkle"
+                            animate={{
+                              rotate: [0, 360],
+                              scale: [1, 1.3, 1],
+                              y: [0, -5, 0],
+                            }}
+                            transition={{
+                              duration: 4,
+                              repeat: Infinity,
+                              ease: "easeInOut",
+                            }}
+                          >
+                            <Sparkles size={16} />
+                          </motion.div>
 
-                    {/* Project Links */}
-                    <div className="flex space-x-3">
-                      {project.links.website && (
-                        <motion.a
-                          href={project.links.website}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-full text-sm font-medium hover:shadow-lg transition-all"
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
-                          <ExternalLink size={14} />
-                          Live Demo
-                        </motion.a>
+                          {/* Multiple Sparkles */}
+                          <motion.div
+                            className="absolute top-6 right-8 text-blue-400 opacity-70"
+                            animate={{
+                              rotate: [360, 0],
+                              scale: [0.8, 1.1, 0.8],
+                              x: [0, 3, 0],
+                            }}
+                            transition={{
+                              duration: 3,
+                              repeat: Infinity,
+                              ease: "easeInOut",
+                              delay: 1,
+                            }}
+                          >
+                            <Sparkles size={10} />
+                          </motion.div>
+
+                          <motion.div
+                            className="absolute top-12 right-4 text-purple-400 opacity-60"
+                            animate={{
+                              rotate: [0, 180, 0],
+                              scale: [1, 0.8, 1],
+                              y: [0, 2, 0],
+                            }}
+                            transition={{
+                              duration: 2.5,
+                              repeat: Infinity,
+                              ease: "easeInOut",
+                              delay: 2,
+                            }}
+                          >
+                            <Sparkles size={8} />
+                          </motion.div>
+
+                          {/* Enhanced Glow Border Animation */}
+                          <motion.div
+                            className="absolute inset-0 rounded-2xl border-2 border-transparent featured-border opacity-50"
+                            animate={{
+                              rotate: [0, 360],
+                              scale: [1, 1.02, 1],
+                            }}
+                            transition={{
+                              duration: 8,
+                              repeat: Infinity,
+                              ease: "linear",
+                            }}
+                          />
+
+                          {/* Multiple Pulsing Dots */}
+                          <motion.div
+                            className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full"
+                            animate={{
+                              scale: [1, 1.5, 1],
+                              opacity: [0.7, 1, 0.7],
+                            }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              ease: "easeInOut",
+                            }}
+                          />
+
+                          <motion.div
+                            className="absolute -top-1 -left-1 w-2 h-2 bg-gradient-to-r from-purple-400 to-blue-500 rounded-full"
+                            animate={{
+                              scale: [1, 1.3, 1],
+                              opacity: [0.5, 0.9, 0.5],
+                            }}
+                            transition={{
+                              duration: 1.5,
+                              repeat: Infinity,
+                              ease: "easeInOut",
+                              delay: 0.5,
+                            }}
+                          />
+
+                          <motion.div
+                            className="absolute -bottom-1 -right-1 w-2 h-2 bg-gradient-to-r from-emerald-400 to-green-500 rounded-full"
+                            animate={{
+                              scale: [1, 1.4, 1],
+                              opacity: [0.6, 1, 0.6],
+                            }}
+                            transition={{
+                              duration: 1.8,
+                              repeat: Infinity,
+                              ease: "easeInOut",
+                              delay: 1,
+                            }}
+                          />
+                        </>
                       )}
-                      {project.links.github && (
-                        <motion.a
-                          href={project.links.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-2 px-4 py-2 bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/20 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium hover:shadow-lg transition-all"
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
-                          <Github size={14} />
-                          Code
-                        </motion.a>
-                      )}
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
             </div>
           </div>
         </div>
