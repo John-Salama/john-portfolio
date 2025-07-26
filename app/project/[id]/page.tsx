@@ -198,10 +198,10 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
 
   if (!project) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex items-center justify-center">
-        <div className="text-center">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex items-center justify-center px-4">
+        <div className="text-center max-w-md mx-auto">
           <motion.h1
-            className="text-4xl font-bold text-gray-900 dark:text-white mb-4"
+            className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -209,7 +209,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
             Project Not Found
           </motion.h1>
           <motion.p
-            className="text-gray-600 dark:text-gray-400 mb-8"
+            className="text-gray-600 dark:text-gray-400 mb-6 sm:mb-8 text-sm sm:text-base"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -223,14 +223,15 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
           >
             <Link
               href="/"
-              className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-full hover:from-purple-700 hover:to-blue-700 transition-all duration-300 hover:scale-105 hover:shadow-xl font-medium"
+              className="group inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-full hover:from-purple-700 hover:to-blue-700 transition-all duration-300 hover:scale-105 hover:shadow-xl font-medium text-sm sm:text-base"
             >
               <motion.div
-                className="flex items-center justify-center w-8 h-8 bg-white/20 rounded-full"
+                className="flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 bg-white/20 rounded-full"
                 whileHover={{ rotate: -180, scale: 1.1 }}
                 transition={{ duration: 0.3 }}
               >
-                <ArrowLeft size={16} />
+                <ArrowLeft size={14} className="sm:hidden" />
+                <ArrowLeft size={16} className="hidden sm:block" />
               </motion.div>
               Back to Portfolio
             </Link>
@@ -242,26 +243,29 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      <div className="max-w-7xl mx-auto px-6 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-12">
         {/* Back Button */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-8"
+          className="mb-6 sm:mb-8"
         >
           <Link
             href="/"
-            className="group inline-flex items-center gap-3 px-6 py-3 bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/20 text-gray-700 dark:text-gray-300 rounded-full hover:bg-white/30 dark:hover:bg-black/30 transition-all duration-300 hover:scale-105 hover:shadow-lg"
+            className="group inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/20 text-gray-700 dark:text-gray-300 rounded-full hover:bg-white/30 dark:hover:bg-black/30 transition-all duration-300 hover:scale-105 hover:shadow-lg"
           >
             <motion.div
-              className="flex items-center justify-center w-8 h-8 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full text-white group-hover:from-purple-600 group-hover:to-blue-600 transition-all duration-300"
+              className="flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full text-white group-hover:from-purple-600 group-hover:to-blue-600 transition-all duration-300"
               whileHover={{ rotate: -180, scale: 1.1 }}
               transition={{ duration: 0.3 }}
             >
-              <ArrowLeft size={16} />
+              <ArrowLeft size={14} className="sm:hidden" />
+              <ArrowLeft size={16} className="hidden sm:block" />
             </motion.div>
-            <span className="font-medium">Back to Portfolio</span>
+            <span className="font-medium text-sm sm:text-base">
+              Back to Portfolio
+            </span>
           </Link>
         </motion.div>
 
@@ -271,11 +275,11 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
           transition={{ duration: 0.8 }}
         >
           {/* Project Header */}
-          <div className="mb-12">
-            <div className="flex items-start justify-between mb-6">
+          <div className="mb-8 sm:mb-12">
+            <div className="flex flex-col sm:flex-row sm:items-start justify-between mb-4 sm:mb-6 gap-4">
               <div>
                 <motion.h1
-                  className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-purple-600 via-blue-600 to-emerald-600 bg-clip-text text-transparent mb-4"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-purple-600 via-blue-600 to-emerald-600 bg-clip-text text-transparent mb-3 sm:mb-4"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
@@ -287,17 +291,18 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                     initial={{ opacity: 0, scale: 0 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.6, delay: 0.4 }}
-                    className="inline-flex items-center gap-2 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg"
+                    className="inline-flex items-center gap-1 sm:gap-2 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-bold shadow-lg"
                   >
-                    <Star size={16} />
-                    Featured Project
+                    <Star size={14} className="sm:hidden" />
+                    <Star size={16} className="hidden sm:block" />
+                    <span>Featured Project</span>
                   </motion.div>
                 )}
               </div>
             </div>
 
             <motion.p
-              className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed max-w-4xl"
+              className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 leading-relaxed max-w-4xl"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
@@ -308,19 +313,19 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
 
           {/* Image Slider */}
           <motion.div
-            className="mb-12"
+            className="mb-8 sm:mb-12"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8 text-center">
               Project Gallery
             </h2>
 
             <div className="relative">
               {/* Main Image Display */}
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl mb-6">
-                <div className="relative h-[70vh] min-h-[600px]">
+              <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl mb-4 sm:mb-6">
+                <div className="relative h-[50vh] sm:h-[60vh] lg:h-[70vh] min-h-[400px] sm:min-h-[500px] lg:min-h-[600px]">
                   {projectImages.length > 0 && (
                     <Image
                       src={projectImages[currentImageIndex]}
@@ -340,6 +345,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                           currentImagePath?.includes("/mobile/") ||
                           currentImagePath?.includes("/ios/");
 
+                        // Use object-contain for mobile screens or mobile images
                         if (
                           imageType === "multiDirectory" &&
                           isMobileImage &&
@@ -347,7 +353,8 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                         ) {
                           return "object-contain bg-gray-100 dark:bg-gray-800";
                         }
-                        return "object-cover";
+                        // Use object-contain on mobile devices for better viewing
+                        return "object-contain sm:object-cover bg-gray-100 dark:bg-gray-800 sm:bg-transparent";
                       })()}`}
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
                       priority
@@ -366,28 +373,30 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                     <>
                       <button
                         onClick={prevImage}
-                        className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/30 dark:hover:bg-black/30 transition-all hover:scale-110"
+                        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/30 dark:hover:bg-black/30 transition-all hover:scale-110 touch-manipulation"
                       >
-                        <ChevronLeft size={24} />
+                        <ChevronLeft size={20} className="sm:hidden" />
+                        <ChevronLeft size={24} className="hidden sm:block" />
                       </button>
                       <button
                         onClick={nextImage}
-                        className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/30 dark:hover:bg-black/30 transition-all hover:scale-110"
+                        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/30 dark:hover:bg-black/30 transition-all hover:scale-110 touch-manipulation"
                       >
-                        <ChevronRight size={24} />
+                        <ChevronRight size={20} className="sm:hidden" />
+                        <ChevronRight size={24} className="hidden sm:block" />
                       </button>
                     </>
                   )}
 
                   {/* Image Counter */}
-                  <div className="absolute bottom-4 right-4 bg-black/50 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium">
+                  <div className="absolute bottom-2 sm:bottom-4 right-2 sm:right-4 bg-black/50 backdrop-blur-sm text-white px-2 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-medium">
                     {currentImageIndex + 1} / {projectImages.length}
                   </div>
 
                   {/* Platform indicator for multi-platform projects */}
                   {project.config?.displayConfig?.showPlatformIndicators &&
                     projectImages.length > 0 && (
-                      <div className="absolute bottom-4 left-4 bg-black/50 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium">
+                      <div className="absolute bottom-2 sm:bottom-4 left-2 sm:left-4 bg-black/50 backdrop-blur-sm text-white px-2 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-medium">
                         {(() => {
                           const currentImagePath =
                             projectImages[currentImageIndex];
@@ -416,166 +425,173 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
 
               {/* Thumbnail Navigation */}
               {projectImages.length > 1 && (
-                <div className="flex justify-center space-x-3 overflow-x-auto pb-4">
-                  {(() => {
-                    // Calculate visible thumbnail range based on current image
-                    const galleryConfig = project.config?.galleryConfig;
-                    const maxVisibleThumbnails =
-                      galleryConfig?.thumbnailCount || 9;
-                    let startIndex = 0;
-                    let endIndex = Math.min(
-                      maxVisibleThumbnails,
-                      projectImages.length
-                    );
-
-                    // If current image is beyond visible range, adjust the window
-                    if (currentImageIndex >= maxVisibleThumbnails) {
-                      startIndex = Math.max(
-                        0,
-                        currentImageIndex - Math.floor(maxVisibleThumbnails / 2)
-                      );
-                      endIndex = Math.min(
-                        projectImages.length,
-                        startIndex + maxVisibleThumbnails
+                <div className="pb-4 px-2">
+                  <div className="flex space-x-2 sm:space-x-3 overflow-x-auto max-w-full py-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] whitespace-nowrap">
+                    {(() => {
+                      // Calculate visible thumbnail range based on current image
+                      const galleryConfig = project.config?.galleryConfig;
+                      const maxVisibleThumbnails =
+                        galleryConfig?.thumbnailCount || 9; // Default to 9, will be responsive via CSS
+                      let startIndex = 0;
+                      let endIndex = Math.min(
+                        maxVisibleThumbnails,
+                        projectImages.length
                       );
 
-                      // Adjust start if we're near the end
-                      if (endIndex === projectImages.length) {
+                      // If current image is beyond visible range, adjust the window
+                      if (currentImageIndex >= maxVisibleThumbnails) {
                         startIndex = Math.max(
                           0,
-                          projectImages.length - maxVisibleThumbnails
+                          currentImageIndex -
+                            Math.floor(maxVisibleThumbnails / 2)
                         );
-                      }
-                    }
+                        endIndex = Math.min(
+                          projectImages.length,
+                          startIndex + maxVisibleThumbnails
+                        );
 
-                    const visibleImages = projectImages.slice(
-                      startIndex,
-                      endIndex
-                    );
-                    const remainingImages = projectImages.length - endIndex;
-
-                    return (
-                      <>
-                        {visibleImages.map((image, index) => {
-                          const actualIndex = startIndex + index;
-                          const displayConfig = project.config?.displayConfig;
-                          const imageType = project.config?.imageConfig?.type;
-                          const showPlatformIndicators =
-                            displayConfig?.showPlatformIndicators;
-
-                          // Detect image type
-                          const isWebImage = image.includes("/web/");
-                          const isAndroidImage = image.includes("/android/");
-                          const isMobileImage =
-                            image.includes("/mobile/") ||
-                            image.includes("/android/") ||
-                            image.includes("/ios/");
-                          const isIosImage = image.includes("/ios/");
-
-                          return (
-                            <button
-                              key={actualIndex}
-                              onClick={() => goToImage(actualIndex)}
-                              className={`relative flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden border-2 transition-all duration-300 ${
-                                actualIndex === currentImageIndex
-                                  ? "border-purple-500 shadow-lg scale-110"
-                                  : "border-white/30 dark:border-white/20 hover:border-purple-400 hover:scale-105"
-                              }`}
-                            >
-                              <Image
-                                src={image}
-                                alt={`Thumbnail ${actualIndex + 1}`}
-                                fill
-                                className={`${
-                                  imageType === "multiDirectory" &&
-                                  isMobileImage &&
-                                  (displayConfig?.mobileImageHandling ||
-                                    "contain") === "contain"
-                                    ? "object-contain bg-gray-100 dark:bg-gray-800"
-                                    : "object-cover"
-                                }`}
-                                sizes="80px"
-                                onError={(e) => {
-                                  // Hide thumbnail if it fails to load
-                                  const target = e.target as HTMLElement;
-                                  if (target.parentElement) {
-                                    target.parentElement.style.display = "none";
-                                  }
-                                }}
-                              />
-                              {actualIndex === currentImageIndex && (
-                                <div className="absolute inset-0 bg-purple-500/20" />
-                              )}
-                              {/* Platform indicator for thumbnails */}
-                              {showPlatformIndicators &&
-                                imageType === "multiDirectory" && (
-                                  <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-white text-xs px-1 py-0.5 text-center font-medium">
-                                    {(() => {
-                                      const labels =
-                                        displayConfig?.platformLabels;
-                                      if (isWebImage)
-                                        return (
-                                          labels?.web?.split(" ")[1] || "Web"
-                                        );
-                                      if (isAndroidImage)
-                                        return (
-                                          labels?.android?.split(" ")[1] ||
-                                          "App"
-                                        );
-                                      if (isIosImage)
-                                        return (
-                                          labels?.ios?.split(" ")[1] || "iOS"
-                                        );
-                                      if (isMobileImage)
-                                        return (
-                                          labels?.mobile?.split(" ")[1] ||
-                                          "Mobile"
-                                        );
-                                      return "";
-                                    })()}
-                                  </div>
-                                )}
-                            </button>
+                        // Adjust start if we're near the end
+                        if (endIndex === projectImages.length) {
+                          startIndex = Math.max(
+                            0,
+                            projectImages.length - maxVisibleThumbnails
                           );
-                        })}
-                        {remainingImages > 0 && (
-                          <button
-                            onClick={() => goToImage(endIndex)}
-                            className="flex items-center justify-center w-20 h-20 bg-white/10 dark:bg-black/10 backdrop-blur-sm border border-white/30 dark:border-white/20 rounded-xl text-gray-600 dark:text-gray-400 text-sm font-medium hover:bg-white/20 dark:hover:bg-black/20 transition-all hover:scale-105"
-                          >
-                            +{remainingImages}
-                          </button>
-                        )}
-                      </>
-                    );
-                  })()}
+                        }
+                      }
+
+                      const visibleImages = projectImages.slice(
+                        startIndex,
+                        endIndex
+                      );
+                      const remainingImages = projectImages.length - endIndex;
+
+                      return (
+                        <>
+                          {visibleImages.map((image, index) => {
+                            const actualIndex = startIndex + index;
+                            const displayConfig = project.config?.displayConfig;
+                            const imageType = project.config?.imageConfig?.type;
+                            const showPlatformIndicators =
+                              displayConfig?.showPlatformIndicators;
+
+                            // Detect image type
+                            const isWebImage = image.includes("/web/");
+                            const isAndroidImage = image.includes("/android/");
+                            const isMobileImage =
+                              image.includes("/mobile/") ||
+                              image.includes("/android/") ||
+                              image.includes("/ios/");
+                            const isIosImage = image.includes("/ios/");
+
+                            return (
+                              <button
+                                key={actualIndex}
+                                onClick={() => goToImage(actualIndex)}
+                                className={`relative flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-lg sm:rounded-xl overflow-hidden border-2 transition-all duration-300 touch-manipulation ${
+                                  actualIndex === currentImageIndex
+                                    ? "border-purple-500 shadow-lg scale-110"
+                                    : "border-white/30 dark:border-white/20 hover:border-purple-400 hover:scale-105"
+                                }`}
+                              >
+                                <Image
+                                  src={image}
+                                  alt={`Thumbnail ${actualIndex + 1}`}
+                                  fill
+                                  className={`${
+                                    imageType === "multiDirectory" &&
+                                    isMobileImage &&
+                                    (displayConfig?.mobileImageHandling ||
+                                      "contain") === "contain"
+                                      ? "object-contain bg-gray-100 dark:bg-gray-800"
+                                      : "object-cover"
+                                  }`}
+                                  sizes="(max-width: 640px) 64px, 80px"
+                                  onError={(e) => {
+                                    // Hide thumbnail if it fails to load
+                                    const target = e.target as HTMLElement;
+                                    if (target.parentElement) {
+                                      target.parentElement.style.display =
+                                        "none";
+                                    }
+                                  }}
+                                />
+                                {actualIndex === currentImageIndex && (
+                                  <div className="absolute inset-0 bg-purple-500/20" />
+                                )}
+                                {/* Platform indicator for thumbnails */}
+                                {showPlatformIndicators &&
+                                  imageType === "multiDirectory" && (
+                                    <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-white text-xs px-1 py-0.5 text-center font-medium hidden sm:block">
+                                      {(() => {
+                                        const labels =
+                                          displayConfig?.platformLabels;
+                                        if (isWebImage)
+                                          return (
+                                            labels?.web?.split(" ")[1] || "Web"
+                                          );
+                                        if (isAndroidImage)
+                                          return (
+                                            labels?.android?.split(" ")[1] ||
+                                            "App"
+                                          );
+                                        if (isIosImage)
+                                          return (
+                                            labels?.ios?.split(" ")[1] || "iOS"
+                                          );
+                                        if (isMobileImage)
+                                          return (
+                                            labels?.mobile?.split(" ")[1] ||
+                                            "Mobile"
+                                          );
+                                        return "";
+                                      })()}
+                                    </div>
+                                  )}
+                              </button>
+                            );
+                          })}
+                          {remainingImages > 0 && (
+                            <button
+                              onClick={() => goToImage(endIndex)}
+                              className="flex-shrink-0 flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-white/20 dark:bg-black/20 backdrop-blur-sm border-2 border-white/30 dark:border-white/20 rounded-lg sm:rounded-xl text-gray-600 dark:text-gray-400 text-xs sm:text-sm font-bold hover:bg-white/30 dark:hover:bg-black/30 transition-all hover:scale-105 touch-manipulation shadow-md"
+                            >
+                              +{remainingImages}
+                            </button>
+                          )}
+                        </>
+                      );
+                    })()}
+                  </div>
                 </div>
               )}
             </div>
           </motion.div>
 
-          <div className="grid lg:grid-cols-3 gap-12">
+          <div className="grid lg:grid-cols-3 gap-8 sm:gap-12">
             {/* Main Content */}
-            <div className="lg:col-span-2 space-y-12">
+            <div className="lg:col-span-2 space-y-8 sm:space-y-12">
               {/* Project Links */}
               <motion.section
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.6 }}
               >
-                <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
                   Project Links
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   {project.links.website && (
                     <a
                       href={project.links.website}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 p-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl hover:from-purple-700 hover:to-blue-700 transition-all hover:scale-105"
+                      className="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl hover:from-purple-700 hover:to-blue-700 transition-all hover:scale-105 touch-manipulation"
                     >
-                      <ExternalLink size={20} />
-                      <span className="font-medium">Live Demo</span>
+                      <ExternalLink size={18} className="sm:hidden" />
+                      <ExternalLink size={20} className="hidden sm:block" />
+                      <span className="font-medium text-sm sm:text-base">
+                        Live Demo
+                      </span>
                     </a>
                   )}
                   {project.links.github && (
@@ -583,10 +599,11 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                       href={project.links.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 p-4 bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/20 text-gray-700 dark:text-gray-300 rounded-xl hover:bg-white/30 dark:hover:bg-black/30 transition-all hover:scale-105"
+                      className="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/20 text-gray-700 dark:text-gray-300 rounded-xl hover:bg-white/30 dark:hover:bg-black/30 transition-all hover:scale-105 touch-manipulation"
                     >
-                      <Github size={20} />
-                      <span className="font-medium">
+                      <Github size={18} className="sm:hidden" />
+                      <Github size={20} className="hidden sm:block" />
+                      <span className="font-medium text-sm sm:text-base">
                         {project.links.github2
                           ? "Frontend Code"
                           : "Source Code"}
@@ -598,10 +615,11 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                       href={project.links.github2}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 p-4 bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/20 text-gray-700 dark:text-gray-300 rounded-xl hover:bg-white/30 dark:hover:bg-black/30 transition-all hover:scale-105"
+                      className="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/20 text-gray-700 dark:text-gray-300 rounded-xl hover:bg-white/30 dark:hover:bg-black/30 transition-all hover:scale-105 touch-manipulation"
                     >
-                      <Github size={20} />
-                      <span className="font-medium">
+                      <Github size={18} className="sm:hidden" />
+                      <Github size={20} className="hidden sm:block" />
+                      <span className="font-medium text-sm sm:text-base">
                         {project.links.github3 ? "Backend Code" : "Server Code"}
                       </span>
                     </a>
@@ -611,10 +629,13 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                       href={project.links.github3}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 p-4 bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/20 text-gray-700 dark:text-gray-300 rounded-xl hover:bg-white/30 dark:hover:bg-black/30 transition-all hover:scale-105"
+                      className="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/20 text-gray-700 dark:text-gray-300 rounded-xl hover:bg-white/30 dark:hover:bg-black/30 transition-all hover:scale-105 touch-manipulation"
                     >
-                      <Github size={20} />
-                      <span className="font-medium">API Code</span>
+                      <Github size={18} className="sm:hidden" />
+                      <Github size={20} className="hidden sm:block" />
+                      <span className="font-medium text-sm sm:text-base">
+                        API Code
+                      </span>
                     </a>
                   )}
                   {project.links.npm && (
@@ -622,10 +643,13 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                       href={project.links.npm}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 p-4 bg-red-500/20 text-red-700 dark:text-red-300 border border-red-400/50 rounded-xl hover:bg-red-500/30 transition-all hover:scale-105"
+                      className="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 bg-red-500/20 text-red-700 dark:text-red-300 border border-red-400/50 rounded-xl hover:bg-red-500/30 transition-all hover:scale-105 touch-manipulation"
                     >
-                      <Code size={20} />
-                      <span className="font-medium">NPM Package</span>
+                      <Code size={18} className="sm:hidden" />
+                      <Code size={20} className="hidden sm:block" />
+                      <span className="font-medium text-sm sm:text-base">
+                        NPM Package
+                      </span>
                     </a>
                   )}
                   {project.links.behance && (
@@ -633,10 +657,13 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                       href={project.links.behance}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 p-4 bg-blue-500/20 text-blue-700 dark:text-blue-300 border border-blue-400/50 rounded-xl hover:bg-blue-500/30 transition-all hover:scale-105"
+                      className="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 bg-blue-500/20 text-blue-700 dark:text-blue-300 border border-blue-400/50 rounded-xl hover:bg-blue-500/30 transition-all hover:scale-105 touch-manipulation"
                     >
-                      <Palette size={20} />
-                      <span className="font-medium">Design Case Study</span>
+                      <Palette size={18} className="sm:hidden" />
+                      <Palette size={20} className="hidden sm:block" />
+                      <span className="font-medium text-sm sm:text-base">
+                        Design Case Study
+                      </span>
                     </a>
                   )}
                   {project.links.playstore && (
@@ -644,10 +671,13 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                       href={project.links.playstore}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 p-4 bg-green-500/20 text-green-700 dark:text-green-300 border border-green-400/50 rounded-xl hover:bg-green-500/30 transition-all hover:scale-105"
+                      className="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 bg-green-500/20 text-green-700 dark:text-green-300 border border-green-400/50 rounded-xl hover:bg-green-500/30 transition-all hover:scale-105 touch-manipulation"
                     >
-                      <Download size={20} />
-                      <span className="font-medium">Download App</span>
+                      <Download size={18} className="sm:hidden" />
+                      <Download size={20} className="hidden sm:block" />
+                      <span className="font-medium text-sm sm:text-base">
+                        Download App
+                      </span>
                     </a>
                   )}
                 </div>
@@ -660,19 +690,19 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.7 }}
                 >
-                  <div className="grid lg:grid-cols-2 gap-8">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
                     {/* Summary */}
                     {project.summary && (
                       <motion.div
-                        className="bg-white/10 dark:bg-black/10 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-3xl p-8"
+                        className="bg-white/10 dark:bg-black/10 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-2xl sm:rounded-3xl p-6 sm:p-8"
                         initial={{ opacity: 0, x: -30 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6, delay: 0.8 }}
                       >
-                        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                        <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
                           Project Summary
                         </h3>
-                        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                        <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-sm sm:text-base">
                           {project.summary}
                         </p>
                       </motion.div>
@@ -681,15 +711,15 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                     {/* Test Accounts */}
                     {project.testAccounts && (
                       <motion.div
-                        className="bg-gradient-to-br from-emerald-50/50 to-blue-50/50 dark:from-emerald-900/20 dark:to-blue-900/20 backdrop-blur-xl border border-emerald-200/30 dark:border-emerald-800/30 rounded-2xl p-6"
+                        className="bg-gradient-to-br from-emerald-50/50 to-blue-50/50 dark:from-emerald-900/20 dark:to-blue-900/20 backdrop-blur-xl border border-emerald-200/30 dark:border-emerald-800/30 rounded-xl sm:rounded-2xl p-4 sm:p-6"
                         initial={{ opacity: 0, x: 30 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6, delay: 0.9 }}
                       >
-                        <div className="flex items-center gap-2 mb-4">
-                          <div className="w-6 h-6 bg-gradient-to-r from-emerald-500 to-blue-500 rounded-lg flex items-center justify-center">
+                        <div className="flex items-center gap-2 mb-3 sm:mb-4">
+                          <div className="w-5 h-5 sm:w-6 sm:h-6 bg-gradient-to-r from-emerald-500 to-blue-500 rounded-lg flex items-center justify-center">
                             <svg
-                              className="w-3 h-3 text-white"
+                              className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-white"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -702,11 +732,11 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                               />
                             </svg>
                           </div>
-                          <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                          <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">
                             Test Accounts
                           </h3>
                         </div>
-                        <div className="space-y-3">
+                        <div className="space-y-2 sm:space-y-3">
                           {Object.entries(project.testAccounts).map(
                             ([role, credentials], index) => {
                               const [email, password] =
@@ -714,7 +744,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                               return (
                                 <motion.div
                                   key={role}
-                                  className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-xl p-4 border border-white/50 dark:border-gray-700/50"
+                                  className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-white/50 dark:border-gray-700/50"
                                   initial={{ opacity: 0, y: 10 }}
                                   animate={{ opacity: 1, y: 0 }}
                                   transition={{
@@ -722,10 +752,10 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                                     delay: 1.0 + index * 0.1,
                                   }}
                                 >
-                                  <div className="flex items-center gap-2 mb-3">
-                                    <div className="w-4 h-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+                                  <div className="flex items-center gap-2 mb-2 sm:mb-3">
+                                    <div className="w-3 h-3 sm:w-4 sm:h-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
                                       <svg
-                                        className="w-2 h-2 text-white"
+                                        className="w-1.5 h-1.5 sm:w-2 sm:h-2 text-white"
                                         fill="none"
                                         stroke="currentColor"
                                         viewBox="0 0 24 24"
@@ -738,24 +768,24 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                                         />
                                       </svg>
                                     </div>
-                                    <span className="font-semibold text-gray-800 dark:text-gray-200 capitalize">
+                                    <span className="font-semibold text-gray-800 dark:text-gray-200 capitalize text-sm sm:text-base">
                                       {role}
                                     </span>
                                   </div>
-                                  <div className="grid grid-cols-1 gap-2 text-sm">
-                                    <div className="flex items-center justify-between">
+                                  <div className="grid grid-cols-1 gap-1.5 sm:gap-2 text-xs sm:text-sm">
+                                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-0">
                                       <span className="text-gray-600 dark:text-gray-400 font-medium">
                                         Email:
                                       </span>
                                       <div className="flex items-center gap-1">
-                                        <code className="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-gray-800 dark:text-gray-200 font-mono text-xs">
+                                        <code className="bg-gray-100 dark:bg-gray-700 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded text-gray-800 dark:text-gray-200 font-mono text-xs break-all">
                                           {email}
                                         </code>
                                         <button
                                           onClick={() =>
                                             navigator.clipboard.writeText(email)
                                           }
-                                          className="p-1 hover:bg-gray-200 dark:hover:bg-gray-600 rounded transition-colors"
+                                          className="p-1 hover:bg-gray-200 dark:hover:bg-gray-600 rounded transition-colors touch-manipulation"
                                           title="Copy email"
                                         >
                                           <svg
@@ -774,12 +804,12 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                                         </button>
                                       </div>
                                     </div>
-                                    <div className="flex items-center justify-between">
+                                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-0">
                                       <span className="text-gray-600 dark:text-gray-400 font-medium">
                                         Password:
                                       </span>
                                       <div className="flex items-center gap-1">
-                                        <code className="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-gray-800 dark:text-gray-200 font-mono text-xs">
+                                        <code className="bg-gray-100 dark:bg-gray-700 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded text-gray-800 dark:text-gray-200 font-mono text-xs">
                                           {password}
                                         </code>
                                         <button
@@ -788,7 +818,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                                               password
                                             )
                                           }
-                                          className="p-1 hover:bg-gray-200 dark:hover:bg-gray-600 rounded transition-colors"
+                                          className="p-1 hover:bg-gray-200 dark:hover:bg-gray-600 rounded transition-colors touch-manipulation"
                                           title="Copy password"
                                         >
                                           <svg
@@ -821,28 +851,35 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
             </div>
 
             {/* Sidebar */}
-            <div className="space-y-8">
+            <div className="space-y-6 sm:space-y-8">
               {/* Technologies Used */}
               <motion.div
                 initial={{ opacity: 0, x: 30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.7 }}
-                className="bg-white/10 dark:bg-black/10 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-3xl p-8"
+                className="bg-white/10 dark:bg-black/10 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-2xl sm:rounded-3xl p-6 sm:p-8"
               >
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
-                  <Tag className="mr-3 text-blue-500" size={24} />
-                  Technologies Used
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6 flex items-center">
+                  <Tag
+                    className="mr-2 sm:mr-3 text-blue-500 sm:hidden"
+                    size={20}
+                  />
+                  <Tag
+                    className="mr-2 sm:mr-3 text-blue-500 hidden sm:block"
+                    size={24}
+                  />
+                  <span>Technologies Used</span>
                 </h3>
-                <div className="grid grid-cols-1 gap-3">
+                <div className="grid grid-cols-2 sm:grid-cols-1 gap-2 sm:gap-3">
                   {project.tech.map((tech, index) => (
                     <motion.div
                       key={tech}
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.4, delay: 0.8 + index * 0.1 }}
-                      className="bg-white/10 dark:bg-black/10 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-xl p-3 text-center hover:scale-105 transition-transform duration-300"
+                      className="bg-white/10 dark:bg-black/10 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-lg sm:rounded-xl p-2 sm:p-3 text-center hover:scale-105 transition-transform duration-300"
                     >
-                      <span className="text-sm font-semibold text-gray-900 dark:text-white">
+                      <span className="text-xs sm:text-sm font-semibold text-gray-900 dark:text-white">
                         {tech}
                       </span>
                     </motion.div>
