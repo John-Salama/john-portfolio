@@ -325,7 +325,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
             <div className="relative">
               {/* Main Image Display */}
               <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl mb-4 sm:mb-6">
-                <div className="relative h-[50vh] sm:h-[60vh] lg:h-[70vh] min-h-[400px] sm:min-h-[500px] lg:min-h-[600px]">
+                <div className="relative w-full aspect-video max-h-[70vh]">
                   {projectImages.length > 0 && (
                     <Image
                       src={projectImages[currentImageIndex]}
@@ -425,8 +425,8 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
 
               {/* Thumbnail Navigation */}
               {projectImages.length > 1 && (
-                <div className="pb-4 px-2">
-                  <div className="flex space-x-2 sm:space-x-3 overflow-x-auto max-w-full py-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] whitespace-nowrap">
+                <div className="pb-4 px-2 flex justify-start sm:justify-center">
+                  <div className="flex space-x-2 sm:space-x-3 overflow-x-auto max-w-full py-2 px-3 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] whitespace-nowrap">
                     {(() => {
                       // Calculate visible thumbnail range based on current image
                       const galleryConfig = project.config?.galleryConfig;
