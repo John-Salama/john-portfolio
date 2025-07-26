@@ -354,7 +354,7 @@ export default function Home() {
               <h3 className="text-lg lg:text-xl font-bold mb-3 lg:mb-4 bg-gradient-to-r from-indigo-600 to-blue-600 bg-clip-text text-transparent">
                 Contact Methods
               </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-2 gap-3 ">
                 {[
                   {
                     icon: Mail,
@@ -491,7 +491,7 @@ export default function Home() {
                   transition={{ duration: 0.8, delay: 0.3 }}
                   className="grid grid-cols-3 gap-4 mb-8"
                 >
-                  <div className="text-center bg-white/10 dark:bg-black/10 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-2xl p-4">
+                  <div className="flex flex-col items-center justify-center text-center bg-white/10 dark:bg-black/10 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-2xl p-4">
                     <motion.div
                       className="text-2xl font-bold text-purple-600 dark:text-purple-400"
                       initial={{ scale: 0 }}
@@ -504,7 +504,7 @@ export default function Home() {
                       Total Projects
                     </div>
                   </div>
-                  <div className="text-center bg-white/10 dark:bg-black/10 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-2xl p-4">
+                  <div className="flex flex-col items-center justify-center text-center bg-white/10 dark:bg-black/10 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-2xl p-4">
                     <motion.div
                       className="text-2xl font-bold text-blue-600 dark:text-blue-400"
                       initial={{ scale: 0 }}
@@ -517,7 +517,7 @@ export default function Home() {
                       Featured
                     </div>
                   </div>
-                  <div className="text-center bg-white/10 dark:bg-black/10 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-2xl p-4">
+                  <div className="flex flex-col items-center justify-center text-center bg-white/10 dark:bg-black/10 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-2xl p-4">
                     <motion.div
                       className="text-2xl font-bold text-emerald-600 dark:text-emerald-400"
                       initial={{ scale: 0 }}
