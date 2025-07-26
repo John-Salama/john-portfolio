@@ -1,0 +1,26 @@
+name : John salama beshay
+email : john.salama.beshay@gmail.com
+phone : +201207252426
+GitHub :https://github.com/John-Salama
+LinkedIn :
+Behance : https://www.behance.net/johnsalama9
+--------------------------------
+Hey there! 👋
+Iam a software engineer with experience in full-stack development (MERN Stack, React Native)
+seeking challenging opportunities to leverage my skills. Committed to delivering high-quality solutions and contributing to innovative projects. Passionate about continuous learning and growth in software engineering principles and technologies.
+--------------------------------
+Software Developer | CTC (Helwan University)
+07/2023 - 12/2023
+Full Stack Web Developer (MERN) at Communication and Technology Center - Helwan University, Develope Web Application for The University
+javascript
+react
+node.js
+express.js
+mongodb
+tailwind css
+Rest API
+----------------------------------
+2018 - 2023
+Computer Engineering (Bachelor's Degree)
+Helwan University
+Grade: Very Good 80% | Graduation Project Grade : Excellent.

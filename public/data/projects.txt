@@ -1,0 +1,76 @@
+AirAware
+ - https://airaware-beta.vercel.app/Home
+ - https://github.com/John-Salama/AirAware-API
+ - https://github.com/John-Salama/air-aware-website
+ - https://www.npmjs.com/package/aqi-pollutant-calculator
+ - https://github.com/John-Salama/aqi-pollutant-calculator
+ - https://www.behance.net/gallery/231163481/AirAware
+ - [React - material ui - Tailwind CSS - NodeJS - expressJS - mongoDB - HiveMQ - AI]
+ - images
+
+
+RCsandwitch
+ - https://rcsandwitch.vercel.app/
+ - https://github.com/John-Salama/rcsandwitch
+ - https://github.com/John-Salama/RCSandwitchServer
+ - https://www.behance.net/gallery/231163617/RCsandwitch
+ - [NextJS - Tailwind CSS - zustand - NodeJS - express -mongoDB]
+ - images
+
+
+Error20
+ - https://error20.vercel.app/
+ - https://github.com/John-Salama/error20
+ - https://github.com/John-Salama/Error20_Mobile
+ - https://play.google.com/store/apps/details?id=com.tohsakasu.Error20&pli=1
+ - https://www.behance.net/gallery/231163719/Error20
+ - [NextJS - Tailwind CSS , react Native - nativeWind]
+ - images
+
+
+AI Text Detector
+ - https://ai-detector-demo.vercel.app/
+ - https://github.com/John-Salama/ai-detector-demo
+ - https://www.npmjs.com/package/ai-text-detector
+ - https://github.com/John-Salama/ai-text-detector
+ - [NextJS - Tailwind CSS]
+ - images
+
+Pinterest Clone
+ - https://pinterest-clone-new.vercel.app/
+ - https://github.com/John-Salama/pinterest-clone-new
+ - [React - Tailwind CSS]
+ - images
+
+Local Codeing Exam System
+ - https://github.com/John-Salama/Local-Codeing-Exam-System
+ - https://www.behance.net/gallery/231165181/Local-Codeing-Exam-System
+ - [python - flask - HTML - CSS]
+ - images
+
+cpp python translator
+- https://github.com/John-Salama/cpp_python_translator
+- https://www.behance.net/gallery/231194247/cpp-python-translator
+- [React Tailwind CSS JavaScript NodeJs c++]
+- images
+
+
+Helwan University: Student ID Card Dashboard
+- https://www.behance.net/gallery/231193675/Student-ID-Card-Dashboard
+- [React Tailwind CSS JavaScript Node.js MongoDB]
+- images
+
+Helwan University: Student Interview
+- https://www.behance.net/gallery/231192479/personal-exam-app
+- [React Tailwind CSS JavaScript Node.js MongoDB]
+- images
+
+Helwan University: Student Admission
+- https://www.behance.net/gallery/231193315/Student-Admission
+- [React Tailwind CSS JavaScript Node.js MongoDB]
+- images
+
+Helwan University: eBook platform
+- https://www.behance.net/gallery/231192159/eBook-Platform
+- [React Tailwind CSS JavaScript Node.js MongoDB]
+- images

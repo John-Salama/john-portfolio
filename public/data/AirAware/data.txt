@@ -1,0 +1,150 @@
+# AirAware - Node.js Server
+
+## Overview
+
+**AirAware** is a comprehensive and secure server application designed for air quality monitoring. Built using **Node.js**, **Express.js**, and **MongoDB**, the server manages functionalities such as user authentication, data collection from IoT devices, air quality predictions using an integrated machine learning model, and secure communication with third-party services. The system is designed with scalability, security, and performance in mind, leveraging industry-standard middleware and libraries.
+
+## Table of Contents
+
+1. [Project Structure](#project-structure)
+2. [Features](#features)
+3. [Technologies Used](#technologies-used)
+4. [Installation](#installation)
+5. [API Endpoints](#api-endpoints)
+6. [Schemas](#schemas)
+7. [Functional Requirements](#functional-requirements)
+8. [Non-Functional Requirements](#non-functional-requirements)
+9. [Contributors](#contributors)
+
+## Project Structure
+
+The project is modular, featuring a range of routers, controllers, and models that separate concerns efficiently:
+
+- **Routes**: Handle API requests and forward them to appropriate controllers.
+- **Controllers**: Contain the business logic of the application.
+- **Models**: Define the data structure using MongoDB schemas.
+- **Middleware**: Manage security, request validation, and performance optimization.
+
+## Features
+
+- **User Authentication & Authorization**: Secure login and registration with JWT-based authentication.
+- **Sensor Data Management**: Collect and store sensor data related to air quality (e.g., CO, PM2.5, O3) from IoT devices.
+- **Air Quality Predictions**: Leverage an ML model to predict air quality for the next 12 hours based on historical data.
+- **User Feedback System**: Capture and manage feedback from users.
+- **Node Management**: Admin can create, link, or unlink nodes and manage their data in the system.
+- **Real-time Alerts**: Receive real-time notifications via MQTT for critical air quality levels.
+
+## Technologies Used
+
+### Core
+
+- **Node.js**: JavaScript runtime for server-side development.
+- **Express.js** (v4.18.1): Minimalist framework for building APIs.
+- **MongoDB** (v5.13.14): NoSQL database for scalable, document-based data storage.
+
+### Libraries & Middleware
+
+- **AWS SDK** (v2.1313.0): Enables integration with Amazon Web Services.
+- **Axios** (v1.3.2): Simplifies making HTTP requests from the server.
+- **Bcrypt.js** (v2.4.3): For secure password hashing.
+- **Compression** (v1.7.4): Gzip compression for reducing data transfer size.
+- **Cookie-parser** (v1.4.6): Parses cookies in incoming requests.
+- **CORS** (v2.8.5): Enables secure cross-origin communication.
+- **Dotenv** (v16.0.1): Loads environment variables from a `.env` file.
+- **Express-rate-limit** (v6.6.0): Prevents abuse by limiting repeated API requests.
+- **Helmet** (v6.0.0): Secures HTTP headers to mitigate security risks.
+- **Jsonwebtoken (JWT)** (v9.0.0): For secure token-based authentication.
+- **Mongoose** (v5.13.14): ODM for MongoDB.
+- **Nodemailer** (v6.7.8): For sending transactional emails.
+- **Sharp** (v0.31.3): High-performance image processing.
+- **Xss-clean** (v0.1.1): Protects against XSS attacks by sanitizing user inputs.
+
+## Installation
+
+To run the project locally, follow these steps:
+
+1. **Clone the repository**:
+
+   ```bash
+   git clone https://github.com/your-repo/AirAware.git
+   cd AirAware
+   ```
+
+2. **Install the dependencies**:
+
+   ```bash
+   npm install
+   ```
+
+3. **Configure environment variables**:  
+   Create a `.env` file in the root directory and add the following variables:
+
+   ```env
+   MONGO_URI=<your-mongo-uri>
+   JWT_SECRET=<your-jwt-secret>
+   AWS_ACCESS_KEY=<your-aws-access-key>
+   AWS_SECRET_KEY=<your-aws-secret-key>
+   ```
+
+4. **Start the server**:
+   ```bash
+   npm start
+   ```
+
+## API Endpoints
+
+### Feedback Router (`/api/v1/feedback`)
+
+- **GET** `/`: Retrieve all feedback (Admin only).
+- **POST** `/`: Submit new feedback.
+- **PATCH** `/:id`: Update feedback status.
+- **DELETE** `/:id`: Delete specific feedback by ID.
+
+### Gases Router (`/api/v1/gassesEffect`)
+
+- **GET** `/`: Retrieve all gas data.
+- **POST** `/`: Add new gas (Admin only).
+- **PATCH** `/:id`: Update gas information.
+- **DELETE** `/:id`: Delete specific gas entry.
+
+### Node Router (`/api/v1/node`)
+
+- **GET** `/`: Retrieve all nodes.
+- **POST** `/`: Add new node.
+- **PATCH** `/:id`: Update node information.
+- **DELETE** `/:id`: Delete specific node.
+
+### User Router (`/api/v1/users`)
+
+- **POST** `/register`: Register a new user.
+- **POST** `/login`: User login.
+- **PATCH** `/profile`: Update user profile.
+- **DELETE** `/:id`: Delete user account.
+
+## Schemas
+
+The application utilizes several MongoDB schemas to organize and store data efficiently:
+
+1. **User Schema**: Manages user data including personal information, role, and authentication details.
+2. **Node Schema**: Manages nodes that collect sensor data, including node status, location, and readings.
+3. **Gas Effects Schema**: Stores data related to gases and their health effects.
+4. **MQTT Schema**: Stores real-time sensor readings and metadata from IoT devices.
+
+## Functional Requirements
+
+1. **User Authentication**: Secure login and registration for both users and admins.
+2. **Sensor Readings**: View real-time air quality sensor data on the dashboard.
+3. **Node Management**: Admins can manage (add, delete, link, unlink) nodes.
+4. **Feedback System**: Users can submit feedback, which admins can manage.
+5. **Air Quality Predictions**: The ML model predicts air quality for the next 12 hours based on the last 25 hours of data.
+
+## Non-Functional Requirements
+
+1. **Security**: Implement encryption, secure authentication, and regular security audits.
+2. **High Availability**: Ensure the application is always available and handles requests efficiently.
+3. **Performance**: The server is optimized to process database queries and API responses in under 3 seconds.
+4. **Maintainability**: Code structure is modular and follows best practices for easy updates and feature integration.
+
+## Contributors
+
+- **John Salama** - Developer
