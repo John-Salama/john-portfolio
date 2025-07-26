@@ -34,6 +34,34 @@ interface Project {
   };
   image: string;
   featured: boolean;
+  // Optional configuration for advanced projects
+  config?: {
+    // Image loading configuration
+    imageConfig?: {
+      type: "standard" | "multiDirectory"; // Type of image loading
+      directories?: string[]; // For multi-directory projects like Error20
+      maxImages?: number; // Maximum images to check for
+      consecutiveMisses?: number; // How many consecutive misses before stopping
+      imageFormat?: "png" | "jpg" | "auto"; // Force specific format or auto-detect
+    };
+    // Display configuration
+    displayConfig?: {
+      mobileImageHandling?: "contain" | "cover"; // How to display mobile screenshots
+      showPlatformIndicators?: boolean; // Show platform labels for multi-platform projects
+      platformLabels?: {
+        web?: string;
+        mobile?: string;
+        android?: string;
+        ios?: string;
+      };
+    };
+    // Gallery configuration
+    galleryConfig?: {
+      thumbnailCount?: number; // How many thumbnails to show at once
+      autoplay?: boolean; // Enable autoplay
+      autoplayInterval?: number; // Autoplay interval in ms
+    };
+  };
 }
 
 export default function ProjectPage({ params }: { params: { id: string } }) {
@@ -60,6 +88,12 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
             foundProject.image.lastIndexOf(".")
           );
 
+          // Get configuration with defaults
+          const imageConfig = foundProject.config?.imageConfig || {};
+          const maxImages = imageConfig.maxImages || 50;
+          const consecutiveMisses = imageConfig.consecutiveMisses || 3;
+          const imageType = imageConfig.type || "standard";
+
           // Dynamically check for images by testing their existence
           const checkImageExists = async (
             imagePath: string
@@ -72,63 +106,44 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
             }
           };
 
-          // Special handling for Error20 project with web and android subdirectories
           const loadImages = async () => {
             const validImages: string[] = [];
 
-            if (foundProject.id === "error20") {
-              // Load web images first
-              const webBasePath = "/data/error20/web/";
-              let imageIndex = 1;
-              let consecutiveMisses = 0;
+            if (imageType === "multiDirectory" && imageConfig.directories) {
+              // Load images from multiple directories
+              for (const directory of imageConfig.directories) {
+                const directoryBasePath = `/data/${foundProject.id}/${directory}/`;
+                let imageIndex = 1;
+                let misses = 0;
 
-              // Add web section header (we'll handle this in the UI)
-              while (consecutiveMisses < 3 && imageIndex <= 20) {
-                const imagePath = `${webBasePath}${imageIndex}${extension}`;
-                const exists = await checkImageExists(imagePath);
+                while (misses < consecutiveMisses && imageIndex <= maxImages) {
+                  const imagePath = `${directoryBasePath}${imageIndex}${extension}`;
+                  const exists = await checkImageExists(imagePath);
 
-                if (exists) {
-                  validImages.push(imagePath);
-                  consecutiveMisses = 0;
-                } else {
-                  consecutiveMisses++;
+                  if (exists) {
+                    validImages.push(imagePath);
+                    misses = 0;
+                  } else {
+                    misses++;
+                  }
+
+                  imageIndex++;
                 }
-
-                imageIndex++;
-              }
-
-              // Load android images
-              const androidBasePath = "/data/error20/android/";
-              imageIndex = 1;
-              consecutiveMisses = 0;
-
-              while (consecutiveMisses < 3 && imageIndex <= 20) {
-                const imagePath = `${androidBasePath}${imageIndex}${extension}`;
-                const exists = await checkImageExists(imagePath);
-
-                if (exists) {
-                  validImages.push(imagePath);
-                  consecutiveMisses = 0;
-                } else {
-                  consecutiveMisses++;
-                }
-
-                imageIndex++;
               }
             } else {
-              // Regular image loading for other projects
+              // Standard single directory loading
               let imageIndex = 1;
-              let consecutiveMisses = 0;
+              let misses = 0;
 
-              while (consecutiveMisses < 3 && imageIndex <= 50) {
+              while (misses < consecutiveMisses && imageIndex <= maxImages) {
                 const imagePath = `${basePath}${imageIndex}${extension}`;
                 const exists = await checkImageExists(imagePath);
 
                 if (exists) {
                   validImages.push(imagePath);
-                  consecutiveMisses = 0;
+                  misses = 0;
                 } else {
-                  consecutiveMisses++;
+                  misses++;
                 }
 
                 imageIndex++;
@@ -305,12 +320,29 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                       src={projectImages[currentImageIndex]}
                       alt={`${project.title} - Image ${currentImageIndex + 1}`}
                       fill
-                      className={`transition-opacity duration-300 ${
-                        project.id === "error20" &&
-                        projectImages[currentImageIndex]?.includes("/android/")
-                          ? "object-contain bg-gray-100 dark:bg-gray-800"
-                          : "object-cover"
-                      }`}
+                      className={`transition-opacity duration-300 ${(() => {
+                        const displayConfig = project.config?.displayConfig;
+                        const imageType = project.config?.imageConfig?.type;
+                        const mobileHandling =
+                          displayConfig?.mobileImageHandling || "contain";
+
+                        // Check if current image is from mobile/android directory
+                        const currentImagePath =
+                          projectImages[currentImageIndex];
+                        const isMobileImage =
+                          currentImagePath?.includes("/android/") ||
+                          currentImagePath?.includes("/mobile/") ||
+                          currentImagePath?.includes("/ios/");
+
+                        if (
+                          imageType === "multiDirectory" &&
+                          isMobileImage &&
+                          mobileHandling === "contain"
+                        ) {
+                          return "object-contain bg-gray-100 dark:bg-gray-800";
+                        }
+                        return "object-cover";
+                      })()}`}
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
                       priority
                       onError={(e) => {
@@ -346,18 +378,33 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                     {currentImageIndex + 1} / {projectImages.length}
                   </div>
 
-                  {/* Platform indicator for Error20 */}
-                  {project.id === "error20" && projectImages.length > 0 && (
-                    <div className="absolute bottom-4 left-4 bg-black/50 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium">
-                      {projectImages[currentImageIndex]?.includes("/web/")
-                        ? "🌐 Web Version"
-                        : projectImages[currentImageIndex]?.includes(
-                            "/android/"
-                          )
-                        ? "📱 Android Version"
-                        : ""}
-                    </div>
-                  )}
+                  {/* Platform indicator for multi-platform projects */}
+                  {project.config?.displayConfig?.showPlatformIndicators &&
+                    projectImages.length > 0 && (
+                      <div className="absolute bottom-4 left-4 bg-black/50 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium">
+                        {(() => {
+                          const currentImagePath =
+                            projectImages[currentImageIndex];
+                          const platformLabels = project.config?.displayConfig
+                            ?.platformLabels || {
+                            web: "🌐 Web Version",
+                            mobile: "📱 Mobile Version",
+                            android: "📱 Android Version",
+                            ios: "📱 iOS Version",
+                          };
+
+                          if (currentImagePath?.includes("/web/"))
+                            return platformLabels.web;
+                          if (currentImagePath?.includes("/android/"))
+                            return platformLabels.android;
+                          if (currentImagePath?.includes("/ios/"))
+                            return platformLabels.ios;
+                          if (currentImagePath?.includes("/mobile/"))
+                            return platformLabels.mobile;
+                          return "";
+                        })()}
+                      </div>
+                    )}
                 </div>
               </div>
 
@@ -366,7 +413,9 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                 <div className="flex justify-center space-x-3 overflow-x-auto pb-4">
                   {(() => {
                     // Calculate visible thumbnail range based on current image
-                    const maxVisibleThumbnails = 9; // Show 9 thumbnails + 1 "+X" indicator
+                    const galleryConfig = project.config?.galleryConfig;
+                    const maxVisibleThumbnails =
+                      galleryConfig?.thumbnailCount || 9;
                     let startIndex = 0;
                     let endIndex = Math.min(
                       maxVisibleThumbnails,
@@ -403,9 +452,19 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                       <>
                         {visibleImages.map((image, index) => {
                           const actualIndex = startIndex + index;
-                          const isError20 = project?.id === "error20";
+                          const displayConfig = project.config?.displayConfig;
+                          const imageType = project.config?.imageConfig?.type;
+                          const showPlatformIndicators =
+                            displayConfig?.showPlatformIndicators;
+
+                          // Detect image type
                           const isWebImage = image.includes("/web/");
                           const isAndroidImage = image.includes("/android/");
+                          const isMobileImage =
+                            image.includes("/mobile/") ||
+                            image.includes("/android/") ||
+                            image.includes("/ios/");
+                          const isIosImage = image.includes("/ios/");
 
                           return (
                             <button
@@ -422,7 +481,10 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                                 alt={`Thumbnail ${actualIndex + 1}`}
                                 fill
                                 className={`${
-                                  isError20 && isAndroidImage
+                                  imageType === "multiDirectory" &&
+                                  isMobileImage &&
+                                  (displayConfig?.mobileImageHandling ||
+                                    "contain") === "contain"
                                     ? "object-contain bg-gray-100 dark:bg-gray-800"
                                     : "object-cover"
                                 }`}
@@ -438,16 +500,35 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                               {actualIndex === currentImageIndex && (
                                 <div className="absolute inset-0 bg-purple-500/20" />
                               )}
-                              {/* Platform indicator for Error20 */}
-                              {isError20 && (
-                                <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-white text-xs px-1 py-0.5 text-center font-medium">
-                                  {isWebImage
-                                    ? "Web"
-                                    : isAndroidImage
-                                    ? "App"
-                                    : ""}
-                                </div>
-                              )}
+                              {/* Platform indicator for thumbnails */}
+                              {showPlatformIndicators &&
+                                imageType === "multiDirectory" && (
+                                  <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-white text-xs px-1 py-0.5 text-center font-medium">
+                                    {(() => {
+                                      const labels =
+                                        displayConfig?.platformLabels;
+                                      if (isWebImage)
+                                        return (
+                                          labels?.web?.split(" ")[1] || "Web"
+                                        );
+                                      if (isAndroidImage)
+                                        return (
+                                          labels?.android?.split(" ")[1] ||
+                                          "App"
+                                        );
+                                      if (isIosImage)
+                                        return (
+                                          labels?.ios?.split(" ")[1] || "iOS"
+                                        );
+                                      if (isMobileImage)
+                                        return (
+                                          labels?.mobile?.split(" ")[1] ||
+                                          "Mobile"
+                                        );
+                                      return "";
+                                    })()}
+                                  </div>
+                                )}
                             </button>
                           );
                         })}

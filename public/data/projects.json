@@ -58,7 +58,26 @@
       "behance": "https://www.behance.net/gallery/231163719/Error20"
     },
     "image": "/data/error20/web/1.png",
-    "featured": true
+    "featured": true,
+    "config": {
+      "imageConfig": {
+        "type": "multiDirectory",
+        "directories": ["web", "android"],
+        "maxImages": 20,
+        "consecutiveMisses": 3
+      },
+      "displayConfig": {
+        "mobileImageHandling": "contain",
+        "showPlatformIndicators": true,
+        "platformLabels": {
+          "web": "🌐 Web Version",
+          "android": "📱 Android Version"
+        }
+      },
+      "galleryConfig": {
+        "thumbnailCount": 9
+      }
+    }
   },
   {
     "id": "ai-text-detector",
