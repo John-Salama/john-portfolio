@@ -128,22 +128,6 @@ export default function Home() {
     }
   }, []);
 
-  const toggleDarkMode = () => {
-    const newDarkMode = !isDarkMode;
-    setIsDarkMode(newDarkMode);
-    localStorage.setItem("darkMode", newDarkMode.toString());
-    if (newDarkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  };
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    element?.scrollIntoView({ behavior: "smooth" });
-  };
-
   const featuredProjects = projects.filter((p) => p.featured);
   const allProjects = projects;
 
@@ -152,11 +136,11 @@ export default function Home() {
       {/* Liquid Background */}
       <LiquidBackground />
 
-      {/* Main Layout with Fixed Sidebar */}
+      {/* Main Layout with Grid Design */}
       <section id="home" className="min-h-screen relative">
-        <div className="main-layout flex h-screen">
-          {/* Left Side - Fixed Info Sidebar */}
-          <div className="sidebar-fixed w-[500px] bg-white/5 dark:bg-black/5 backdrop-blur-xl border-r border-white/20 dark:border-white/10 p-8 overflow-y-auto">
+        <div className="main-layout grid grid-cols-1 lg:grid-cols-[500px_1fr] lg:h-screen max-w-none mx-0">
+          {/* Left Side - Profile Info Section */}
+          <div className="sidebar-responsive bg-white/5 dark:bg-black/5 backdrop-blur-xl lg:border-r border-white/20 dark:border-white/10 p-6 lg:p-8 lg:overflow-y-auto">
             {/* Profile Section */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -166,7 +150,7 @@ export default function Home() {
             >
               {/* Profile Image */}
               <motion.div
-                className="w-40 h-40 mx-auto mb-6 rounded-full overflow-hidden border-4 border-purple-500/20 shadow-2xl"
+                className="w-32 h-32 lg:w-40 lg:h-40 mx-auto mb-4 lg:mb-6 rounded-full overflow-hidden border-4 border-purple-500/20 shadow-2xl"
                 animate={{
                   boxShadow: [
                     "0 0 0 0 rgba(139, 92, 246, 0.3)",
@@ -181,13 +165,13 @@ export default function Home() {
                 </div>
               </motion.div>
 
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-2">
+              <h1 className="text-2xl lg:text-4xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-2">
                 John Salama Beshay
               </h1>
-              <p className="text-xl text-gray-600 dark:text-gray-300 mb-2">
+              <p className="text-lg lg:text-xl text-gray-600 dark:text-gray-300 mb-2">
                 Software Engineer
               </p>
-              <p className="text-base text-gray-700 dark:text-gray-400">
+              <p className="text-sm lg:text-base text-gray-700 dark:text-gray-400">
                 Full-Stack Developer (MERN Stack, React Native)
               </p>
             </motion.div>
@@ -198,12 +182,12 @@ export default function Home() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="mb-8"
+              className="mb-6 lg:mb-8"
             >
-              <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+              <h3 className="text-xl lg:text-2xl font-bold mb-3 lg:mb-4 bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
                 About Me
               </h3>
-              <p className="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+              <p className="text-sm lg:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
                 Hey there! 👋 I'm a software engineer with experience in
                 full-stack development (MERN Stack, React Native) seeking
                 challenging opportunities to leverage my skills. Committed to
@@ -218,9 +202,9 @@ export default function Home() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="mb-8"
+              className="mb-6 lg:mb-8"
             >
-              <h3 className="text-xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+              <h3 className="text-lg lg:text-xl font-bold mb-3 lg:mb-4 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
                 Education
               </h3>
               <div className="bg-white/5 dark:bg-black/5 backdrop-blur-sm border border-white/10 dark:border-white/5 rounded-xl p-4">
@@ -247,9 +231,9 @@ export default function Home() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="mb-8"
+              className="mb-6 lg:mb-8"
             >
-              <h3 className="text-xl font-bold mb-6 bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
+              <h3 className="text-lg lg:text-xl font-bold mb-4 lg:mb-6 bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
                 Experience Timeline
               </h3>
               <div className="relative">
@@ -365,12 +349,12 @@ export default function Home() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.8 }}
-              className="mb-8"
+              className="mb-6 lg:mb-8"
             >
-              <h3 className="text-xl font-bold mb-4 bg-gradient-to-r from-indigo-600 to-blue-600 bg-clip-text text-transparent">
+              <h3 className="text-lg lg:text-xl font-bold mb-3 lg:mb-4 bg-gradient-to-r from-indigo-600 to-blue-600 bg-clip-text text-transparent">
                 Contact Methods
               </h3>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {[
                   {
                     icon: Mail,
@@ -465,9 +449,9 @@ export default function Home() {
           </div>
 
           {/* Right Side - Projects */}
-          <div className="projects-container flex-1 overflow-y-auto px-6 py-8">
+          <div className="projects-container py-8 lg:overflow-y-auto">
             {/* Projects Section */}
-            <div className="max-w-6xl mx-auto">
+            <div className="w-full h-full px-2 sm:px-4 lg:px-6">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -476,7 +460,7 @@ export default function Home() {
               >
                 <div className="text-center mb-8">
                   <motion.h2
-                    className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-purple-600 via-blue-600 to-emerald-600 bg-clip-text text-transparent mb-4"
+                    className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold bg-gradient-to-r from-purple-600 via-blue-600 to-emerald-600 bg-clip-text text-transparent mb-4"
                     animate={{
                       backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
                     }}
@@ -494,7 +478,7 @@ export default function Home() {
                     animate={{ scaleX: 1 }}
                     transition={{ duration: 1, delay: 0.5 }}
                   ></motion.div>
-                  <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                  <p className="text-lg lg:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
                     Explore my portfolio of innovative projects built with
                     cutting-edge technologies
                   </p>
@@ -555,12 +539,12 @@ export default function Home() {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
               >
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
+                <h3 className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
                   <Code className="mr-3 text-blue-500" size={24} />
                   All Projects
                 </h3>
                 <div
-                  className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"
+                  className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6"
                   id="projects"
                 >
                   {allProjects.map((project, index) => (

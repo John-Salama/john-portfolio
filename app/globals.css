@@ -694,47 +694,6 @@ a:focus-visible {
   z-index: 2;
 }
 
-/* Responsive Layout Adjustments */
-@media (max-width: 768px) {
-  .main-layout {
-    flex-direction: column;
-    height: auto;
-  }
-
-  .sidebar-fixed {
-    position: relative;
-    width: 100%;
-    height: auto;
-    border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .projects-container {
-    padding-left: 20px;
-  }
-}
-
-/* Sidebar styling */
-.sidebar-fixed {
-  position: fixed;
-  left: 0;
-  top: 0;
-  height: 100vh;
-  overflow-y: auto;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-}
-
 .projects-container {
-  padding-left: 520px;
-}
-
-@media (max-width: 1024px) {
-  .projects-container {
-    padding-left: 350px;
-  }
-
-  .sidebar-fixed {
-    width: 350px;
-  }
+  padding: 30px;
 }
