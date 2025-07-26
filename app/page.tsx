@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   motion,
   useScroll,
@@ -110,6 +111,7 @@ function LiquidBackground() {
 export default function Home() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     fetch("/data/projects.json")
@@ -577,6 +579,7 @@ export default function Home() {
                           ? "featured-project featured-glow holographic bg-gradient-to-br from-purple-500/20 via-blue-500/15 to-emerald-500/10 border-2 border-transparent shadow-2xl"
                           : "bg-white/10 dark:bg-black/10 border border-white/20 dark:border-white/10"
                       } backdrop-blur-xl rounded-2xl p-6 hover:shadow-2xl transition-shadow duration-500 cursor-pointer overflow-hidden`}
+                      onClick={() => router.push(`/project/${project.id}`)}
                     >
                       {/* Featured Project Enhanced Effects */}
                       {project.featured && (
