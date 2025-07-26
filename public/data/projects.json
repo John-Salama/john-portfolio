@@ -1,0 +1,152 @@
+[
+  {
+    "id": "airaware",
+    "title": "AirAware",
+    "description": "A comprehensive air quality monitoring platform that helps users track and analyze air pollution data with real-time updates and AI-powered insights.",
+    "tech": [
+      "React",
+      "Material UI",
+      "Tailwind CSS",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "HiveMQ",
+      "AI"
+    ],
+    "links": {
+      "website": "https://airaware-beta.vercel.app/Home",
+      "github": "https://github.com/John-Salama/AirAware-API",
+      "npm": "https://www.npmjs.com/package/aqi-pollutant-calculator",
+      "behance": "https://www.behance.net/gallery/231163481/AirAware"
+    },
+    "image": "/data/AirAware/1.png",
+    "featured": true
+  },
+  {
+    "id": "rcsandwitch",
+    "title": "RCsandwitch",
+    "description": "An innovative food ordering platform with modern UI/UX design, providing seamless online ordering experience for restaurants and customers.",
+    "tech": [
+      "Next.js",
+      "Tailwind CSS",
+      "Zustand",
+      "Node.js",
+      "Express",
+      "MongoDB"
+    ],
+    "links": {
+      "website": "https://rcsandwitch.vercel.app/",
+      "github": "https://github.com/John-Salama/rcsandwitch",
+      "behance": "https://www.behance.net/gallery/231163617/RCsandwitch"
+    },
+    "image": "/data/rcsandwitch/1.png",
+    "featured": true
+  },
+  {
+    "id": "error20",
+    "title": "Error20",
+    "description": "A cross-platform coding challenge and learning platform available on web and mobile, helping developers improve their programming skills.",
+    "tech": ["Next.js", "Tailwind CSS", "React Native", "NativeWind"],
+    "links": {
+      "website": "https://error20.vercel.app/",
+      "github": "https://github.com/John-Salama/error20",
+      "playstore": "https://play.google.com/store/apps/details?id=com.tohsakasu.Error20&pli=1",
+      "behance": "https://www.behance.net/gallery/231163719/Error20"
+    },
+    "image": "/data/error20/web/1.png",
+    "featured": true
+  },
+  {
+    "id": "ai-text-detector",
+    "title": "AI Text Detector",
+    "description": "An intelligent tool that detects AI-generated text with high accuracy, available as both a web app and npm package for developers.",
+    "tech": ["Next.js", "Tailwind CSS", "AI/ML"],
+    "links": {
+      "website": "https://ai-detector-demo.vercel.app/",
+      "github": "https://github.com/John-Salama/ai-detector-demo",
+      "npm": "https://www.npmjs.com/package/ai-text-detector"
+    },
+    "image": "/data/ai text detect/1.png",
+    "featured": false
+  },
+  {
+    "id": "pinterest-clone",
+    "title": "Pinterest Clone",
+    "description": "A fully functional Pinterest clone with image uploading, board creation, and social features built with modern React architecture.",
+    "tech": ["React", "Tailwind CSS"],
+    "links": {
+      "website": "https://pinterest-clone-new.vercel.app/",
+      "github": "https://github.com/John-Salama/pinterest-clone-new"
+    },
+    "image": "/data/pinterest-clone/1.png",
+    "featured": false
+  },
+  {
+    "id": "local-coding-exam",
+    "title": "Local Coding Exam System",
+    "description": "A secure local examination system for coding assessments, ensuring fair evaluation in educational institutions.",
+    "tech": ["Python", "Flask", "HTML", "CSS"],
+    "links": {
+      "github": "https://github.com/John-Salama/Local-Codeing-Exam-System",
+      "behance": "https://www.behance.net/gallery/231165181/Local-Codeing-Exam-System"
+    },
+    "image": "/data/Local Codeing Exam System/1.png",
+    "featured": false
+  },
+  {
+    "id": "cpp-python-translator",
+    "title": "C++ Python Translator",
+    "description": "An intelligent code translator that converts C++ code to Python, helping developers migrate and learn between programming languages.",
+    "tech": ["React", "Tailwind CSS", "JavaScript", "Node.js", "C++"],
+    "links": {
+      "github": "https://github.com/John-Salama/cpp_python_translator",
+      "behance": "https://www.behance.net/gallery/231194247/cpp-python-translator"
+    },
+    "image": "/data/cpp python translator/239565431-43f028f7-3f48-4977-a0aa-e0fb54655bc2.png",
+    "featured": false
+  },
+  {
+    "id": "student-id-dashboard",
+    "title": "Student ID Card Dashboard",
+    "description": "A comprehensive dashboard for managing student ID cards at Helwan University with modern design and efficient data management.",
+    "tech": ["React", "Tailwind CSS", "JavaScript", "Node.js", "MongoDB"],
+    "links": {
+      "behance": "https://www.behance.net/gallery/231193675/Student-ID-Card-Dashboard"
+    },
+    "image": "/data/Student-ID-Card-Dashboard/1.png",
+    "featured": false
+  },
+  {
+    "id": "personal-exam-app",
+    "title": "Student Interview Platform",
+    "description": "A digital platform for conducting student interviews and assessments at Helwan University with streamlined evaluation processes.",
+    "tech": ["React", "Tailwind CSS", "JavaScript", "Node.js", "MongoDB"],
+    "links": {
+      "behance": "https://www.behance.net/gallery/231192479/personal-exam-app"
+    },
+    "image": "/data/personal-exam-app/1.png",
+    "featured": false
+  },
+  {
+    "id": "student-admission",
+    "title": "Student Admission System",
+    "description": "A comprehensive student admission management system for Helwan University with automated processing and tracking capabilities.",
+    "tech": ["React", "Tailwind CSS", "JavaScript", "Node.js", "MongoDB"],
+    "links": {
+      "behance": "https://www.behance.net/gallery/231193315/Student-Admission"
+    },
+    "image": "/data/Student Admission/08b030180429899.650acb2b33b30.png",
+    "featured": false
+  },
+  {
+    "id": "ebook-platform",
+    "title": "eBook Platform",
+    "description": "A modern digital library platform for Helwan University enabling students to access and manage educational content online.",
+    "tech": ["React", "Tailwind CSS", "JavaScript", "Node.js", "MongoDB"],
+    "links": {
+      "behance": "https://www.behance.net/gallery/231192159/eBook-Platform"
+    },
+    "image": "/data/ebook/145bf1182499265.652ed169ba62a.jpg",
+    "featured": false
+  }
+]
