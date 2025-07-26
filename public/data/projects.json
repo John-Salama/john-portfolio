@@ -27,6 +27,13 @@
     "testAccounts": {
       "admin": "johnotaku1000@gmail.com / pass1234",
       "user": "johnotaku100@gmail.com / pass123456"
+    },
+    "config": {
+      "imageConfig": {
+        "type": "standard",
+        "maxImages": 14,
+        "consecutiveMisses": 1
+      }
     }
   },
   {
@@ -53,7 +60,14 @@
       "customer": "user@test.com / user123"
     },
     "image": "/data/rcsandwitch/1.png",
-    "featured": true
+    "featured": true,
+    "config": {
+      "imageConfig": {
+        "type": "standard",
+        "maxImages": 11,
+        "consecutiveMisses": 1
+      }
+    }
   },
   {
     "id": "error20",
@@ -74,8 +88,8 @@
       "imageConfig": {
         "type": "multiDirectory",
         "directories": ["web", "android"],
-        "maxImages": 20,
-        "consecutiveMisses": 3
+        "maxImages": 8,
+        "consecutiveMisses": 1
       },
       "displayConfig": {
         "mobileImageHandling": "contain",
@@ -103,7 +117,14 @@
     },
     "summary": "Advanced AI text detection tool using sophisticated linguistic analysis, perplexity scoring, and neural pattern recognition. Available as both web app and NPM package with zero dependencies, supporting multiple AI models and providing detailed confidence metrics.",
     "image": "/data/ai text detect/1.png",
-    "featured": true
+    "featured": true,
+    "config": {
+      "imageConfig": {
+        "type": "standard",
+        "maxImages": 2,
+        "consecutiveMisses": 1
+      }
+    }
   },
   {
     "id": "pinterest-clone",
@@ -116,7 +137,14 @@
     },
     "summary": "Complete Pinterest clone with image uploading, board creation, user authentication, and social features. Built with modern React architecture featuring responsive grid layout, search functionality, and intuitive user interface.",
     "image": "/data/pinterest-clone/1.png",
-    "featured": false
+    "featured": false,
+    "config": {
+      "imageConfig": {
+        "type": "standard",
+        "maxImages": 3,
+        "consecutiveMisses": 1
+      }
+    }
   },
   {
     "id": "local-coding-exam",
@@ -133,7 +161,14 @@
       "student": "student / 121"
     },
     "image": "/data/Local Codeing Exam System/1.png",
-    "featured": false
+    "featured": false,
+    "config": {
+      "imageConfig": {
+        "type": "standard",
+        "maxImages": 9,
+        "consecutiveMisses": 1
+      }
+    }
   },
   {
     "id": "cpp-python-translator",
@@ -146,7 +181,14 @@
     },
     "summary": "Educational code translator converting C++ control structures (loops, conditionals, assignments) to Python syntax. Features web interface, real-time processing, and file-based translation system for learning language syntax differences.",
     "image": "/data/cpp python translator/1.png",
-    "featured": false
+    "featured": false,
+    "config": {
+      "imageConfig": {
+        "type": "standard",
+        "maxImages": 1,
+        "consecutiveMisses": 1
+      }
+    }
   },
   {
     "id": "student-id-dashboard",
@@ -158,7 +200,14 @@
     },
     "summary": "Comprehensive university ID card management system with student information management, card design tools, photo upload, batch processing, and administrative controls. Features modern dashboard interface and data export capabilities.",
     "image": "/data/Student-ID-Card-Dashboard/1.png",
-    "featured": false
+    "featured": false,
+    "config": {
+      "imageConfig": {
+        "type": "standard",
+        "maxImages": 9,
+        "consecutiveMisses": 1
+      }
+    }
   },
   {
     "id": "personal-exam-app",
@@ -170,7 +219,14 @@
     },
     "summary": "Digital platform for university student interviews and assessments with scheduling management, evaluation forms, progress tracking, standardized scoring, and comprehensive reporting for streamlined academic evaluation processes.",
     "image": "/data/personal-exam-app/1.png",
-    "featured": false
+    "featured": false,
+    "config": {
+      "imageConfig": {
+        "type": "standard",
+        "maxImages": 7,
+        "consecutiveMisses": 1
+      }
+    }
   },
   {
     "id": "student-admission",
@@ -182,7 +238,14 @@
     },
     "summary": "Comprehensive university admission management system with automated workflows, document verification, merit-based ranking, multi-stage processing, and analytics. Streamlines the entire admission process from application to enrollment.",
     "image": "/data/Student Admission/1.png",
-    "featured": false
+    "featured": false,
+    "config": {
+      "imageConfig": {
+        "type": "standard",
+        "maxImages": 16,
+        "consecutiveMisses": 1
+      }
+    }
   },
   {
     "id": "ebook-platform",
@@ -194,6 +257,13 @@
     },
     "summary": "Modern digital library platform for universities with book catalog, online reading interface, bookmarking, recommendation system, multi-format support, offline reading, and social features for enhanced educational resource accessibility.",
     "image": "/data/ebook/1.jpg",
-    "featured": false
+    "featured": false,
+    "config": {
+      "imageConfig": {
+        "type": "standard",
+        "maxImages": 15,
+        "consecutiveMisses": 1
+      }
+    }
   }
 ]

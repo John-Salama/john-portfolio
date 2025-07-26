@@ -113,8 +113,8 @@ export default function ProjectPage({ params }: ProjectPageProps) {
 
           // Get configuration with defaults
           const imageConfig = foundProject.config?.imageConfig || {};
-          const maxImages = imageConfig.maxImages || 50;
-          const consecutiveMisses = imageConfig.consecutiveMisses || 3;
+          const maxImages = imageConfig.maxImages || 10;
+          const consecutiveMisses = imageConfig.consecutiveMisses || 1;
           const imageType = imageConfig.type || "standard";
 
           // Dynamically check for images by testing their existence
