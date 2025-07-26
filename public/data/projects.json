@@ -21,8 +21,13 @@
       "npm": "https://www.npmjs.com/package/aqi-pollutant-calculator",
       "behance": "https://www.behance.net/gallery/231163481/AirAware"
     },
+    "summary": "A comprehensive air quality monitoring platform with IoT integration, AI-powered predictions, and real-time alerts. Features secure authentication, sensor data management, machine learning forecasts, and MQTT notifications for communities and environmental agencies.",
     "image": "/data/AirAware/1.png",
-    "featured": true
+    "featured": true,
+    "testAccounts": {
+      "admin": "johnotaku1000@gmail.com / pass1234",
+      "user": "johnotaku100@gmail.com / pass123456"
+    }
   },
   {
     "id": "rcsandwitch",
@@ -42,6 +47,11 @@
       "github2": "https://github.com/John-Salama/RCSandwitchServer",
       "behance": "https://www.behance.net/gallery/231163617/RCsandwitch"
     },
+    "summary": "A modern food ordering platform featuring intuitive customer interface, comprehensive admin dashboard, real-time order tracking, and secure authentication. Streamlines restaurant operations with order management, inventory tracking, and mobile-responsive design.",
+    "testAccounts": {
+      "admin": "admin@rcsandwitch.com / admin123",
+      "customer": "user@test.com / user123"
+    },
     "image": "/data/rcsandwitch/1.png",
     "featured": true
   },
@@ -57,6 +67,7 @@
       "playstore": "https://play.google.com/store/apps/details?id=com.tohsakasu.Error20&pli=1",
       "behance": "https://www.behance.net/gallery/231163719/Error20"
     },
+    "summary": "A bilingual (Arabic/English) platform helping young adults navigate quarter-life crisis with educational resources, self-assessment tools, workshops, and community support. Available on both web and mobile with modern UI and performance optimization.",
     "image": "/data/error20/web/1.png",
     "featured": true,
     "config": {
@@ -90,6 +101,7 @@
       "github2": "https://github.com/John-Salama/ai-text-detector",
       "npm": "https://www.npmjs.com/package/ai-text-detector"
     },
+    "summary": "Advanced AI text detection tool using sophisticated linguistic analysis, perplexity scoring, and neural pattern recognition. Available as both web app and NPM package with zero dependencies, supporting multiple AI models and providing detailed confidence metrics.",
     "image": "/data/ai text detect/1.png",
     "featured": true
   },
@@ -102,6 +114,7 @@
       "website": "https://pinterest-clone-new.vercel.app/",
       "github": "https://github.com/John-Salama/pinterest-clone-new"
     },
+    "summary": "Complete Pinterest clone with image uploading, board creation, user authentication, and social features. Built with modern React architecture featuring responsive grid layout, search functionality, and intuitive user interface.",
     "image": "/data/pinterest-clone/1.png",
     "featured": false
   },
@@ -113,6 +126,11 @@
     "links": {
       "github": "https://github.com/John-Salama/Local-Codeing-Exam-System",
       "behance": "https://www.behance.net/gallery/231165181/Local-Codeing-Exam-System"
+    },
+    "summary": "Lightweight offline SQL exam system with server-side timer, syntax highlighting, automatic submissions, and IP tracking. Features exam management, student monitoring, grading system, and cross-platform support for secure educational assessments.",
+    "testAccounts": {
+      "teacher": "teacher / admin123",
+      "student": "student / 121"
     },
     "image": "/data/Local Codeing Exam System/1.png",
     "featured": false
@@ -126,6 +144,7 @@
       "github": "https://github.com/John-Salama/cpp_python_translator",
       "behance": "https://www.behance.net/gallery/231194247/cpp-python-translator"
     },
+    "summary": "Educational code translator converting C++ control structures (loops, conditionals, assignments) to Python syntax. Features web interface, real-time processing, and file-based translation system for learning language syntax differences.",
     "image": "/data/cpp python translator/1.png",
     "featured": false
   },
@@ -137,6 +156,7 @@
     "links": {
       "behance": "https://www.behance.net/gallery/231193675/Student-ID-Card-Dashboard"
     },
+    "summary": "Comprehensive university ID card management system with student information management, card design tools, photo upload, batch processing, and administrative controls. Features modern dashboard interface and data export capabilities.",
     "image": "/data/Student-ID-Card-Dashboard/1.png",
     "featured": false
   },
@@ -148,6 +168,7 @@
     "links": {
       "behance": "https://www.behance.net/gallery/231192479/personal-exam-app"
     },
+    "summary": "Digital platform for university student interviews and assessments with scheduling management, evaluation forms, progress tracking, standardized scoring, and comprehensive reporting for streamlined academic evaluation processes.",
     "image": "/data/personal-exam-app/1.png",
     "featured": false
   },
@@ -159,6 +180,7 @@
     "links": {
       "behance": "https://www.behance.net/gallery/231193315/Student-Admission"
     },
+    "summary": "Comprehensive university admission management system with automated workflows, document verification, merit-based ranking, multi-stage processing, and analytics. Streamlines the entire admission process from application to enrollment.",
     "image": "/data/Student Admission/1.png",
     "featured": false
   },
@@ -170,6 +192,7 @@
     "links": {
       "behance": "https://www.behance.net/gallery/231192159/eBook-Platform"
     },
+    "summary": "Modern digital library platform for universities with book catalog, online reading interface, bookmarking, recommendation system, multi-format support, offline reading, and social features for enhanced educational resource accessibility.",
     "image": "/data/ebook/1.jpg",
     "featured": false
   }
