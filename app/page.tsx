@@ -568,11 +568,15 @@ export default function Home() {
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: index * 0.1 }}
                       viewport={{ once: true }}
+                      whileHover={{
+                        scale: 1.05,
+                        transition: { duration: 0.3 },
+                      }}
                       className={`group relative ${
                         project.featured
                           ? "featured-project featured-glow holographic bg-gradient-to-br from-purple-500/20 via-blue-500/15 to-emerald-500/10 border-2 border-transparent shadow-2xl"
                           : "bg-white/10 dark:bg-black/10 border border-white/20 dark:border-white/10"
-                      } backdrop-blur-xl rounded-2xl p-6 hover:scale-105 hover:shadow-2xl transition-all duration-500 cursor-pointer overflow-hidden`}
+                      } backdrop-blur-xl rounded-2xl p-6 hover:shadow-2xl transition-shadow duration-500 cursor-pointer overflow-hidden`}
                     >
                       {/* Featured Project Enhanced Effects */}
                       {project.featured && (
@@ -739,31 +743,18 @@ export default function Home() {
 
                         {/* Tech Stack */}
                         <div className="flex flex-wrap gap-1 mb-4">
-                          {project.tech
-                            .slice(0, project.featured ? 4 : 3)
-                            .map((tech, techIndex) => (
-                              <motion.span
-                                key={tech}
-                                whileHover={
-                                  project.featured
-                                    ? { scale: 1.1, y: -2 }
-                                    : { scale: 1.05 }
-                                }
-                                className={`px-2 py-1 text-xs rounded-full ${
-                                  project.featured
-                                    ? "bg-gradient-to-r from-purple-500/30 to-blue-500/30 text-purple-700 dark:text-purple-300 border border-purple-500/40 shadow-sm"
-                                    : "bg-blue-500/20 text-blue-700 dark:text-blue-300"
-                                }`}
-                              >
-                                {tech}
-                              </motion.span>
-                            ))}
-                          {project.tech.length > (project.featured ? 4 : 3) && (
-                            <span className="px-2 py-1 bg-gray-500/20 text-gray-700 dark:text-gray-300 text-xs rounded-full">
-                              +
-                              {project.tech.length - (project.featured ? 4 : 3)}
+                          {project.tech.map((tech, techIndex) => (
+                            <span
+                              key={tech}
+                              className={`px-2 py-1 text-xs rounded-full ${
+                                project.featured
+                                  ? "bg-gradient-to-r from-purple-500/30 to-blue-500/30 text-purple-700 dark:text-purple-300 border border-purple-500/40 shadow-sm"
+                                  : "bg-blue-500/20 text-blue-700 dark:text-blue-300"
+                              }`}
+                            >
+                              {tech}
                             </span>
-                          )}
+                          ))}
                         </div>
 
                         {/* Project Links */}
