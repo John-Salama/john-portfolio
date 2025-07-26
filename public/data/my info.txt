@@ -2,7 +2,7 @@ name : John salama beshay
 email : john.salama.beshay@gmail.com
 phone : +201207252426
 GitHub :https://github.com/John-Salama
-LinkedIn :
+LinkedIn : https://www.linkedin.com/in/john-salama-beshay/
 Behance : https://www.behance.net/johnsalama9
 --------------------------------
 Hey there! 👋
@@ -19,6 +19,18 @@ express.js
 mongodb
 tailwind css
 Rest API
+------------------------
+Software Developer
+Research and Development Center "Egyptian Air Defense Military Commands" · Full-timeResearch and Development Center "Egyptian Air Defense Military Commands" · Full-time
+May 2024 - Present · 1 yr 3 mosMay 2024 to Present · 1 yr 3 mos
+Cairo, Egypt · On-siteCairo, Egypt · On-site
+
+React.js
+Electron.js
+Node.js
+Geographic Information Systems (GIS)
+C++
+C#
 ----------------------------------
 2018 - 2023
 Computer Engineering (Bachelor's Degree)

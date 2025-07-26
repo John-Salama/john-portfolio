@@ -248,38 +248,76 @@ export default function Home() {
               <h3 className="text-xl font-bold mb-4 bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
                 Experience
               </h3>
-              <div className="bg-white/5 dark:bg-black/5 backdrop-blur-sm border border-white/10 dark:border-white/5 rounded-xl p-4">
-                <h4 className="font-semibold text-lg text-gray-900 dark:text-white mb-1">
-                  Software Developer
-                </h4>
-                <p className="text-purple-600 dark:text-purple-400 font-medium mb-2">
-                  CTC (Helwan University)
-                </p>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
-                  07/2023 - 12/2023
-                </p>
-                <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
-                  Full Stack Web Developer (MERN) at Communication and
-                  Technology Center - Helwan University, Developed Web
-                  Application for The University
-                </p>
-                <div className="flex flex-wrap gap-1">
-                  {[
-                    "JavaScript",
-                    "React",
-                    "Node.js",
-                    "Express.js",
-                    "MongoDB",
-                    "Tailwind CSS",
-                    "REST API",
-                  ].map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-2 py-1 bg-orange-500/20 text-orange-700 dark:text-orange-300 text-xs rounded-full"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+              <div className="space-y-4">
+                {/* Current Position */}
+                <div className="bg-white/5 dark:bg-black/5 backdrop-blur-sm border border-white/10 dark:border-white/5 rounded-xl p-4">
+                  <h4 className="font-semibold text-lg text-gray-900 dark:text-white mb-1">
+                    Software Developer
+                  </h4>
+                  <p className="text-purple-600 dark:text-purple-400 font-medium mb-2">
+                    Research and Development Center (Egyptian Air Defense
+                    Military Commands)
+                  </p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                    May 2024 - Present · Full-time
+                  </p>
+                  <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
+                    Developing advanced missile systems simulators for military
+                    training.
+                  </p>
+                  <div className="flex flex-wrap gap-1">
+                    {[
+                      "React.js",
+                      "Electron.js",
+                      "Node.js",
+                      "GIS",
+                      "C++",
+                      "C#",
+                    ].map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-2 py-1 bg-green-500/20 text-green-700 dark:text-green-300 text-xs rounded-full"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Previous Position */}
+                <div className="bg-white/5 dark:bg-black/5 backdrop-blur-sm border border-white/10 dark:border-white/5 rounded-xl p-4">
+                  <h4 className="font-semibold text-lg text-gray-900 dark:text-white mb-1">
+                    Software Developer
+                  </h4>
+                  <p className="text-purple-600 dark:text-purple-400 font-medium mb-2">
+                    CTC (Helwan University)
+                  </p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                    07/2023 - 12/2023
+                  </p>
+                  <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
+                    Full Stack Web Developer (MERN) at Communication and
+                    Technology Center - Helwan University, Developed Web
+                    Application for The University
+                  </p>
+                  <div className="flex flex-wrap gap-1">
+                    {[
+                      "JavaScript",
+                      "React",
+                      "Node.js",
+                      "Express.js",
+                      "MongoDB",
+                      "Tailwind CSS",
+                      "REST API",
+                    ].map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-2 py-1 bg-orange-500/20 text-orange-700 dark:text-orange-300 text-xs rounded-full"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -294,42 +332,49 @@ export default function Home() {
               <h3 className="text-xl font-bold mb-4 bg-gradient-to-r from-indigo-600 to-blue-600 bg-clip-text text-transparent">
                 Contact Methods
               </h3>
-              <div className="space-y-3">
+              <div className="grid grid-cols-2 gap-3">
                 {[
                   {
                     icon: Mail,
-                    text: "john.salama.beshay@gmail.com",
+                    text: "Email",
                     color: "text-blue-500",
                     href: "mailto:john.salama.beshay@gmail.com",
-                    label: "Email",
+                    label: "john.salama.beshay",
                   },
                   {
                     icon: Phone,
-                    text: "+201207252426",
+                    text: "Phone",
                     color: "text-green-500",
                     href: "tel:+201207252426",
-                    label: "Phone",
+                    label: "+201207252426",
                   },
                   {
                     icon: Github,
-                    text: "GitHub Profile",
+                    text: "GitHub",
                     color: "text-gray-600 dark:text-gray-400",
                     href: "https://github.com/John-Salama",
-                    label: "GitHub",
+                    label: "John-Salama",
                   },
                   {
                     icon: ExternalLink,
-                    text: "Behance Portfolio",
+                    text: "LinkedIn",
+                    color: "text-blue-600",
+                    href: "https://www.linkedin.com/in/john-salama-beshay/",
+                    label: "john-salama-beshay",
+                  },
+                  {
+                    icon: ExternalLink,
+                    text: "Behance",
                     color: "text-purple-500",
                     href: "https://www.behance.net/johnsalama9",
-                    label: "Behance",
+                    label: "johnsalama9",
                   },
                   {
                     icon: MapPin,
-                    text: "Cairo, Egypt",
+                    text: "Location",
                     color: "text-red-500",
                     href: null,
-                    label: "Location",
+                    label: "Cairo, Egypt",
                   },
                 ].map((contact, index) => (
                   <motion.div
@@ -355,10 +400,10 @@ export default function Home() {
                         <contact.icon className={contact.color} size={18} />
                         <div className="flex-1">
                           <p className="text-sm font-medium text-gray-900 dark:text-white">
-                            {contact.label}
+                            {contact.text}
                           </p>
                           <p className="text-xs text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
-                            {contact.text}
+                            {contact.label}
                           </p>
                         </div>
                       </a>
@@ -367,10 +412,10 @@ export default function Home() {
                         <contact.icon className={contact.color} size={18} />
                         <div className="flex-1">
                           <p className="text-sm font-medium text-gray-900 dark:text-white">
-                            {contact.label}
+                            {contact.text}
                           </p>
                           <p className="text-xs text-gray-600 dark:text-gray-400">
-                            {contact.text}
+                            {contact.label}
                           </p>
                         </div>
                       </div>
@@ -378,45 +423,6 @@ export default function Home() {
                   </motion.div>
                 ))}
               </div>
-            </motion.div>
-
-            {/* Social Links */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 1.0 }}
-              className="flex justify-center space-x-4"
-            >
-              {[
-                {
-                  href: "https://github.com/John-Salama",
-                  icon: Github,
-                  label: "GitHub",
-                },
-                {
-                  href: "mailto:john.salama.beshay@gmail.com",
-                  icon: Mail,
-                  label: "Email",
-                },
-                {
-                  href: "https://www.behance.net/johnsalama9",
-                  icon: ExternalLink,
-                  label: "Behance",
-                },
-              ].map((social) => (
-                <motion.a
-                  key={social.href}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 bg-white/10 dark:bg-black/10 backdrop-blur-sm border border-white/20 dark:border-white/10 rounded-full text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.9 }}
-                  title={social.label}
-                >
-                  <social.icon size={20} />
-                </motion.a>
-              ))}
             </motion.div>
           </div>
 
