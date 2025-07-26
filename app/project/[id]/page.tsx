@@ -60,12 +60,85 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
             foundProject.image.lastIndexOf(".")
           );
 
-          // Check for up to 20 images
-          for (let i = 1; i <= 20; i++) {
-            const imagePath = `${basePath}${i}${extension}`;
-            images.push(imagePath);
-          }
-          setProjectImages(images);
+          // Dynamically check for images by testing their existence
+          const checkImageExists = async (
+            imagePath: string
+          ): Promise<boolean> => {
+            try {
+              const response = await fetch(imagePath, { method: "HEAD" });
+              return response.ok;
+            } catch {
+              return false;
+            }
+          };
+
+          // Special handling for Error20 project with web and android subdirectories
+          const loadImages = async () => {
+            const validImages: string[] = [];
+
+            if (foundProject.id === "error20") {
+              // Load web images first
+              const webBasePath = "/data/error20/web/";
+              let imageIndex = 1;
+              let consecutiveMisses = 0;
+
+              // Add web section header (we'll handle this in the UI)
+              while (consecutiveMisses < 3 && imageIndex <= 20) {
+                const imagePath = `${webBasePath}${imageIndex}${extension}`;
+                const exists = await checkImageExists(imagePath);
+
+                if (exists) {
+                  validImages.push(imagePath);
+                  consecutiveMisses = 0;
+                } else {
+                  consecutiveMisses++;
+                }
+
+                imageIndex++;
+              }
+
+              // Load android images
+              const androidBasePath = "/data/error20/android/";
+              imageIndex = 1;
+              consecutiveMisses = 0;
+
+              while (consecutiveMisses < 3 && imageIndex <= 20) {
+                const imagePath = `${androidBasePath}${imageIndex}${extension}`;
+                const exists = await checkImageExists(imagePath);
+
+                if (exists) {
+                  validImages.push(imagePath);
+                  consecutiveMisses = 0;
+                } else {
+                  consecutiveMisses++;
+                }
+
+                imageIndex++;
+              }
+            } else {
+              // Regular image loading for other projects
+              let imageIndex = 1;
+              let consecutiveMisses = 0;
+
+              while (consecutiveMisses < 3 && imageIndex <= 50) {
+                const imagePath = `${basePath}${imageIndex}${extension}`;
+                const exists = await checkImageExists(imagePath);
+
+                if (exists) {
+                  validImages.push(imagePath);
+                  consecutiveMisses = 0;
+                } else {
+                  consecutiveMisses++;
+                }
+
+                imageIndex++;
+              }
+            }
+
+            setProjectImages(validImages);
+          };
+
+          loadImages();
         }
 
         setLoading(false);
@@ -232,26 +305,19 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                       src={projectImages[currentImageIndex]}
                       alt={`${project.title} - Image ${currentImageIndex + 1}`}
                       fill
-                      className="object-cover transition-opacity duration-300"
+                      className={`transition-opacity duration-300 ${
+                        project.id === "error20" &&
+                        projectImages[currentImageIndex]?.includes("/android/")
+                          ? "object-contain bg-gray-100 dark:bg-gray-800"
+                          : "object-cover"
+                      }`}
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
                       priority
                       onError={(e) => {
-                        // Remove failed image from array and adjust index
-                        const target = e.target as HTMLImageElement;
-                        const failedSrc = target.src;
-                        setProjectImages((prev) => {
-                          const newImages = prev.filter(
-                            (img) =>
-                              !img.includes(failedSrc.split("/").pop() || "")
-                          );
-                          if (
-                            currentImageIndex >= newImages.length &&
-                            newImages.length > 0
-                          ) {
-                            setCurrentImageIndex(0);
-                          }
-                          return newImages;
-                        });
+                        // If image fails to load, try to reload or skip
+                        console.warn(
+                          `Failed to load image: ${projectImages[currentImageIndex]}`
+                        );
                       }}
                     />
                   )}
@@ -279,45 +345,123 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                   <div className="absolute bottom-4 right-4 bg-black/50 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium">
                     {currentImageIndex + 1} / {projectImages.length}
                   </div>
+
+                  {/* Platform indicator for Error20 */}
+                  {project.id === "error20" && projectImages.length > 0 && (
+                    <div className="absolute bottom-4 left-4 bg-black/50 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium">
+                      {projectImages[currentImageIndex]?.includes("/web/")
+                        ? "🌐 Web Version"
+                        : projectImages[currentImageIndex]?.includes(
+                            "/android/"
+                          )
+                        ? "📱 Android Version"
+                        : ""}
+                    </div>
+                  )}
                 </div>
               </div>
 
               {/* Thumbnail Navigation */}
               {projectImages.length > 1 && (
                 <div className="flex justify-center space-x-3 overflow-x-auto pb-4">
-                  {projectImages.slice(0, 10).map((image, index) => (
-                    <button
-                      key={index}
-                      onClick={() => goToImage(index)}
-                      className={`relative flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden border-2 transition-all duration-300 ${
-                        index === currentImageIndex
-                          ? "border-purple-500 shadow-lg scale-110"
-                          : "border-white/30 dark:border-white/20 hover:border-purple-400 hover:scale-105"
-                      }`}
-                    >
-                      <Image
-                        src={image}
-                        alt={`Thumbnail ${index + 1}`}
-                        fill
-                        className="object-cover"
-                        sizes="80px"
-                        onError={(e) => {
-                          const target = e.target as HTMLElement;
-                          if (target.parentElement) {
-                            target.parentElement.style.display = "none";
-                          }
-                        }}
-                      />
-                      {index === currentImageIndex && (
-                        <div className="absolute inset-0 bg-purple-500/20" />
-                      )}
-                    </button>
-                  ))}
-                  {projectImages.length > 10 && (
-                    <div className="flex items-center justify-center w-20 h-20 bg-white/10 dark:bg-black/10 backdrop-blur-sm border border-white/30 dark:border-white/20 rounded-xl text-gray-600 dark:text-gray-400 text-sm font-medium">
-                      +{projectImages.length - 10}
-                    </div>
-                  )}
+                  {(() => {
+                    // Calculate visible thumbnail range based on current image
+                    const maxVisibleThumbnails = 9; // Show 9 thumbnails + 1 "+X" indicator
+                    let startIndex = 0;
+                    let endIndex = Math.min(
+                      maxVisibleThumbnails,
+                      projectImages.length
+                    );
+
+                    // If current image is beyond visible range, adjust the window
+                    if (currentImageIndex >= maxVisibleThumbnails) {
+                      startIndex = Math.max(
+                        0,
+                        currentImageIndex - Math.floor(maxVisibleThumbnails / 2)
+                      );
+                      endIndex = Math.min(
+                        projectImages.length,
+                        startIndex + maxVisibleThumbnails
+                      );
+
+                      // Adjust start if we're near the end
+                      if (endIndex === projectImages.length) {
+                        startIndex = Math.max(
+                          0,
+                          projectImages.length - maxVisibleThumbnails
+                        );
+                      }
+                    }
+
+                    const visibleImages = projectImages.slice(
+                      startIndex,
+                      endIndex
+                    );
+                    const remainingImages = projectImages.length - endIndex;
+
+                    return (
+                      <>
+                        {visibleImages.map((image, index) => {
+                          const actualIndex = startIndex + index;
+                          const isError20 = project?.id === "error20";
+                          const isWebImage = image.includes("/web/");
+                          const isAndroidImage = image.includes("/android/");
+
+                          return (
+                            <button
+                              key={actualIndex}
+                              onClick={() => goToImage(actualIndex)}
+                              className={`relative flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden border-2 transition-all duration-300 ${
+                                actualIndex === currentImageIndex
+                                  ? "border-purple-500 shadow-lg scale-110"
+                                  : "border-white/30 dark:border-white/20 hover:border-purple-400 hover:scale-105"
+                              }`}
+                            >
+                              <Image
+                                src={image}
+                                alt={`Thumbnail ${actualIndex + 1}`}
+                                fill
+                                className={`${
+                                  isError20 && isAndroidImage
+                                    ? "object-contain bg-gray-100 dark:bg-gray-800"
+                                    : "object-cover"
+                                }`}
+                                sizes="80px"
+                                onError={(e) => {
+                                  // Hide thumbnail if it fails to load
+                                  const target = e.target as HTMLElement;
+                                  if (target.parentElement) {
+                                    target.parentElement.style.display = "none";
+                                  }
+                                }}
+                              />
+                              {actualIndex === currentImageIndex && (
+                                <div className="absolute inset-0 bg-purple-500/20" />
+                              )}
+                              {/* Platform indicator for Error20 */}
+                              {isError20 && (
+                                <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-white text-xs px-1 py-0.5 text-center font-medium">
+                                  {isWebImage
+                                    ? "Web"
+                                    : isAndroidImage
+                                    ? "App"
+                                    : ""}
+                                </div>
+                              )}
+                            </button>
+                          );
+                        })}
+                        {remainingImages > 0 && (
+                          <button
+                            onClick={() => goToImage(endIndex)}
+                            className="flex items-center justify-center w-20 h-20 bg-white/10 dark:bg-black/10 backdrop-blur-sm border border-white/30 dark:border-white/20 rounded-xl text-gray-600 dark:text-gray-400 text-sm font-medium hover:bg-white/20 dark:hover:bg-black/20 transition-all hover:scale-105"
+                          >
+                            +{remainingImages}
+                          </button>
+                        )}
+                      </>
+                    );
+                  })()}
                 </div>
               )}
             </div>
@@ -326,104 +470,16 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
           <div className="grid lg:grid-cols-3 gap-12">
             {/* Main Content */}
             <div className="lg:col-span-2 space-y-12">
-              {/* Technologies Used */}
+              {/* Project Links */}
               <motion.section
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.6 }}
               >
-                <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
-                  <Tag className="mr-3 text-blue-500" size={28} />
-                  Technologies Used
-                </h2>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                  {project.tech.map((tech, index) => (
-                    <motion.div
-                      key={tech}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.4, delay: 0.8 + index * 0.1 }}
-                      className="bg-white/10 dark:bg-black/10 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-2xl p-4 text-center hover:scale-105 transition-transform duration-300"
-                    >
-                      <span className="text-lg font-semibold text-gray-900 dark:text-white">
-                        {tech}
-                      </span>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.section>
-
-              {/* Project Features */}
-              <motion.section
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.8 }}
-              >
                 <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
-                  Project Highlights
-                </h2>
-                <div className="bg-white/10 dark:bg-black/10 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-3xl p-8">
-                  <div className="space-y-6">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                        <span className="text-white text-sm font-bold">1</span>
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                          Modern Design
-                        </h3>
-                        <p className="text-gray-700 dark:text-gray-300">
-                          Clean, responsive, and user-friendly interface
-                          designed with modern UI/UX principles.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-start space-x-4">
-                      <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-emerald-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                        <span className="text-white text-sm font-bold">2</span>
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                          Performance Optimized
-                        </h3>
-                        <p className="text-gray-700 dark:text-gray-300">
-                          Built with performance in mind, featuring fast loading
-                          times and smooth interactions.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-start space-x-4">
-                      <div className="w-8 h-8 bg-gradient-to-r from-emerald-500 to-purple-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                        <span className="text-white text-sm font-bold">3</span>
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                          Scalable Architecture
-                        </h3>
-                        <p className="text-gray-700 dark:text-gray-300">
-                          Developed using best practices and scalable
-                          architecture for future growth.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.section>
-            </div>
-
-            {/* Sidebar */}
-            <div className="space-y-8">
-              {/* Project Links */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.7 }}
-                className="bg-white/10 dark:bg-black/10 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-3xl p-8"
-              >
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
                   Project Links
-                </h3>
-                <div className="space-y-4">
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {project.links.website && (
                     <a
                       href={project.links.website}
@@ -508,43 +564,36 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                     </a>
                   )}
                 </div>
-              </motion.div>
+              </motion.section>
+            </div>
 
-              {/* Project Info */}
+            {/* Sidebar */}
+            <div className="space-y-8">
+              {/* Technologies Used */}
               <motion.div
                 initial={{ opacity: 0, x: 30 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.9 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
                 className="bg-white/10 dark:bg-black/10 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-3xl p-8"
               >
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                  Project Info
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
+                  <Tag className="mr-3 text-blue-500" size={24} />
+                  Technologies Used
                 </h3>
-                <div className="space-y-4">
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-600 dark:text-gray-400">
-                      Status
-                    </span>
-                    <span className="text-gray-900 dark:text-white font-medium">
-                      {project.featured ? "Featured" : "Completed"}
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-600 dark:text-gray-400">
-                      Type
-                    </span>
-                    <span className="text-gray-900 dark:text-white font-medium">
-                      Web Application
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-600 dark:text-gray-400">
-                      Technologies
-                    </span>
-                    <span className="text-gray-900 dark:text-white font-medium">
-                      {project.tech.length} Tech Stack
-                    </span>
-                  </div>
+                <div className="grid grid-cols-1 gap-3">
+                  {project.tech.map((tech, index) => (
+                    <motion.div
+                      key={tech}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.4, delay: 0.8 + index * 0.1 }}
+                      className="bg-white/10 dark:bg-black/10 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-xl p-3 text-center hover:scale-105 transition-transform duration-300"
+                    >
+                      <span className="text-sm font-semibold text-gray-900 dark:text-white">
+                        {tech}
+                      </span>
+                    </motion.div>
+                  ))}
                 </div>
               </motion.div>
             </div>
