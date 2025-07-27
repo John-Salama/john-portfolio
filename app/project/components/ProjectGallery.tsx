@@ -4,6 +4,7 @@ import { memo, useState, useCallback, useMemo, useRef, useEffect } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Project } from "../../types/project";
+import { ImagePreloader, ProgressBar } from './ImagePreloader';
 
 interface ProjectGalleryProps {
   project: Project;
@@ -19,6 +20,8 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
     new Set()
   );
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [loadingProgress, setLoadingProgress] = useState(0);
+  const [allImagesLoaded, setAllImagesLoaded] = useState(false);
   const thumbnailsRef = useRef<HTMLDivElement>(null);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
@@ -250,9 +253,36 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
 
   return (
     <div className="mb-8 sm:mb-12">
+      {/* Background image preloader */}
+      <ImagePreloader
+        images={projectImages}
+        onProgress={(loaded, total) => {
+          setLoadingProgress((loaded / total) * 100);
+        }}
+        onComplete={() => {
+          setAllImagesLoaded(true);
+        }}
+      />
+      
       <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8 text-center">
         Project Gallery
       </h2>
+      
+      {/* Loading progress bar */}
+      {!allImagesLoaded && loadingProgress > 0 && loadingProgress < 100 && (
+        <div className="mb-4 sm:mb-6">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-sm text-gray-600 dark:text-gray-400">
+              Loading images...
+            </span>
+            <span className="text-sm text-gray-600 dark:text-gray-400">
+              {Math.round(loadingProgress)}%
+            </span>
+          </div>
+          <ProgressBar progress={loadingProgress} />
+        </div>
+      )}
+      
       <div className="relative">
         {/* Main Image Display */}
         <div
