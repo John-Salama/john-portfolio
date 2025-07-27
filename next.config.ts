@@ -11,13 +11,17 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  experimental: {
-    optimizePackageImports: ["lucide-react", "framer-motion"],
-  },
   // Enable static generation for better performance
   trailingSlash: false,
   // Optimize for Vercel deployment
   reactStrictMode: true,
+  // Optimize for SSR
+  swcMinify: true,
+  compress: true,
+  poweredByHeader: false,
+  generateEtags: true,
+  // Performance optimizations
+  optimizeFonts: true,
 };
 
 export default nextConfig;
