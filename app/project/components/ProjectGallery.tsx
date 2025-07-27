@@ -12,9 +12,53 @@ interface ProjectGalleryProps {
 
 function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [preloadedImages, setPreloadedImages] = useState<Set<number>>(new Set());
   const thumbnailsRef = useRef<HTMLDivElement>(null);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+  // Preload images for faster swapping
+  useEffect(() => {
+    const preloadImage = (index: number) => {
+      if (preloadedImages.has(index)) return;
+
+      const img = new window.Image();
+      img.onload = () => {
+        setPreloadedImages(prev => new Set([...prev, index]));
+      };
+      img.src = projectImages[index];
+    };
+
+    // Always preload current image and adjacent ones
+    const indicesToPreload = [
+      currentImageIndex,
+      (currentImageIndex + 1) % projectImages.length,
+      (currentImageIndex - 1 + projectImages.length) % projectImages.length,
+    ];
+
+    indicesToPreload.forEach(preloadImage);
+  }, [currentImageIndex, projectImages, preloadedImages]);
+
+  // Preload all images in the background after component mounts
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      projectImages.forEach((src, index) => {
+        if (!preloadedImages.has(index)) {
+          // Create link tags for faster browser caching
+          const link = document.createElement('link');
+          link.rel = 'prefetch';
+          link.href = src;
+          document.head.appendChild(link);
+          
+          // Also use Image constructor as fallback
+          const img = new window.Image();
+          img.src = src;
+        }
+      });
+    }, 500); // Start after 500ms for faster initial experience
+
+    return () => clearTimeout(timer);
+  }, [projectImages, preloadedImages]);
 
   const nextImage = useCallback(() => {
     setCurrentImageIndex((prev) => (prev + 1) % projectImages.length);
@@ -181,19 +225,44 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
               src={projectImages[currentImageIndex]}
               alt={`${project.title} - Image ${currentImageIndex + 1}`}
               fill
-              className={`transition-opacity duration-300 ${getImageDisplayClass(
+              className={`transition-opacity duration-150 ${getImageDisplayClass(
                 projectImages[currentImageIndex]
               )}`}
-              priority={currentImageIndex === 0}
-              quality={90}
+              priority={currentImageIndex <= 2} // Higher priority for first few images
+              quality={95} // Higher quality for better user experience
+              loading={currentImageIndex === 0 ? "eager" : "lazy"}
               onError={(e) => {
                 console.error(
                   `Failed to load image: ${projectImages[currentImageIndex]}`
                 );
-                // You could set a fallback image here
               }}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
             />
+
+            {/* Invisible preload images for next/prev */}
+            {projectImages.length > 1 && (
+              <>
+                <Image
+                  src={projectImages[(currentImageIndex + 1) % projectImages.length]}
+                  alt=""
+                  fill
+                  className="opacity-0 pointer-events-none"
+                  priority={false}
+                  quality={95}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+                />
+                <Image
+                  src={projectImages[(currentImageIndex - 1 + projectImages.length) % projectImages.length]}
+                  alt=""
+                  fill
+                  className="opacity-0 pointer-events-none"
+                  priority={false}
+                  quality={95}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+                />
+              </>
+            )}
+
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
 
             {/* Navigation Arrows */}
@@ -255,6 +324,9 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
                     fill
                     className={getImageDisplayClass(image)}
                     sizes="(max-width: 640px) 64px, 80px"
+                    priority={index <= 5} // Prioritize first 6 thumbnails
+                    quality={80} // Lower quality for thumbnails to load faster
+                    loading={index <= 5 ? "eager" : "lazy"}
                   />
                   {index === currentImageIndex && (
                     <div className="absolute inset-0 bg-purple-500/20" />
