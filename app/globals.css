@@ -3,6 +3,7 @@
 /* Performance optimizations */
 * {
   box-sizing: border-box;
+  transition: all 1s ease-in-out;
 }
 
 /* Image container improvements for mobile */
@@ -36,6 +37,47 @@
 .hardware-accelerated {
   transform: translateZ(0);
   will-change: transform;
+}
+
+/* Global smooth transitions for all interactive elements */
+* {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced smooth transitions */
+button,
+a,
+.card,
+.project-card,
+[role="button"] {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth hover transitions */
+*:hover {
+  transition-duration: 0.2s;
+}
+
+/* Override Tailwind default timing functions with smooth easing */
+.transition-all,
+.transition-colors,
+.transition-opacity,
+.transition-shadow,
+.transition-transform {
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+/* Smoother duration defaults */
+.duration-300 {
+  transition-duration: 400ms !important;
+}
+
+.duration-200 {
+  transition-duration: 300ms !important;
+}
+
+.duration-150 {
+  transition-duration: 250ms !important;
 }
 
 /* Optimize image rendering */
@@ -137,7 +179,7 @@ html {
   border-radius: 3px;
 }
 
-/* Custom animations */
+/* Custom animations with smooth easing */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -182,19 +224,19 @@ html {
 }
 
 .animate-fadeInUp {
-  animation: fadeInUp 0.6s ease-out;
+  animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .animate-fadeInLeft {
-  animation: fadeInLeft 0.6s ease-out;
+  animation: fadeInLeft 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .animate-fadeInRight {
-  animation: fadeInRight 0.6s ease-out;
+  animation: fadeInRight 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .animate-float {
-  animation: float 3s ease-in-out infinite;
+  animation: float 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
 }
 
 /* Gradient text effect */
@@ -212,20 +254,21 @@ html {
   background-clip: text;
 }
 
-/* Card hover effects */
+/* Card hover effects with smooth transitions */
 .card-hover {
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform, box-shadow;
 }
 
 .card-hover:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25),
+    0 25px 25px -15px rgba(0, 0, 0, 0.1);
 }
 
 .dark .card-hover:hover {
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4),
-    0 10px 10px -5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6),
+    0 25px 25px -15px rgba(0, 0, 0, 0.4);
 }
 
 /* Glowing border effect */
@@ -254,30 +297,35 @@ html {
   background: linear-gradient(45deg, #667eea, #764ba2, #667eea);
 }
 
-/* Button animations */
+/* Button animations with smooth transitions */
 .btn-primary {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform, box-shadow;
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4),
+    0 5px 15px rgba(102, 126, 234, 0.2);
 }
 
 .dark .btn-primary:hover {
-  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.5);
+  box-shadow: 0 15px 35px rgba(102, 126, 234, 0.6),
+    0 5px 15px rgba(102, 126, 234, 0.3);
 }
 
-/* Navigation styles */
+/* Navigation styles with smooth transitions */
 .nav-link {
   color: rgb(55 65 81);
   font-weight: 500;
-  transition: color 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
 }
 
 .nav-link:hover {
   color: rgb(37 99 235);
+  transform: translateY(-1px);
 }
 
 .dark .nav-link {
@@ -293,12 +341,13 @@ html {
   padding: 0.5rem 0.75rem;
   color: rgb(55 65 81);
   border-radius: 0.375rem;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .mobile-nav-link:hover {
   color: rgb(37 99 235);
   background-color: rgb(249 250 251);
+  transform: translateX(4px);
 }
 
 .dark .mobile-nav-link {
@@ -316,12 +365,15 @@ html {
   background-color: white;
   border-radius: 9999px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform, box-shadow;
 }
 
 .social-link:hover {
   color: rgb(37 99 235);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  transform: translateY(-2px) scale(1.05);
 }
 
 .dark .social-link {
@@ -349,10 +401,11 @@ html {
   }
 }
 
-/* Dark mode transitions */
+/* Dark mode transitions with smooth easing */
 * {
-  transition: background-color 0.3s ease, border-color 0.3s ease,
-    color 0.3s ease;
+  transition: background-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    border-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* Focus styles for accessibility */
@@ -385,7 +438,7 @@ a:focus-visible {
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
 }
 
-/* Liquid Morphing Animation */
+/* Liquid Morphing Animation with smooth easing */
 @keyframes liquid-morph {
   0%,
   100% {
@@ -397,25 +450,25 @@ a:focus-visible {
 }
 
 .liquid-shape {
-  animation: liquid-morph 8s ease-in-out infinite;
+  animation: liquid-morph 10s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
 }
 
-/* Floating Animation */
+/* Floating Animation with smooth easing */
 @keyframes float-gentle {
   0%,
   100% {
     transform: translateY(0px) rotate(0deg);
   }
   50% {
-    transform: translateY(-10px) rotate(2deg);
+    transform: translateY(-12px) rotate(2deg);
   }
 }
 
 .float-gentle {
-  animation: float-gentle 4s ease-in-out infinite;
+  animation: float-gentle 6s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
 }
 
-/* Gradient Animation */
+/* Gradient Animation with smooth easing */
 @keyframes gradient-shift {
   0%,
   100% {
@@ -429,16 +482,16 @@ a:focus-visible {
 .gradient-animated {
   background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c);
   background-size: 400% 400%;
-  animation: gradient-shift 4s ease infinite;
+  animation: gradient-shift 6s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
 }
 
-/* Pulse Glow Effect */
+/* Pulse Glow Effect with smooth easing */
 @keyframes pulse-glow-ring {
   0% {
     box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.7);
   }
   70% {
-    box-shadow: 0 0 0 20px rgba(139, 92, 246, 0);
+    box-shadow: 0 0 0 25px rgba(139, 92, 246, 0);
   }
   100% {
     box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
@@ -446,10 +499,10 @@ a:focus-visible {
 }
 
 .pulse-glow-ring {
-  animation: pulse-glow-ring 2s infinite;
+  animation: pulse-glow-ring 3s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
 }
 
-/* Rotating Border */
+/* Rotating Border with smooth easing */
 @keyframes rotate-border {
   0% {
     transform: rotate(0deg);
@@ -465,11 +518,11 @@ a:focus-visible {
   inset: -2px;
   background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #667eea);
   border-radius: inherit;
-  animation: rotate-border 3s linear infinite;
+  animation: rotate-border 4s linear infinite;
   z-index: -1;
 }
 
-/* Text Reveal Animation */
+/* Text Reveal Animation with smooth easing */
 @keyframes text-reveal {
   0% {
     clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
@@ -480,14 +533,14 @@ a:focus-visible {
 }
 
 .text-reveal {
-  animation: text-reveal 1s ease-out forwards;
+  animation: text-reveal 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
-/* Staggered Animation */
+/* Staggered Animation with smooth easing */
 .stagger-item {
   opacity: 0;
   transform: translateY(20px);
-  animation: fadeInUp 0.6s ease forwards;
+  animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
 .stagger-item:nth-child(1) {
@@ -600,7 +653,7 @@ a:focus-visible {
   margin-top: 50px;
 }
 
-/* Perfect hexagon shape */
+/* Honeycomb Hexagon with smooth transitions */
 .honeycomb-hex {
   width: 100%;
   height: 100%;
@@ -615,9 +668,10 @@ a:focus-visible {
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37),
     inset 0 2px 4px rgba(255, 255, 255, 0.1);
+  will-change: transform, box-shadow;
 }
 
 .dark .honeycomb-hex {
@@ -633,24 +687,24 @@ a:focus-visible {
 }
 
 .honeycomb-hex:hover {
-  transform: scale(1.05) rotate(1deg);
-  box-shadow: 0 20px 40px rgba(31, 38, 135, 0.5),
-    inset 0 2px 4px rgba(255, 255, 255, 0.2), 0 0 20px rgba(102, 126, 234, 0.3);
+  transform: scale(1.08) rotate(2deg);
+  box-shadow: 0 25px 50px rgba(31, 38, 135, 0.6),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2), 0 0 30px rgba(102, 126, 234, 0.4);
 }
 
 .dark .honeycomb-hex:hover {
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7),
-    inset 0 2px 4px rgba(255, 255, 255, 0.1), 0 0 20px rgba(139, 92, 246, 0.4);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8),
+    inset 0 2px 4px rgba(255, 255, 255, 0.1), 0 0 30px rgba(139, 92, 246, 0.5);
 }
 
-/* Hexagon animation keyframes */
+/* Hexagon animation keyframes with smooth easing */
 @keyframes hexagon-float {
   0%,
   100% {
     transform: translateY(0px) rotate(0deg);
   }
   50% {
-    transform: translateY(-8px) rotate(1deg);
+    transform: translateY(-12px) rotate(2deg);
   }
 }
 
@@ -661,26 +715,26 @@ a:focus-visible {
       inset 0 2px 4px rgba(255, 255, 255, 0.1);
   }
   50% {
-    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.5),
-      inset 0 2px 4px rgba(255, 255, 255, 0.15),
-      0 0 15px rgba(102, 126, 234, 0.2);
+    box-shadow: 0 12px 40px rgba(31, 38, 135, 0.6),
+      inset 0 2px 4px rgba(255, 255, 255, 0.2),
+      0 0 25px rgba(102, 126, 234, 0.3);
   }
 }
 
 .honeycomb-hex {
-  animation: hexagon-float 4s ease-in-out infinite;
+  animation: hexagon-float 6s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
 }
 
 .honeycomb-hex:nth-child(2n) {
-  animation-delay: -1s;
-}
-
-.honeycomb-hex:nth-child(3n) {
   animation-delay: -2s;
 }
 
+.honeycomb-hex:nth-child(3n) {
+  animation-delay: -4s;
+}
+
 .honeycomb-hex:hover {
-  animation: hexagon-glow 2s ease-in-out infinite;
+  animation: hexagon-glow 3s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
 }
 
 /* Responsive honeycomb */

@@ -50,7 +50,7 @@ const contactMethods = [
 
 const ContactItem = memo(
   ({ contact }: { contact: (typeof contactMethods)[number] }) => (
-    <div className="bg-white/5 dark:bg-black/5 backdrop-blur-sm border border-white/10 dark:border-white/5 rounded-xl p-3 hover:bg-white/10 dark:hover:bg-black/10 transition-all duration-200">
+    <div className="bg-white/5 dark:bg-black/5 backdrop-blur-sm border border-white/10 dark:border-white/5 rounded-xl p-3 hover:bg-white/10 dark:hover:bg-black/10 transition-all duration-300 ease-out">
       {contact.href ? (
         <a
           href={contact.href}
@@ -65,7 +65,7 @@ const ContactItem = memo(
             <p className="text-sm font-medium text-gray-900 dark:text-white">
               {contact.text}
             </p>
-            <p className="text-xs text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
+            <p className="text-xs text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-300 ease-out">
               {contact.label}
             </p>
           </div>

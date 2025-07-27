@@ -27,9 +27,9 @@ function LoadingState({ type }: LoadingStateProps) {
         <div>
           <Link
             href="/"
-            className="group inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-full hover:from-purple-700 hover:to-blue-700 transition-all duration-300 hover:scale-105 hover:shadow-xl font-medium text-sm sm:text-base"
+            className="group inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-full hover:from-purple-700 hover:to-blue-700 transition-all duration-400 ease-out hover:scale-105 hover:shadow-xl font-medium text-sm sm:text-base"
           >
-            <div className="flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 bg-white/20 rounded-full group-hover:rotate-180 group-hover:scale-110 transition-all duration-300">
+            <div className="flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 bg-white/20 rounded-full group-hover:rotate-180 group-hover:scale-110 transition-all duration-400 ease-out">
               <ArrowLeft size={14} className="sm:hidden" />
               <ArrowLeft size={16} className="hidden sm:block" />
             </div>

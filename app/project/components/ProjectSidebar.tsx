@@ -23,7 +23,7 @@ function ProjectSidebar({ project }: ProjectSidebarProps) {
           {project.tech.map((tech) => (
             <div
               key={tech}
-              className="bg-white/10 dark:bg-black/10 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-lg sm:rounded-xl p-2 sm:p-3 text-center hover:scale-105 transition-transform duration-300"
+              className="bg-white/10 dark:bg-black/10 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-lg sm:rounded-xl p-2 sm:p-3 text-center hover:scale-105 transition-transform duration-400 ease-out"
             >
               <span className="text-xs sm:text-sm font-semibold text-gray-900 dark:text-white">
                 {tech}

@@ -256,7 +256,7 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
               src={projectImages[currentImageIndex]}
               alt={`${project.title} - Image ${currentImageIndex + 1}`}
               fill
-              className={`transition-opacity duration-150 ${getImageDisplayClass(
+              className={`transition-opacity duration-300 ease-out ${getImageDisplayClass(
                 projectImages[currentImageIndex]
               )} ${
                 imageLoading.has(currentImageIndex)

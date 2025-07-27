@@ -84,7 +84,7 @@ function ProjectLinks({ project }: ProjectLinksProps) {
             href={url}
             target="_blank"
             rel="noopener noreferrer"
-            className={`flex items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-xl transition-all hover:scale-105 touch-manipulation ${className}`}
+            className={`flex items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-xl transition-all duration-300 ease-out hover:scale-105 touch-manipulation ${className}`}
           >
             <Icon size={18} className="sm:hidden" />
             <Icon size={20} className="hidden sm:block" />

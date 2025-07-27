@@ -49,7 +49,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
         project.featured
           ? "featured-project featured-glow holographic bg-gradient-to-br from-purple-500/20 via-blue-500/15 to-emerald-500/10 border-2 border-transparent shadow-2xl"
           : "bg-white/10 dark:bg-black/10 border border-white/20 dark:border-white/10"
-      } backdrop-blur-xl rounded-2xl p-6 hover:shadow-2xl transition-shadow duration-500 cursor-pointer overflow-hidden hover:scale-105`}
+      } backdrop-blur-xl rounded-2xl p-6 hover:shadow-2xl transition-all duration-700 ease-out cursor-pointer overflow-hidden hover:scale-105 will-change-transform`}
       onClick={handleClick}
     >
       {/* Project Image */}
@@ -64,7 +64,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
           src={project.image}
           alt={project.title}
           fill
-          className="object-cover group-hover:scale-110 transition-transform duration-300"
+          className="object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           priority={index < 6} // Prioritize first 6 images
           quality={85}
@@ -80,7 +80,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
             <div className="absolute inset-0 bg-gradient-to-t from-purple-900/30 via-transparent to-yellow-400/10"></div>
           </>
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out"></div>
       </div>
 
       {/* Project Content */}
@@ -92,7 +92,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
             project.featured
               ? "bg-gradient-to-r from-purple-600 via-blue-600 to-emerald-600 bg-clip-text text-transparent group-hover:from-yellow-500 group-hover:via-orange-500 group-hover:to-red-500"
               : "text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400"
-          } transition-all duration-500`}
+          } transition-all duration-700 ease-out`}
         >
           {project.title}
         </h4>
@@ -127,7 +127,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
               href={project.links.website}
               target="_blank"
               rel="noopener noreferrer"
-              className={`flex items-center gap-1 px-3 py-2 text-xs font-medium rounded-lg transition-all hover:scale-105 active:scale-95 ${
+              className={`flex items-center gap-1 px-3 py-2 text-xs font-medium rounded-lg transition-all duration-300 ease-out hover:scale-105 active:scale-95 ${
                 project.featured
                   ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg hover:shadow-xl hover:from-purple-700 hover:to-blue-700"
                   : "bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:shadow-lg"
@@ -143,7 +143,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
               href={project.links.github}
               target="_blank"
               rel="noopener noreferrer"
-              className={`flex items-center gap-1 px-3 py-2 text-xs font-medium rounded-lg transition-all hover:scale-105 active:scale-95 ${
+              className={`flex items-center gap-1 px-3 py-2 text-xs font-medium rounded-lg transition-all duration-300 ease-out hover:scale-105 active:scale-95 ${
                 project.featured
                   ? "bg-white/30 dark:bg-black/30 backdrop-blur-sm border-2 border-purple-400/50 text-gray-700 dark:text-gray-300 hover:border-purple-500 hover:shadow-lg"
                   : "bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/20 text-gray-700 dark:text-gray-300 hover:shadow-lg"
@@ -159,7 +159,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
               href={project.links.github2}
               target="_blank"
               rel="noopener noreferrer"
-              className={`flex items-center gap-1 px-2 py-2 text-xs font-medium rounded-lg transition-all hover:scale-105 active:scale-95 ${
+              className={`flex items-center gap-1 px-2 py-2 text-xs font-medium rounded-lg transition-all duration-300 ease-out hover:scale-105 active:scale-95 ${
                 project.featured
                   ? "bg-white/30 dark:bg-black/30 backdrop-blur-sm border border-purple-400/50 text-gray-700 dark:text-gray-300 hover:border-purple-500"
                   : "bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/20 text-gray-700 dark:text-gray-300"
@@ -175,7 +175,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
               href={project.links.npm}
               target="_blank"
               rel="noopener noreferrer"
-              className={`flex items-center gap-1 px-2 py-2 text-xs font-medium rounded-lg transition-all hover:scale-105 active:scale-95 ${
+              className={`flex items-center gap-1 px-2 py-2 text-xs font-medium rounded-lg transition-all duration-300 ease-out hover:scale-105 active:scale-95 ${
                 project.featured
                   ? "bg-red-500/30 text-red-700 dark:text-red-300 border border-red-400/50 hover:bg-red-500/40"
                   : "bg-red-500/20 text-red-700 dark:text-red-300"
