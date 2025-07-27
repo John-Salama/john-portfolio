@@ -12,7 +12,9 @@ interface ProjectGalleryProps {
 
 function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [preloadedImages, setPreloadedImages] = useState<Set<number>>(new Set());
+  const [preloadedImages, setPreloadedImages] = useState<Set<number>>(
+    new Set()
+  );
   const thumbnailsRef = useRef<HTMLDivElement>(null);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
@@ -24,7 +26,7 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
 
       const img = new window.Image();
       img.onload = () => {
-        setPreloadedImages(prev => new Set([...prev, index]));
+        setPreloadedImages((prev) => new Set([...prev, index]));
       };
       img.src = projectImages[index];
     };
@@ -45,11 +47,11 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
       projectImages.forEach((src, index) => {
         if (!preloadedImages.has(index)) {
           // Create link tags for faster browser caching
-          const link = document.createElement('link');
-          link.rel = 'prefetch';
+          const link = document.createElement("link");
+          link.rel = "prefetch";
           link.href = src;
           document.head.appendChild(link);
-          
+
           // Also use Image constructor as fallback
           const img = new window.Image();
           img.src = src;
@@ -243,7 +245,11 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
             {projectImages.length > 1 && (
               <>
                 <Image
-                  src={projectImages[(currentImageIndex + 1) % projectImages.length]}
+                  src={
+                    projectImages[
+                      (currentImageIndex + 1) % projectImages.length
+                    ]
+                  }
                   alt=""
                   fill
                   className="opacity-0 pointer-events-none"
@@ -252,7 +258,12 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
                 />
                 <Image
-                  src={projectImages[(currentImageIndex - 1 + projectImages.length) % projectImages.length]}
+                  src={
+                    projectImages[
+                      (currentImageIndex - 1 + projectImages.length) %
+                        projectImages.length
+                    ]
+                  }
                   alt=""
                   fill
                   className="opacity-0 pointer-events-none"
