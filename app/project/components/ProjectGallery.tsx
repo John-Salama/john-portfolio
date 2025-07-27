@@ -4,7 +4,7 @@ import { memo, useState, useCallback, useMemo, useRef, useEffect } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Project } from "../../types/project";
-import { ImagePreloader, ProgressBar } from './ImagePreloader';
+import { ImagePreloader, ProgressBar } from "./ImagePreloader";
 
 interface ProjectGalleryProps {
   project: Project;
@@ -263,11 +263,11 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
           setAllImagesLoaded(true);
         }}
       />
-      
+
       <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8 text-center">
         Project Gallery
       </h2>
-      
+
       {/* Loading progress bar */}
       {!allImagesLoaded && loadingProgress > 0 && loadingProgress < 100 && (
         <div className="mb-4 sm:mb-6">
@@ -282,7 +282,7 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
           <ProgressBar progress={loadingProgress} />
         </div>
       )}
-      
+
       <div className="relative">
         {/* Main Image Display */}
         <div

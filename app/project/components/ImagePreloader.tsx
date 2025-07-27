@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 interface ImagePreloaderProps {
   images: string[];
@@ -8,7 +8,11 @@ interface ImagePreloaderProps {
   onComplete?: () => void;
 }
 
-export function ImagePreloader({ images, onProgress, onComplete }: ImagePreloaderProps) {
+export function ImagePreloader({
+  images,
+  onProgress,
+  onComplete,
+}: ImagePreloaderProps) {
   const [loadedCount, setLoadedCount] = useState(0);
 
   useEffect(() => {
@@ -46,10 +50,10 @@ export function ImagePreloader({ images, onProgress, onComplete }: ImagePreloade
         await Promise.all(batch.map(loadImage));
         // Small delay between batches
         if (i + batchSize < images.length) {
-          await new Promise(resolve => setTimeout(resolve, 100));
+          await new Promise((resolve) => setTimeout(resolve, 100));
         }
       }
-      
+
       if (mounted) {
         onComplete?.();
       }
@@ -70,13 +74,15 @@ interface ProgressBarProps {
   className?: string;
 }
 
-export function ProgressBar({ progress, className = '' }: ProgressBarProps) {
+export function ProgressBar({ progress, className = "" }: ProgressBarProps) {
   const progressPercentage = Math.min(100, Math.max(0, progress));
   const widthClass = `w-[${progressPercentage}%]`;
-  
+
   return (
-    <div className={`w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 ${className}`}>
-      <div 
+    <div
+      className={`w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 ${className}`}
+    >
+      <div
         className={`bg-blue-500 h-2 rounded-full transition-all duration-300 ease-out ${widthClass}`}
       />
     </div>
