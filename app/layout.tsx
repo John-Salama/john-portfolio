@@ -16,6 +16,11 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NODE_ENV === "production"
+      ? "https://johnsalama.dev"
+      : "http://localhost:3000"
+  ),
   title: "John Salama | Software Engineer & Full-Stack Developer",
   description:
     "Software engineer with expertise in full-stack development (MERN Stack, React Native). Passionate about creating innovative solutions and delivering high-quality applications.",

@@ -15,6 +15,7 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
   const [preloadedImages, setPreloadedImages] = useState<Set<number>>(
     new Set()
   );
+  const [imageLoading, setImageLoading] = useState<Set<number>>(new Set());
   const thumbnailsRef = useRef<HTMLDivElement>(null);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
@@ -74,6 +75,19 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
 
   const goToImage = useCallback((index: number) => {
     setCurrentImageIndex(index);
+  }, []);
+
+  // Image loading handlers
+  const handleImageLoadStart = useCallback((index: number) => {
+    setImageLoading((prev) => new Set([...prev, index]));
+  }, []);
+
+  const handleImageLoadComplete = useCallback((index: number) => {
+    setImageLoading((prev) => {
+      const newSet = new Set(prev);
+      newSet.delete(index);
+      return newSet;
+    });
   }, []);
 
   // Touch handlers for swipe navigation
@@ -194,6 +208,18 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
     return null;
   };
 
+  // Loading Spinner Component
+  const LoadingSpinner = () => (
+    <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-800">
+      <div className="relative">
+        <div className="w-12 h-12 border-4 border-gray-300 dark:border-gray-600 border-t-purple-500 rounded-full animate-spin"></div>
+        <div className="mt-4 text-sm text-gray-500 dark:text-gray-400 text-center">
+          Loading...
+        </div>
+      </div>
+    </div>
+  );
+
   if (projectImages.length === 0) {
     return (
       <div className="mb-8 sm:mb-12">
@@ -223,20 +249,30 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
           onTouchEnd={onTouchEnd}
         >
           <div className="relative w-full aspect-[4/3] sm:aspect-video max-h-[60vh] sm:max-h-[70vh]">
+            {/* Loading Spinner */}
+            {imageLoading.has(currentImageIndex) && <LoadingSpinner />}
+
             <Image
               src={projectImages[currentImageIndex]}
               alt={`${project.title} - Image ${currentImageIndex + 1}`}
               fill
               className={`transition-opacity duration-150 ${getImageDisplayClass(
                 projectImages[currentImageIndex]
-              )}`}
+              )} ${
+                imageLoading.has(currentImageIndex)
+                  ? "opacity-0"
+                  : "opacity-100"
+              }`}
               priority={currentImageIndex <= 2} // Higher priority for first few images
               quality={95} // Higher quality for better user experience
-              loading={currentImageIndex === 0 ? "eager" : "lazy"}
+              loading={currentImageIndex <= 2 ? undefined : "lazy"} // Don't set loading when priority is true
+              onLoad={() => handleImageLoadComplete(currentImageIndex)}
+              onLoadStart={() => handleImageLoadStart(currentImageIndex)}
               onError={(e) => {
                 console.error(
                   `Failed to load image: ${projectImages[currentImageIndex]}`
                 );
+                handleImageLoadComplete(currentImageIndex);
               }}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
             />
@@ -329,15 +365,27 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
                       : "border-white/30 dark:border-white/20 hover:border-purple-400 hover:scale-105"
                   }`}
                 >
+                  {/* Thumbnail Loading Spinner */}
+                  {imageLoading.has(index) && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-800 z-10">
+                      <div className="w-4 h-4 border-2 border-gray-300 dark:border-gray-600 border-t-purple-500 rounded-full animate-spin"></div>
+                    </div>
+                  )}
+
                   <Image
                     src={image}
                     alt={`Thumbnail ${index + 1}`}
                     fill
-                    className={getImageDisplayClass(image)}
+                    className={`${getImageDisplayClass(image)} ${
+                      imageLoading.has(index) ? "opacity-0" : "opacity-100"
+                    } transition-opacity duration-150`}
                     sizes="(max-width: 640px) 64px, 80px"
                     priority={index <= 5} // Prioritize first 6 thumbnails
                     quality={80} // Lower quality for thumbnails to load faster
-                    loading={index <= 5 ? "eager" : "lazy"}
+                    loading={index <= 5 ? undefined : "lazy"} // Don't set loading when priority is true
+                    onLoad={() => handleImageLoadComplete(index)}
+                    onLoadStart={() => handleImageLoadStart(index)}
+                    onError={() => handleImageLoadComplete(index)}
                   />
                   {index === currentImageIndex && (
                     <div className="absolute inset-0 bg-purple-500/20" />
