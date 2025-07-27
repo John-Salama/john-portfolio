@@ -98,8 +98,15 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
               className={`transition-opacity duration-300 ${getImageDisplayClass(
                 projectImages[currentImageIndex]
               )}`}
+              priority={currentImageIndex === 0}
+              quality={90}
+              onError={(e) => {
+                console.error(
+                  `Failed to load image: ${projectImages[currentImageIndex]}`
+                );
+                // You could set a fallback image here
+              }}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
-              priority
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
 
