@@ -1,6 +1,8 @@
+"use client";
+
 import { memo, useMemo } from "react";
 import { Code } from "lucide-react";
-import ProjectCard from "../ProjectCard";
+import VirtualizedProjects from "./VirtualizedProjects";
 
 interface Project {
   id: string;
@@ -85,14 +87,7 @@ function ProjectsSection({ projects }: ProjectsSectionProps) {
             <Code className="mr-3 text-blue-500" size={24} />
             All Projects
           </h3>
-          <div
-            className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6"
-            id="projects"
-          >
-            {projects.map((project, index) => (
-              <ProjectCard key={project.id} project={project} index={index} />
-            ))}
-          </div>
+          <VirtualizedProjects projects={projects} />
         </div>
       </div>
     </div>

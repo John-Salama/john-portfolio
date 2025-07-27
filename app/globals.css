@@ -1,5 +1,22 @@
 @import "tailwindcss";
 
+/* Performance optimizations */
+* {
+  box-sizing: border-box;
+}
+
+/* Enable hardware acceleration for smoother animations */
+.hardware-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Optimize image rendering */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
 /* Custom CSS Variables */
 :root {
   --font-inter: "Inter", sans-serif;
@@ -11,9 +28,10 @@
   color-scheme: dark;
 }
 
-/* Smooth scrolling */
+/* Smooth scrolling with contain for better performance */
 html {
   scroll-behavior: smooth;
+  contain: layout style paint;
 }
 
 /* Custom scrollbar */

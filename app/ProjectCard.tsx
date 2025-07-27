@@ -1,5 +1,6 @@
 "use client";
 
+import { memo, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import {
@@ -34,8 +35,12 @@ interface ProjectCardProps {
   index: number;
 }
 
-export default function ProjectCard({ project, index }: ProjectCardProps) {
+function ProjectCard({ project, index }: ProjectCardProps) {
   const router = useRouter();
+
+  const handleClick = useCallback(() => {
+    router.push(`/project/${project.id}`);
+  }, [router, project.id]);
 
   return (
     <div
@@ -45,7 +50,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           ? "featured-project featured-glow holographic bg-gradient-to-br from-purple-500/20 via-blue-500/15 to-emerald-500/10 border-2 border-transparent shadow-2xl"
           : "bg-white/10 dark:bg-black/10 border border-white/20 dark:border-white/10"
       } backdrop-blur-xl rounded-2xl p-6 hover:shadow-2xl transition-shadow duration-500 cursor-pointer overflow-hidden hover:scale-105`}
-      onClick={() => router.push(`/project/${project.id}`)}
+      onClick={handleClick}
     >
       {/* Project Image */}
       <div
@@ -60,7 +65,11 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           alt={project.title}
           fill
           className="object-cover group-hover:scale-110 transition-transform duration-300"
-          sizes="350px"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          priority={index < 6} // Prioritize first 6 images
+          quality={85}
+          placeholder="blur"
+          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R+Kic6LzlpFXtbqBXAq8aMAdDSAAwKLJ7fFnEWLXZMI2L/AFLFBhVhC4TQrBFIjY/U4DnZ+Ue4jtGhz+nJ3/8Aed+g=="
         />
         {project.featured && (
           <>
@@ -214,3 +223,5 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
     </div>
   );
 }
+
+export default memo(ProjectCard);

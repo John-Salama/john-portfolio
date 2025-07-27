@@ -155,6 +155,9 @@ function ProfileSection() {
         </div>
       </section>
 
+      {/* Experience Timeline */}
+      <ExperienceTimeline />
+
       {/* Contact Methods */}
       <section className="mb-6 lg:mb-8">
         <h3 className="text-lg lg:text-xl font-bold mb-3 lg:mb-4 bg-gradient-to-r from-indigo-600 to-blue-600 bg-clip-text text-transparent">
@@ -166,9 +169,6 @@ function ProfileSection() {
           ))}
         </div>
       </section>
-
-      {/* Experience Timeline */}
-      <ExperienceTimeline />
     </div>
   );
 }
