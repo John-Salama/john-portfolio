@@ -53,39 +53,13 @@ function ProjectsSection({ projects }: ProjectsSectionProps) {
           </div>
 
           {/* Project Stats */}
-          <div className="grid grid-cols-3 gap-4 mb-8">
-            <div className="flex flex-col items-center justify-center text-center bg-white/10 dark:bg-black/10 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-2xl p-4">
-              <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
-                {projectStats.total}+
-              </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">
-                Total Projects
-              </div>
-            </div>
-            <div className="flex flex-col items-center justify-center text-center bg-white/10 dark:bg-black/10 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-2xl p-4">
-              <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
-                {projectStats.featured}
-              </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">
-                Featured
-              </div>
-            </div>
-            <div className="flex flex-col items-center justify-center text-center bg-white/10 dark:bg-black/10 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-2xl p-4">
-              <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
-                {projectStats.technologies}+
-              </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">
-                Technologies
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* All Projects Section */}
         <div>
           <h3 className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
             <Code className="mr-3 text-blue-500" size={24} />
-            All Projects
+            Projects
           </h3>
           <VirtualizedProjects projects={projects} />
         </div>

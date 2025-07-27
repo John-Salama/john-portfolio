@@ -1,6 +1,6 @@
 import { memo } from "react";
 import Link from "next/link";
-import { ArrowLeft, Star } from "lucide-react";
+import { ArrowLeft, ArrowRight, Star } from "lucide-react";
 import { Project } from "../../types/project";
 
 interface ProjectHeaderProps {
@@ -17,8 +17,8 @@ function ProjectHeader({ project }: ProjectHeaderProps) {
           className="group inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/20 text-gray-700 dark:text-gray-300 rounded-full hover:bg-white/30 dark:hover:bg-black/30 transition-all duration-400 ease-out hover:scale-105 hover:shadow-lg"
         >
           <div className="flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full text-white group-hover:from-purple-600 group-hover:to-blue-600 transition-all duration-400 ease-out group-hover:rotate-180 group-hover:scale-110">
-            <ArrowLeft size={14} className="sm:hidden" />
-            <ArrowLeft size={16} className="hidden sm:block" />
+            <ArrowRight size={14} className="sm:hidden" />
+            <ArrowRight size={16} className="hidden sm:block" />
           </div>
           <span className="font-medium text-sm sm:text-base">
             Back to Portfolio

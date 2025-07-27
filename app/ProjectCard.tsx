@@ -51,6 +51,9 @@ function ProjectCard({ project, index }: ProjectCardProps) {
           : "bg-white/10 dark:bg-black/10 border border-white/20 dark:border-white/10"
       } backdrop-blur-xl rounded-2xl p-6 hover:shadow-2xl transition-all duration-700 ease-out cursor-pointer overflow-hidden hover:scale-105 will-change-transform`}
       onClick={handleClick}
+      style={{
+        transition: "all 0.3s ease-in-out",
+      }}
     >
       {/* Project Image */}
       <div
