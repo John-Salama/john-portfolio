@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, useState, useCallback, useMemo } from "react";
+import { memo, useState, useCallback, useMemo, useRef, useEffect } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Project } from "../../types/project";
@@ -12,6 +12,9 @@ interface ProjectGalleryProps {
 
 function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const thumbnailsRef = useRef<HTMLDivElement>(null);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
   const nextImage = useCallback(() => {
     setCurrentImageIndex((prev) => (prev + 1) % projectImages.length);
@@ -27,6 +30,74 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
     setCurrentImageIndex(index);
   }, []);
 
+  // Touch handlers for swipe navigation
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe && projectImages.length > 1) {
+      nextImage();
+    }
+    if (isRightSwipe && projectImages.length > 1) {
+      prevImage();
+    }
+  };
+
+  // Auto-scroll thumbnails to keep active thumbnail visible
+  useEffect(() => {
+    if (thumbnailsRef.current) {
+      const container = thumbnailsRef.current;
+      const activeButton = container.children[currentImageIndex] as HTMLElement;
+
+      if (activeButton) {
+        const containerRect = container.getBoundingClientRect();
+        const buttonRect = activeButton.getBoundingClientRect();
+
+        // Check if button is outside the visible area
+        if (
+          buttonRect.left < containerRect.left ||
+          buttonRect.right > containerRect.right
+        ) {
+          activeButton.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+            inline: "center",
+          });
+        }
+      }
+    }
+  }, [currentImageIndex]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        prevImage();
+      } else if (event.key === "ArrowRight") {
+        event.preventDefault();
+        nextImage();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [nextImage, prevImage]);
+
   const getImageDisplayClass = useMemo(() => {
     return (imagePath: string) => {
       const displayConfig = project.config?.displayConfig;
@@ -38,6 +109,9 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
         imagePath?.includes("/mobile/") ||
         imagePath?.includes("/ios/");
 
+      const isWebImage = imagePath?.includes("/web/");
+
+      // Special handling for different image types
       if (
         imageType === "multiDirectory" &&
         isMobileImage &&
@@ -45,7 +119,14 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
       ) {
         return "object-contain bg-gray-100 dark:bg-gray-800";
       }
-      return "object-contain sm:object-cover bg-gray-100 dark:bg-gray-800 sm:bg-transparent";
+
+      // For web images, use cover on larger screens, contain on mobile for better fit
+      if (isWebImage) {
+        return "object-contain lg:object-cover bg-gray-100 dark:bg-gray-800 lg:bg-transparent";
+      }
+
+      // Default: contain on mobile/tablet, cover on desktop for optimal viewing
+      return "object-contain xl:object-cover bg-gray-100 dark:bg-gray-800 xl:bg-transparent";
     };
   }, [project.config]);
 
@@ -89,8 +170,13 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
       </h2>
       <div className="relative">
         {/* Main Image Display */}
-        <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl mb-4 sm:mb-6">
-          <div className="relative w-full aspect-video max-h-[70vh]">
+        <div
+          className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl mb-4 sm:mb-6"
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
+        >
+          <div className="relative w-full aspect-[4/3] sm:aspect-video max-h-[60vh] sm:max-h-[70vh]">
             <Image
               src={projectImages[currentImageIndex]}
               alt={`${project.title} - Image ${currentImageIndex + 1}`}
@@ -149,7 +235,10 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
         {/* Thumbnail Navigation */}
         {projectImages.length > 1 && (
           <div className="pb-4 px-2 flex justify-start sm:justify-center">
-            <div className="flex space-x-2 sm:space-x-3 overflow-x-auto max-w-full py-2 px-3 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+            <div
+              ref={thumbnailsRef}
+              className="flex space-x-2 sm:space-x-3 overflow-x-auto max-w-full py-2 px-3 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] scroll-smooth"
+            >
               {projectImages.map((image, index) => (
                 <button
                   key={index}

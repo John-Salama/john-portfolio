@@ -5,6 +5,33 @@
   box-sizing: border-box;
 }
 
+/* Image container improvements for mobile */
+.mobile-image-container {
+  max-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .mobile-image-container {
+    max-height: 70vh;
+  }
+}
+
+/* Ensure images fit properly in containers */
+.project-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+@media (min-width: 768px) {
+  .project-image {
+    object-fit: cover;
+  }
+}
+
 /* Enable hardware acceleration for smoother animations */
 .hardware-accelerated {
   transform: translateZ(0);
