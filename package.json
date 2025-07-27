@@ -10,7 +10,9 @@
     "lint:fix": "next lint --fix",
     "type-check": "tsc --noEmit",
     "build-analyze": "ANALYZE=true npm run build",
-    "export": "next build && next export"
+    "export": "next build",
+    "build:static": "next build",
+    "preview": "npx serve out"
   },
   "dependencies": {
     "framer-motion": "^12.23.9",
