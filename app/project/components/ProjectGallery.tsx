@@ -96,6 +96,35 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
     }
   }, [currentImageIndex]);
 
+  // Preload adjacent images for smoother navigation
+  useEffect(() => {
+    if (projectImages.length <= 1) return;
+
+    const preloadAdjacentImages = () => {
+      const nextIndex = (currentImageIndex + 1) % projectImages.length;
+      const prevIndex =
+        (currentImageIndex - 1 + projectImages.length) % projectImages.length;
+
+      // Use link preload for next/prev images only
+      [nextIndex, prevIndex].forEach((index) => {
+        const existingLink = document.querySelector(
+          `link[rel="preload"][href*="${projectImages[index]}"]`
+        );
+        if (!existingLink) {
+          const link = document.createElement("link");
+          link.rel = "preload";
+          link.as = "image";
+          link.href = projectImages[index];
+          document.head.appendChild(link);
+        }
+      });
+    };
+
+    // Delay preloading to not block main content
+    const timer = setTimeout(preloadAdjacentImages, 100);
+    return () => clearTimeout(timer);
+  }, [currentImageIndex, projectImages]);
+
   // Keyboard navigation with cleanup
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -143,23 +172,26 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
     };
   }, [project.config]);
 
-  const getPlatformLabel = useCallback((imagePath: string) => {
-    const displayConfig = project.config?.displayConfig;
-    if (!displayConfig?.showPlatformIndicators) return null;
+  const getPlatformLabel = useCallback(
+    (imagePath: string) => {
+      const displayConfig = project.config?.displayConfig;
+      if (!displayConfig?.showPlatformIndicators) return null;
 
-    const platformLabels = displayConfig.platformLabels || {
-      web: "🌐 Web Version",
-      mobile: "📱 Mobile Version",
-      android: "📱 Android Version",
-      ios: "📱 iOS Version",
-    };
+      const platformLabels = displayConfig.platformLabels || {
+        web: "🌐 Web Version",
+        mobile: "📱 Mobile Version",
+        android: "📱 Android Version",
+        ios: "📱 iOS Version",
+      };
 
-    if (imagePath?.includes("/web/")) return platformLabels.web;
-    if (imagePath?.includes("/android/")) return platformLabels.android;
-    if (imagePath?.includes("/ios/")) return platformLabels.ios;
-    if (imagePath?.includes("/mobile/")) return platformLabels.mobile;
-    return null;
-  }, [project.config]);
+      if (imagePath?.includes("/web/")) return platformLabels.web;
+      if (imagePath?.includes("/android/")) return platformLabels.android;
+      if (imagePath?.includes("/ios/")) return platformLabels.ios;
+      if (imagePath?.includes("/mobile/")) return platformLabels.mobile;
+      return null;
+    },
+    [project.config]
+  );
 
   // Loading Spinner Component
   const LoadingSpinner = memo(() => (
@@ -213,13 +245,12 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
               className={`transition-opacity duration-300 ease-out ${getImageDisplayClass(
                 projectImages[currentImageIndex]
               )} ${
-                imageLoading[currentImageIndex]
-                  ? "opacity-0"
-                  : "opacity-100"
+                imageLoading[currentImageIndex] ? "opacity-0" : "opacity-100"
               }`}
-              priority={currentImageIndex === 0} // Only prioritize the first image
-              quality={90} // Reduced from 95
-              loading={currentImageIndex === 0 ? undefined : "lazy"}
+              priority={currentImageIndex === 0}
+              fetchPriority={currentImageIndex === 0 ? "high" : "auto"} // LCP optimization
+              quality={85} // Further reduced for better performance
+              loading={currentImageIndex === 0 ? "eager" : "lazy"}
               onLoad={() => handleImageLoadComplete(currentImageIndex)}
               onLoadStart={() => handleImageLoadStart(currentImageIndex)}
               onError={() => {
@@ -230,39 +261,6 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
               }}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
             />
-
-            {/* Preload only adjacent images, not all images */}
-            {projectImages.length > 1 && (
-              <>
-                <Image
-                  src={
-                    projectImages[
-                      (currentImageIndex + 1) % projectImages.length
-                    ]
-                  }
-                  alt=""
-                  fill
-                  className="opacity-0 pointer-events-none"
-                  priority={false}
-                  quality={90}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
-                />
-                <Image
-                  src={
-                    projectImages[
-                      (currentImageIndex - 1 + projectImages.length) %
-                        projectImages.length
-                    ]
-                  }
-                  alt=""
-                  fill
-                  className="opacity-0 pointer-events-none"
-                  priority={false}
-                  quality={90}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
-                />
-              </>
-            )}
 
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
 
@@ -334,9 +332,9 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
                       imageLoading[index] ? "opacity-0" : "opacity-100"
                     } transition-opacity duration-150`}
                     sizes="(max-width: 640px) 64px, 80px"
-                    priority={index <= 2} // Only first 3 thumbnails
-                    quality={75} // Lower quality for thumbnails
-                    loading={index <= 2 ? undefined : "lazy"}
+                    priority={false} // No priority for thumbnails
+                    quality={70} // Lower quality for faster loading
+                    loading="lazy" // Always lazy load thumbnails
                     onLoad={() => handleImageLoadComplete(index)}
                     onLoadStart={() => handleImageLoadStart(index)}
                     onError={() => handleImageLoadComplete(index)}

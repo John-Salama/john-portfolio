@@ -69,8 +69,10 @@ function ProjectCard({ project, index }: ProjectCardProps) {
           fill
           className="object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          priority={index < 6} // Prioritize first 6 images
-          quality={85}
+          priority={index < 3} // Only prioritize first 3 images (above fold)
+          fetchPriority={index === 0 ? "high" : "auto"} // LCP optimization for first image
+          quality={80} // Reduced from 85 for better performance
+          loading={index < 3 ? "eager" : "lazy"}
           placeholder="blur"
           blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R+Kic6LzlpFXtbqBXAq8aMAdDSAAwKLJ7fFnEWLXZMI2L/AFLFBhVhC4TQrBFIjY/U4DnZ+Ue4jtGhz+nJ3/8Aed+g=="
         />
