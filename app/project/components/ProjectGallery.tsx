@@ -317,7 +317,7 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
               <>
                 <button
                   onClick={prevImage}
-                  className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/30 dark:hover:bg-black/30 transition-all hover:scale-110 touch-manipulation"
+                  className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/30 dark:hover:bg-black/30 hover:shadow-lg transition-all duration-500 ease-out hover:scale-110 touch-manipulation"
                   aria-label="Previous image"
                 >
                   <ChevronLeft size={20} className="sm:hidden" />
@@ -325,7 +325,7 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
                 </button>
                 <button
                   onClick={nextImage}
-                  className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/30 dark:hover:bg-black/30 transition-all hover:scale-110 touch-manipulation"
+                  className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/30 dark:hover:bg-black/30 hover:shadow-lg transition-all duration-500 ease-out hover:scale-110 touch-manipulation"
                   aria-label="Next image"
                 >
                   <ChevronRight size={20} className="sm:hidden" />

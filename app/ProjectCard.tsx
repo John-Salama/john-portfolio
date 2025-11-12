@@ -116,7 +116,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
                 project.featured
                   ? "bg-gradient-to-r from-purple-500/30 to-blue-500/30 text-purple-700 dark:text-purple-300 border border-purple-500/40 shadow-sm"
                   : "bg-blue-500/20 text-blue-700 dark:text-blue-300"
-              }`}
+              } hover:scale-105 hover:shadow-sm transition-all duration-400 ease-out`}
             >
               {tech}
             </span>

@@ -5,12 +5,12 @@ const experienceData = [
     title: "Software Developer",
     company:
       "Research and Development Center (Egyptian Air Defense Military Commands)",
-    period: "May 2024 - Present",
+    period: "May 2024 - OCT 2024",
     type: "Full-time",
     description:
       "Developing advanced missile systems simulators for military training.",
     technologies: ["React.js", "Electron.js", "Node.js", "GIS", "C++", "C#"],
-    isCurrent: true,
+    isCurrent: false,
     dotColor: "from-green-500 to-emerald-500",
   },
   {
@@ -53,13 +53,13 @@ function ExperienceTimeline() {
           >
             {/* Timeline Dot */}
             <div
-              className={`relative z-10 w-8 h-8 bg-gradient-to-r ${experience.dotColor} rounded-full flex items-center justify-center mr-4 shadow-lg`}
+              className={`relative z-10 w-8 h-8 bg-gradient-to-r ${experience.dotColor} rounded-full flex items-center justify-center mr-4 shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-500 ease-out`}
             >
               <div className="w-3 h-3 bg-white rounded-full"></div>
             </div>
 
             {/* Content */}
-            <div className="flex-1 bg-white/5 dark:bg-black/5 backdrop-blur-sm border border-white/10 dark:border-white/5 rounded-xl p-4 ml-2">
+            <div className="flex-1 bg-white/5 dark:bg-black/5 backdrop-blur-sm border border-white/10 dark:border-white/5 rounded-xl p-4 ml-2 hover:bg-white/10 dark:hover:bg-black/10 hover:border-white/20 dark:hover:border-white/10 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-500 ease-out">
               <div className="flex items-center justify-between mb-2">
                 <h4 className="font-semibold text-lg text-gray-900 dark:text-white">
                   {experience.title}
@@ -87,7 +87,7 @@ function ExperienceTimeline() {
                       experience.isCurrent
                         ? "bg-green-500/20 text-green-700 dark:text-green-300"
                         : "bg-orange-500/20 text-orange-700 dark:text-orange-300"
-                    }`}
+                    } hover:scale-105 hover:shadow-sm transition-all duration-400 ease-out`}
                   >
                     {tech}
                   </span>

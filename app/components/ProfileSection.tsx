@@ -2,6 +2,7 @@ import { memo } from "react";
 import Image from "next/image";
 import { Mail, Phone, Github, ExternalLink, MapPin } from "lucide-react";
 import ExperienceTimeline from "./ExperienceTimeline";
+import SkillsSection from "./SkillsSection";
 
 const contactMethods = [
   {
@@ -50,7 +51,7 @@ const contactMethods = [
 
 const ContactItem = memo(
   ({ contact }: { contact: (typeof contactMethods)[number] }) => (
-    <div className="bg-white/5 dark:bg-black/5 backdrop-blur-sm border border-white/10 dark:border-white/5 rounded-xl p-3 hover:bg-white/10 dark:hover:bg-black/10 transition-all duration-300 ease-out">
+    <div className="bg-white/5 dark:bg-black/5 backdrop-blur-sm border border-white/10 dark:border-white/5 rounded-xl p-3 hover:bg-white/10 dark:hover:bg-black/10 hover:border-white/20 dark:hover:border-white/10 hover:shadow-md hover:-translate-y-0.5 transition-all duration-500 ease-out">
       {contact.href ? (
         <a
           href={contact.href}
@@ -60,12 +61,15 @@ const ContactItem = memo(
           }
           className="flex items-center space-x-3 w-full"
         >
-          <contact.icon className={contact.color} size={18} />
+          <contact.icon
+            className={`${contact.color} transition-transform duration-400 ease-out hover:scale-110`}
+            size={18}
+          />
           <div className="flex-1">
             <p className="text-sm font-medium text-gray-900 dark:text-white">
               {contact.text}
             </p>
-            <p className="text-xs text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-300 ease-out">
+            <p className="text-xs text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-500 ease-out">
               {contact.label}
             </p>
           </div>
@@ -94,12 +98,12 @@ function ProfileSection() {
     <div className="sidebar-responsive bg-white/5 dark:bg-black/5 backdrop-blur-xl lg:border-r border-white/20 dark:border-white/10 p-6 lg:p-8 lg:overflow-y-auto">
       {/* Profile Section */}
       <div className="text-center mb-8">
-        <div className="w-32 h-32 lg:w-40 lg:h-40 mx-auto mb-4 lg:mb-6 rounded-full overflow-hidden border-4 border-purple-500/20 shadow-2xl relative">
+        <div className="w-32 h-32 lg:w-40 lg:h-40 mx-auto mb-4 lg:mb-6 rounded-full overflow-hidden border-4 border-purple-500/20 shadow-2xl relative hover:border-purple-500/40 hover:shadow-purple-500/20 hover:scale-105 transition-all duration-500 ease-out">
           <Image
             src="/data/my.jpg"
             alt="John Salama Beshay"
             fill
-            className="object-cover object-center"
+            className="object-cover object-center hover:scale-110 transition-transform duration-700 ease-out"
             sizes="(max-width: 768px) 128px, 160px"
             priority
           />
@@ -136,7 +140,7 @@ function ProfileSection() {
         <h3 className="text-lg lg:text-xl font-bold mb-3 lg:mb-4 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
           Education
         </h3>
-        <div className="bg-white/5 dark:bg-black/5 backdrop-blur-sm border border-white/10 dark:border-white/5 rounded-xl p-4">
+        <div className="bg-white/5 dark:bg-black/5 backdrop-blur-sm border border-white/10 dark:border-white/5 rounded-xl p-4 hover:bg-white/10 dark:hover:bg-black/10 hover:border-white/20 dark:hover:border-white/10 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-500 ease-out">
           <h4 className="font-semibold text-lg text-gray-900 dark:text-white mb-1">
             Computer Engineering (Bachelor's Degree)
           </h4>
@@ -157,6 +161,9 @@ function ProfileSection() {
 
       {/* Experience Timeline */}
       <ExperienceTimeline />
+
+      {/* Skills Section */}
+      <SkillsSection />
 
       {/* Contact Methods */}
       <section className="mb-6 lg:mb-8">
