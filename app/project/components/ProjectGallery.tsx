@@ -12,56 +12,10 @@ interface ProjectGalleryProps {
 
 function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [preloadedImages, setPreloadedImages] = useState<Set<number>>(
-    new Set()
-  );
-  const [imageLoading, setImageLoading] = useState<Set<number>>(new Set());
+  const [imageLoading, setImageLoading] = useState<Record<number, boolean>>({});
   const thumbnailsRef = useRef<HTMLDivElement>(null);
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
-
-  // Preload images for faster swapping
-  useEffect(() => {
-    const preloadImage = (index: number) => {
-      if (preloadedImages.has(index)) return;
-
-      const img = new window.Image();
-      img.onload = () => {
-        setPreloadedImages((prev) => new Set([...prev, index]));
-      };
-      img.src = projectImages[index];
-    };
-
-    // Always preload current image and adjacent ones
-    const indicesToPreload = [
-      currentImageIndex,
-      (currentImageIndex + 1) % projectImages.length,
-      (currentImageIndex - 1 + projectImages.length) % projectImages.length,
-    ];
-
-    indicesToPreload.forEach(preloadImage);
-  }, [currentImageIndex, projectImages, preloadedImages]);
-
-  // Preload all images in the background after component mounts
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      projectImages.forEach((src, index) => {
-        if (!preloadedImages.has(index)) {
-          // Create link tags for faster browser caching
-          const link = document.createElement("link");
-          link.rel = "prefetch";
-          link.href = src;
-          document.head.appendChild(link);
-
-          // Also use Image constructor as fallback
-          const img = new window.Image();
-          img.src = src;
-        }
-      });
-    }, 500); // Start after 500ms for faster initial experience
-
-    return () => clearTimeout(timer);
-  }, [projectImages, preloadedImages]);
+  const touchStartRef = useRef<number | null>(null);
+  const touchEndRef = useRef<number | null>(null);
 
   const nextImage = useCallback(() => {
     setCurrentImageIndex((prev) => (prev + 1) % projectImages.length);
@@ -77,33 +31,33 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
     setCurrentImageIndex(index);
   }, []);
 
-  // Image loading handlers
+  // Optimized image loading handlers
   const handleImageLoadStart = useCallback((index: number) => {
-    setImageLoading((prev) => new Set([...prev, index]));
+    setImageLoading((prev) => ({ ...prev, [index]: true }));
   }, []);
 
   const handleImageLoadComplete = useCallback((index: number) => {
     setImageLoading((prev) => {
-      const newSet = new Set(prev);
-      newSet.delete(index);
-      return newSet;
+      const newState = { ...prev };
+      delete newState[index];
+      return newState;
     });
   }, []);
 
   // Touch handlers for swipe navigation
-  const onTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
-  };
+  const onTouchStart = useCallback((e: React.TouchEvent) => {
+    touchEndRef.current = null;
+    touchStartRef.current = e.targetTouches[0].clientX;
+  }, []);
 
-  const onTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
+  const onTouchMove = useCallback((e: React.TouchEvent) => {
+    touchEndRef.current = e.targetTouches[0].clientX;
+  }, []);
 
-  const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
+  const onTouchEnd = useCallback(() => {
+    if (!touchStartRef.current || !touchEndRef.current) return;
 
-    const distance = touchStart - touchEnd;
+    const distance = touchStartRef.current - touchEndRef.current;
     const isLeftSwipe = distance > 50;
     const isRightSwipe = distance < -50;
 
@@ -113,7 +67,7 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
     if (isRightSwipe && projectImages.length > 1) {
       prevImage();
     }
-  };
+  }, [nextImage, prevImage, projectImages.length]);
 
   // Auto-scroll thumbnails to keep active thumbnail visible
   useEffect(() => {
@@ -122,25 +76,27 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
       const activeButton = container.children[currentImageIndex] as HTMLElement;
 
       if (activeButton) {
-        const containerRect = container.getBoundingClientRect();
-        const buttonRect = activeButton.getBoundingClientRect();
+        // Use requestAnimationFrame to avoid layout thrashing
+        requestAnimationFrame(() => {
+          const containerRect = container.getBoundingClientRect();
+          const buttonRect = activeButton.getBoundingClientRect();
 
-        // Check if button is outside the visible area
-        if (
-          buttonRect.left < containerRect.left ||
-          buttonRect.right > containerRect.right
-        ) {
-          activeButton.scrollIntoView({
-            behavior: "smooth",
-            block: "nearest",
-            inline: "center",
-          });
-        }
+          if (
+            buttonRect.left < containerRect.left ||
+            buttonRect.right > containerRect.right
+          ) {
+            activeButton.scrollIntoView({
+              behavior: "smooth",
+              block: "nearest",
+              inline: "center",
+            });
+          }
+        });
       }
     }
   }, [currentImageIndex]);
 
-  // Keyboard navigation
+  // Keyboard navigation with cleanup
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "ArrowLeft") {
@@ -152,7 +108,7 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
       }
     };
 
-    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown, { passive: false });
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
@@ -171,7 +127,6 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
 
       const isWebImage = imagePath?.includes("/web/");
 
-      // Special handling for different image types
       if (
         imageType === "multiDirectory" &&
         isMobileImage &&
@@ -180,17 +135,15 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
         return "object-contain bg-gray-100 dark:bg-gray-800";
       }
 
-      // For web images, use cover on larger screens, contain on mobile for better fit
       if (isWebImage) {
         return "object-contain lg:object-cover bg-gray-100 dark:bg-gray-800 lg:bg-transparent";
       }
 
-      // Default: contain on mobile/tablet, cover on desktop for optimal viewing
       return "object-contain xl:object-cover bg-gray-100 dark:bg-gray-800 xl:bg-transparent";
     };
   }, [project.config]);
 
-  const getPlatformLabel = (imagePath: string) => {
+  const getPlatformLabel = useCallback((imagePath: string) => {
     const displayConfig = project.config?.displayConfig;
     if (!displayConfig?.showPlatformIndicators) return null;
 
@@ -206,10 +159,10 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
     if (imagePath?.includes("/ios/")) return platformLabels.ios;
     if (imagePath?.includes("/mobile/")) return platformLabels.mobile;
     return null;
-  };
+  }, [project.config]);
 
   // Loading Spinner Component
-  const LoadingSpinner = () => (
+  const LoadingSpinner = memo(() => (
     <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-800">
       <div className="relative">
         <div className="w-12 h-12 border-4 border-gray-300 dark:border-gray-600 border-t-purple-500 rounded-full animate-spin"></div>
@@ -218,7 +171,8 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
         </div>
       </div>
     </div>
-  );
+  ));
+  LoadingSpinner.displayName = "LoadingSpinner";
 
   if (projectImages.length === 0) {
     return (
@@ -250,7 +204,7 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
         >
           <div className="relative w-full aspect-[4/3] sm:aspect-video max-h-[60vh] sm:max-h-[70vh]">
             {/* Loading Spinner */}
-            {imageLoading.has(currentImageIndex) && <LoadingSpinner />}
+            {imageLoading[currentImageIndex] && <LoadingSpinner />}
 
             <Image
               src={projectImages[currentImageIndex]}
@@ -259,16 +213,16 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
               className={`transition-opacity duration-300 ease-out ${getImageDisplayClass(
                 projectImages[currentImageIndex]
               )} ${
-                imageLoading.has(currentImageIndex)
+                imageLoading[currentImageIndex]
                   ? "opacity-0"
                   : "opacity-100"
               }`}
-              priority={currentImageIndex <= 2} // Higher priority for first few images
-              quality={95} // Higher quality for better user experience
-              loading={currentImageIndex <= 2 ? undefined : "lazy"} // Don't set loading when priority is true
+              priority={currentImageIndex === 0} // Only prioritize the first image
+              quality={90} // Reduced from 95
+              loading={currentImageIndex === 0 ? undefined : "lazy"}
               onLoad={() => handleImageLoadComplete(currentImageIndex)}
               onLoadStart={() => handleImageLoadStart(currentImageIndex)}
-              onError={(e) => {
+              onError={() => {
                 console.error(
                   `Failed to load image: ${projectImages[currentImageIndex]}`
                 );
@@ -277,7 +231,7 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
             />
 
-            {/* Invisible preload images for next/prev */}
+            {/* Preload only adjacent images, not all images */}
             {projectImages.length > 1 && (
               <>
                 <Image
@@ -290,7 +244,7 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
                   fill
                   className="opacity-0 pointer-events-none"
                   priority={false}
-                  quality={95}
+                  quality={90}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
                 />
                 <Image
@@ -304,7 +258,7 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
                   fill
                   className="opacity-0 pointer-events-none"
                   priority={false}
-                  quality={95}
+                  quality={90}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
                 />
               </>
@@ -366,7 +320,7 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
                   }`}
                 >
                   {/* Thumbnail Loading Spinner */}
-                  {imageLoading.has(index) && (
+                  {imageLoading[index] && (
                     <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-800 z-10">
                       <div className="w-4 h-4 border-2 border-gray-300 dark:border-gray-600 border-t-purple-500 rounded-full animate-spin"></div>
                     </div>
@@ -377,12 +331,12 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
                     alt={`Thumbnail ${index + 1}`}
                     fill
                     className={`${getImageDisplayClass(image)} ${
-                      imageLoading.has(index) ? "opacity-0" : "opacity-100"
+                      imageLoading[index] ? "opacity-0" : "opacity-100"
                     } transition-opacity duration-150`}
                     sizes="(max-width: 640px) 64px, 80px"
-                    priority={index <= 5} // Prioritize first 6 thumbnails
-                    quality={80} // Lower quality for thumbnails to load faster
-                    loading={index <= 5 ? undefined : "lazy"} // Don't set loading when priority is true
+                    priority={index <= 2} // Only first 3 thumbnails
+                    quality={75} // Lower quality for thumbnails
+                    loading={index <= 2 ? undefined : "lazy"}
                     onLoad={() => handleImageLoadComplete(index)}
                     onLoadStart={() => handleImageLoadStart(index)}
                     onError={() => handleImageLoadComplete(index)}
