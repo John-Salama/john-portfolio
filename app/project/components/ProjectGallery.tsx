@@ -236,14 +236,14 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
   }
 
   return (
-    <div className="mb-8 sm:mb-12">
+    <div className="mb-8 sm:mb-12 p-4 sm:p-6 bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700/50 rounded-2xl sm:rounded-3xl shadow-lg">
       <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8 text-center">
         Project Gallery
       </h2>
       <div className="relative">
         {/* Main Image Display */}
         <div
-          className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl mb-4 sm:mb-6"
+          className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-xl mb-4 sm:mb-6 border border-gray-200 dark:border-gray-700/50"
           onTouchStart={onTouchStart}
           onTouchMove={onTouchMove}
           onTouchEnd={onTouchEnd}

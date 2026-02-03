@@ -1,5 +1,42 @@
 [
   {
+    "id": "meet-realsofthouse",
+    "title": "Meet RealSoftHouse",
+    "description": "A professional, self-hosted real-time video conferencing solution built for high-fidelity audio/video communication with cross-platform support (Web & Mobile), screen sharing, session recording, and virtual backgrounds.",
+    "tech": [
+      "React 19",
+      "TypeScript",
+      "Vite",
+      "Tailwind CSS",
+      "React Native",
+      "Node.js",
+      "MongoDB",
+      "LiveKit",
+      "Docker",
+      "Redis"
+    ],
+    "links": {},
+    "summary": "A production-ready video conferencing platform featuring HD adaptive streaming, cross-platform support (web & mobile apps), screen sharing, virtual backgrounds, session recording via LiveKit Egress, and smart permission handling. Built with microservices architecture using Docker Compose, with separate containers for frontend, API, media server, egress, and Caddy reverse proxy with automatic HTTPS.",
+    "image": "/data/meet-realsofthouse/web/1.png",
+    "featured": true,
+    "config": {
+      "imageConfig": {
+        "type": "multiDirectory",
+        "directories": ["web", "android"],
+        "maxImages": 10,
+        "consecutiveMisses": 1
+      },
+      "displayConfig": {
+        "mobileImageHandling": "contain",
+        "showPlatformIndicators": true,
+        "platformLabels": {
+          "web": "🌐 Web Version",
+          "mobile": "📱 Mobile App"
+        }
+      }
+    }
+  },
+  {
     "id": "airaware",
     "title": "AirAware",
     "description": "A comprehensive air quality monitoring platform that helps users track and analyze air pollution data with real-time updates and AI-powered insights.",
@@ -32,39 +69,6 @@
       "imageConfig": {
         "type": "standard",
         "maxImages": 14,
-        "consecutiveMisses": 1
-      }
-    }
-  },
-  {
-    "id": "rcsandwitch",
-    "title": "RCsandwitch",
-    "description": "An innovative food ordering platform with modern UI/UX design, providing seamless online ordering experience for restaurants and customers.",
-    "tech": [
-      "Next.js",
-      "Tailwind CSS",
-      "Zustand",
-      "Node.js",
-      "Express",
-      "MongoDB"
-    ],
-    "links": {
-      "website": "https://rcsandwitch.vercel.app/",
-      "github": "https://github.com/John-Salama/rcsandwitch",
-      "github2": "https://github.com/John-Salama/RCSandwitchServer",
-      "behance": "https://www.behance.net/gallery/231163617/RCsandwitch"
-    },
-    "summary": "A modern food ordering platform featuring intuitive customer interface, comprehensive admin dashboard, real-time order tracking, and secure authentication. Streamlines restaurant operations with order management, inventory tracking, and mobile-responsive design.",
-    "testAccounts": {
-      "admin": "admin@rcsandwitch.com / admin123",
-      "customer": "user@test.com / user123"
-    },
-    "image": "/data/rcsandwitch/1.png",
-    "featured": true,
-    "config": {
-      "imageConfig": {
-        "type": "standard",
-        "maxImages": 11,
         "consecutiveMisses": 1
       }
     }
@@ -122,6 +126,39 @@
       "imageConfig": {
         "type": "standard",
         "maxImages": 2,
+        "consecutiveMisses": 1
+      }
+    }
+  },
+  {
+    "id": "rcsandwitch",
+    "title": "RCsandwitch",
+    "description": "An innovative food ordering platform with modern UI/UX design, providing seamless online ordering experience for restaurants and customers.",
+    "tech": [
+      "Next.js",
+      "Tailwind CSS",
+      "Zustand",
+      "Node.js",
+      "Express",
+      "MongoDB"
+    ],
+    "links": {
+      "website": "https://rcsandwitch.vercel.app/",
+      "github": "https://github.com/John-Salama/rcsandwitch",
+      "github2": "https://github.com/John-Salama/RCSandwitchServer",
+      "behance": "https://www.behance.net/gallery/231163617/RCsandwitch"
+    },
+    "summary": "A modern food ordering platform featuring intuitive customer interface, comprehensive admin dashboard, real-time order tracking, and secure authentication. Streamlines restaurant operations with order management, inventory tracking, and mobile-responsive design.",
+    "testAccounts": {
+      "admin": "admin@rcsandwitch.com / admin123",
+      "customer": "user@test.com / user123"
+    },
+    "image": "/data/rcsandwitch/1.png",
+    "featured": true,
+    "config": {
+      "imageConfig": {
+        "type": "standard",
+        "maxImages": 11,
         "consecutiveMisses": 1
       }
     }
