@@ -13,7 +13,7 @@ interface ProjectGalleryProps {
 function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [preloadedImages, setPreloadedImages] = useState<Set<number>>(
-    new Set()
+    new Set(),
   );
   const [imageLoading, setImageLoading] = useState<Set<number>>(new Set());
   const thumbnailsRef = useRef<HTMLDivElement>(null);
@@ -69,7 +69,7 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
 
   const prevImage = useCallback(() => {
     setCurrentImageIndex(
-      (prev) => (prev - 1 + projectImages.length) % projectImages.length
+      (prev) => (prev - 1 + projectImages.length) % projectImages.length,
     );
   }, [projectImages.length]);
 
@@ -257,7 +257,7 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
               alt={`${project.title} - Image ${currentImageIndex + 1}`}
               fill
               className={`transition-opacity duration-300 ease-out ${getImageDisplayClass(
-                projectImages[currentImageIndex]
+                projectImages[currentImageIndex],
               )} ${
                 imageLoading.has(currentImageIndex)
                   ? "opacity-0"
@@ -270,7 +270,7 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
               onLoadStart={() => handleImageLoadStart(currentImageIndex)}
               onError={(e) => {
                 console.error(
-                  `Failed to load image: ${projectImages[currentImageIndex]}`
+                  `Failed to load image: ${projectImages[currentImageIndex]}`,
                 );
                 handleImageLoadComplete(currentImageIndex);
               }}
@@ -317,7 +317,7 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
               <>
                 <button
                   onClick={prevImage}
-                  className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/30 dark:hover:bg-black/30 hover:shadow-lg transition-all duration-500 ease-out hover:scale-110 touch-manipulation"
+                  className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white/90 dark:bg-black/50 backdrop-blur-sm border border-gray-200 dark:border-white/20 rounded-full flex items-center justify-center text-gray-700 dark:text-white hover:bg-white dark:hover:bg-black/70 hover:shadow-lg transition-all duration-500 ease-out hover:scale-110 touch-manipulation shadow-md"
                   aria-label="Previous image"
                 >
                   <ChevronLeft size={20} className="sm:hidden" />
@@ -325,7 +325,7 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
                 </button>
                 <button
                   onClick={nextImage}
-                  className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/30 dark:hover:bg-black/30 hover:shadow-lg transition-all duration-500 ease-out hover:scale-110 touch-manipulation"
+                  className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white/90 dark:bg-black/50 backdrop-blur-sm border border-gray-200 dark:border-white/20 rounded-full flex items-center justify-center text-gray-700 dark:text-white hover:bg-white dark:hover:bg-black/70 hover:shadow-lg transition-all duration-500 ease-out hover:scale-110 touch-manipulation shadow-md"
                   aria-label="Next image"
                 >
                   <ChevronRight size={20} className="sm:hidden" />
@@ -362,7 +362,7 @@ function ProjectGallery({ project, projectImages }: ProjectGalleryProps) {
                   className={`relative flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-lg sm:rounded-xl overflow-hidden border-2 transition-all duration-300 touch-manipulation ${
                     index === currentImageIndex
                       ? "border-purple-500 shadow-lg scale-110"
-                      : "border-white/30 dark:border-white/20 hover:border-purple-400 hover:scale-105"
+                      : "border-gray-300 dark:border-gray-600 hover:border-purple-400 hover:scale-105"
                   }`}
                 >
                   {/* Thumbnail Loading Spinner */}

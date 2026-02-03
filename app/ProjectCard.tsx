@@ -47,9 +47,9 @@ function ProjectCard({ project, index }: ProjectCardProps) {
       key={project.id}
       className={`group relative ${
         project.featured
-          ? "featured-project featured-glow holographic bg-gradient-to-br from-purple-500/20 via-blue-500/15 to-emerald-500/10 border-2 border-transparent shadow-2xl"
-          : "bg-white/10 dark:bg-black/10 border border-white/20 dark:border-white/10"
-      } backdrop-blur-xl rounded-2xl p-6 hover:shadow-2xl transition-all duration-700 ease-out cursor-pointer overflow-hidden hover:scale-105 will-change-transform`}
+          ? "featured-project bg-white dark:bg-gray-800 border-l-4 border-l-purple-500 border border-gray-100 dark:border-gray-700 shadow-xl hover:shadow-[0_20px_50px_rgba(139,92,246,0.15)] dark:hover:shadow-[0_20px_50px_rgba(139,92,246,0.3)]"
+          : "bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700/50 shadow-lg dark:shadow-none"
+      } backdrop-blur-xl rounded-2xl p-6 hover:shadow-2xl transition-all duration-500 ease-out cursor-pointer overflow-hidden hover:scale-[1.02] will-change-transform`}
       onClick={handleClick}
       style={{
         transition: "all 0.3s ease-in-out",
@@ -78,14 +78,13 @@ function ProjectCard({ project, index }: ProjectCardProps) {
         />
         {project.featured && (
           <>
-            <div className="absolute top-3 left-3 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1 shadow-lg">
-              <Star size={12} />
+            <div className="absolute top-3 left-3 bg-purple-600 text-white px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 shadow-md">
+              <Star size={12} fill="currentColor" />
               Featured
             </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-purple-900/30 via-transparent to-yellow-400/10"></div>
           </>
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out"></div>
       </div>
 
       {/* Project Content */}
@@ -95,9 +94,9 @@ function ProjectCard({ project, index }: ProjectCardProps) {
             project.featured ? "text-xl" : "text-lg"
           } font-bold mb-2 ${
             project.featured
-              ? "bg-gradient-to-r from-purple-600 via-blue-600 to-emerald-600 bg-clip-text text-transparent group-hover:from-yellow-500 group-hover:via-orange-500 group-hover:to-red-500"
+              ? "text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400"
               : "text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400"
-          } transition-all duration-700 ease-out`}
+          } transition-all duration-300 ease-out`}
         >
           {project.title}
         </h4>
@@ -110,15 +109,15 @@ function ProjectCard({ project, index }: ProjectCardProps) {
         </p>
 
         {/* Tech Stack */}
-        <div className="flex flex-wrap gap-1 mb-4">
+        <div className="flex flex-wrap gap-1.5 mb-4">
           {project.tech.map((tech, techIndex) => (
             <span
               key={tech}
-              className={`px-2 py-1 text-xs rounded-full ${
+              className={`px-2.5 py-1 text-xs font-medium rounded-md ${
                 project.featured
-                  ? "bg-gradient-to-r from-purple-500/30 to-blue-500/30 text-purple-700 dark:text-purple-300 border border-purple-500/40 shadow-sm"
-                  : "bg-blue-500/20 text-blue-700 dark:text-blue-300"
-              } hover:scale-105 hover:shadow-sm transition-all duration-400 ease-out`}
+                  ? "bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-700/50"
+                  : "bg-gray-100 dark:bg-gray-700/50 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-600/50"
+              } hover:scale-105 transition-transform duration-200`}
             >
               {tech}
             </span>
@@ -150,8 +149,8 @@ function ProjectCard({ project, index }: ProjectCardProps) {
               rel="noopener noreferrer"
               className={`flex items-center gap-1 px-3 py-2 text-xs font-medium rounded-lg transition-all duration-300 ease-out hover:scale-105 active:scale-95 ${
                 project.featured
-                  ? "bg-white/30 dark:bg-black/30 backdrop-blur-sm border-2 border-purple-400/50 text-gray-700 dark:text-gray-300 hover:border-purple-500 hover:shadow-lg"
-                  : "bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/20 text-gray-700 dark:text-gray-300 hover:shadow-lg"
+                  ? "bg-gray-100 dark:bg-black/30 backdrop-blur-sm border-2 border-purple-400/50 text-gray-700 dark:text-gray-300 hover:border-purple-500 hover:shadow-lg"
+                  : "bg-gray-100 dark:bg-gray-700/50 backdrop-blur-sm border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:shadow-lg"
               }`}
               onClick={(e) => e.stopPropagation()}
             >
@@ -166,8 +165,8 @@ function ProjectCard({ project, index }: ProjectCardProps) {
               rel="noopener noreferrer"
               className={`flex items-center gap-1 px-2 py-2 text-xs font-medium rounded-lg transition-all duration-300 ease-out hover:scale-105 active:scale-95 ${
                 project.featured
-                  ? "bg-white/30 dark:bg-black/30 backdrop-blur-sm border border-purple-400/50 text-gray-700 dark:text-gray-300 hover:border-purple-500"
-                  : "bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/20 text-gray-700 dark:text-gray-300"
+                  ? "bg-gray-100 dark:bg-black/30 backdrop-blur-sm border border-purple-400/50 text-gray-700 dark:text-gray-300 hover:border-purple-500"
+                  : "bg-gray-100 dark:bg-gray-700/50 backdrop-blur-sm border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300"
               }`}
               onClick={(e) => e.stopPropagation()}
             >

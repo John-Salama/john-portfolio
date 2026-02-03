@@ -59,7 +59,7 @@ function ExperienceTimeline() {
             </div>
 
             {/* Content */}
-            <div className="flex-1 bg-white/5 dark:bg-black/5 backdrop-blur-sm border border-white/10 dark:border-white/5 rounded-xl p-4 ml-2 hover:bg-white/10 dark:hover:bg-black/10 hover:border-white/20 dark:hover:border-white/10 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-500 ease-out">
+            <div className="flex-1 bg-gray-50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700/50 rounded-xl p-4 ml-2 hover:bg-gray-100 dark:hover:bg-gray-800 hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-500 ease-out shadow-sm">
               <div className="flex items-center justify-between mb-2">
                 <h4 className="font-semibold text-lg text-gray-900 dark:text-white">
                   {experience.title}

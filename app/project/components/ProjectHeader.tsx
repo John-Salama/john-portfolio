@@ -14,7 +14,7 @@ function ProjectHeader({ project }: ProjectHeaderProps) {
       <div className="mb-6 sm:mb-8">
         <Link
           href="/"
-          className="group inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/20 text-gray-700 dark:text-gray-300 rounded-full hover:bg-white/30 dark:hover:bg-black/30 transition-all duration-400 ease-out hover:scale-105 hover:shadow-lg"
+          className="group inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 bg-white dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200 dark:border-gray-700/50 text-gray-700 dark:text-gray-300 rounded-full hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-400 ease-out hover:scale-105 hover:shadow-lg shadow-sm"
         >
           <div className="flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full text-white group-hover:from-purple-600 group-hover:to-blue-600 transition-all duration-400 ease-out group-hover:rotate-180 group-hover:scale-110">
             <ArrowRight size={14} className="sm:hidden" />

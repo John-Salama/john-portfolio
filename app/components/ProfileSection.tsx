@@ -51,7 +51,7 @@ const contactMethods = [
 
 const ContactItem = memo(
   ({ contact }: { contact: (typeof contactMethods)[number] }) => (
-    <div className="bg-white/5 dark:bg-black/5 backdrop-blur-sm border border-white/10 dark:border-white/5 rounded-xl p-3 hover:bg-white/10 dark:hover:bg-black/10 hover:border-white/20 dark:hover:border-white/10 hover:shadow-md hover:-translate-y-0.5 transition-all duration-500 ease-out">
+    <div className="bg-gray-50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700/50 rounded-xl p-3 hover:bg-gray-100 dark:hover:bg-gray-800 hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-md hover:-translate-y-0.5 transition-all duration-500 ease-out shadow-sm">
       {contact.href ? (
         <a
           href={contact.href}
@@ -95,7 +95,7 @@ ContactItem.displayName = "ContactItem";
 
 function ProfileSection() {
   return (
-    <div className="sidebar-responsive bg-white/5 dark:bg-black/5 backdrop-blur-xl lg:border-r border-white/20 dark:border-white/10 p-6 lg:p-8 lg:overflow-y-auto">
+    <div className="sidebar-responsive bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl lg:border-r border-gray-200 dark:border-gray-700/50 p-6 lg:p-8 lg:overflow-y-auto shadow-lg dark:shadow-none">
       {/* Profile Section */}
       <div className="text-center mb-8">
         <div className="w-32 h-32 lg:w-40 lg:h-40 mx-auto mb-4 lg:mb-6 rounded-full overflow-hidden border-4 border-purple-500/20 shadow-2xl relative hover:border-purple-500/40 hover:shadow-purple-500/20 hover:scale-105 transition-all duration-500 ease-out">
@@ -140,7 +140,7 @@ function ProfileSection() {
         <h3 className="text-lg lg:text-xl font-bold mb-3 lg:mb-4 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
           Education
         </h3>
-        <div className="bg-white/5 dark:bg-black/5 backdrop-blur-sm border border-white/10 dark:border-white/5 rounded-xl p-4 hover:bg-white/10 dark:hover:bg-black/10 hover:border-white/20 dark:hover:border-white/10 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-500 ease-out">
+        <div className="bg-gray-50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700/50 rounded-xl p-4 hover:bg-gray-100 dark:hover:bg-gray-800 hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-500 ease-out shadow-sm">
           <h4 className="font-semibold text-lg text-gray-900 dark:text-white mb-1">
             Computer Engineering (Bachelor's Degree)
           </h4>

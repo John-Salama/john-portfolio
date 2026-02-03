@@ -22,7 +22,7 @@ function ProjectLinks({ project }: ProjectLinksProps) {
       label: project.links.github2 ? "Frontend Code" : "Source Code",
       icon: Github,
       className:
-        "bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/20 text-gray-700 dark:text-gray-300 hover:bg-white/30 dark:hover:bg-black/30",
+        "bg-gray-100 dark:bg-gray-700/50 backdrop-blur-sm border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700",
     },
     {
       key: "github2",
@@ -30,7 +30,7 @@ function ProjectLinks({ project }: ProjectLinksProps) {
       label: project.links.github3 ? "Backend Code" : "Server Code",
       icon: Github,
       className:
-        "bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/20 text-gray-700 dark:text-gray-300 hover:bg-white/30 dark:hover:bg-black/30",
+        "bg-gray-100 dark:bg-gray-700/50 backdrop-blur-sm border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700",
     },
     {
       key: "github3",
@@ -38,7 +38,7 @@ function ProjectLinks({ project }: ProjectLinksProps) {
       label: "API Code",
       icon: Github,
       className:
-        "bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/20 text-gray-700 dark:text-gray-300 hover:bg-white/30 dark:hover:bg-black/30",
+        "bg-gray-100 dark:bg-gray-700/50 backdrop-blur-sm border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700",
     },
     {
       key: "npm",

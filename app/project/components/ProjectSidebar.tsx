@@ -10,7 +10,7 @@ function ProjectSidebar({ project }: ProjectSidebarProps) {
   return (
     <div className="space-y-6 sm:space-y-8">
       {/* Technologies Used */}
-      <div className="bg-white/10 dark:bg-black/10 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-2xl sm:rounded-3xl p-6 sm:p-8 transition-all duration-500 ease-out hover:bg-white/15 dark:hover:bg-black/15 hover:border-white/30 dark:hover:border-white/20 hover:shadow-lg hover:-translate-y-1">
+      <div className="bg-white dark:bg-gray-800/50 backdrop-blur-xl border border-gray-200 dark:border-gray-700/50 rounded-2xl sm:rounded-3xl p-6 sm:p-8 transition-all duration-500 ease-out hover:bg-gray-50 dark:hover:bg-gray-800 hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-lg hover:-translate-y-1 shadow-lg dark:shadow-none">
         <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6 flex items-center transition-colors duration-300 ease-out">
           <Tag
             className="mr-2 sm:mr-3 text-blue-500 sm:hidden transition-all duration-400 ease-out hover:text-blue-400 hover:scale-110"
@@ -26,7 +26,7 @@ function ProjectSidebar({ project }: ProjectSidebarProps) {
           {project.tech.map((tech) => (
             <div
               key={tech}
-              className="bg-white/10 dark:bg-black/10 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-lg sm:rounded-xl p-2 sm:p-3 text-center hover:scale-105 transition-all duration-500 ease-out hover:bg-white/20 dark:hover:bg-black/20 hover:border-white/40 dark:hover:border-white/30 hover:shadow-md hover:-translate-y-0.5"
+              className="bg-gray-50 dark:bg-gray-700/50 backdrop-blur-xl border border-gray-200 dark:border-gray-600/50 rounded-lg sm:rounded-xl p-2 sm:p-3 text-center hover:scale-105 transition-all duration-500 ease-out hover:bg-gray-100 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-500 hover:shadow-md hover:-translate-y-0.5 shadow-sm"
             >
               <span className="text-xs sm:text-sm font-semibold text-gray-900 dark:text-white transition-colors duration-500 ease-out">
                 {tech}

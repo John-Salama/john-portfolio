@@ -25,7 +25,7 @@ function ProjectSummary({ project }: ProjectSummaryProps) {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
         {/* Summary */}
         {project.summary && (
-          <div className="bg-white/10 dark:bg-black/10 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-2xl sm:rounded-3xl p-6 sm:p-8">
+          <div className="bg-white dark:bg-gray-800/50 backdrop-blur-xl border border-gray-200 dark:border-gray-700/50 rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-lg dark:shadow-none">
             <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
               Project Summary
             </h3>
