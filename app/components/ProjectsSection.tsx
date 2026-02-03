@@ -38,11 +38,11 @@ function ProjectsSection({ projects }: ProjectsSectionProps) {
   }, [projects]);
 
   return (
-    <div className="projects-container py-8 lg:overflow-y-auto">
-      <div className="w-full h-full px-2 sm:px-4 lg:px-6">
-        <div className="mb-12">
+    <div className="projects-container bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl py-8 lg:py-12 lg:overflow-y-auto">
+      <div className="w-full h-full px-4 sm:px-6 lg:px-8 pb-12">
+        <div className="mb-12 pt-4">
           <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold bg-gradient-to-r from-purple-600 via-blue-600 to-emerald-600 bg-clip-text text-transparent mb-4">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold bg-gradient-to-r from-purple-600 via-blue-600 to-emerald-600 bg-clip-text text-transparent mb-4 pb-2">
               My Projects
             </h2>
             <div className="w-32 h-1 bg-gradient-to-r from-purple-600 to-blue-600 mx-auto mb-6"></div>
@@ -56,7 +56,7 @@ function ProjectsSection({ projects }: ProjectsSectionProps) {
         </div>
 
         {/* All Projects Section */}
-        <div>
+        <div className="pb-8">
           <h3 className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
             <Code className="mr-3 text-blue-500" size={24} />
             Projects
