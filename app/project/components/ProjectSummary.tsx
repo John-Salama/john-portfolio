@@ -151,7 +151,7 @@ function ProjectSummary({ project }: ProjectSummaryProps) {
                       </div>
                     </div>
                   );
-                }
+                },
               )}
             </div>
           </div>

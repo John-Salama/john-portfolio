@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
+import ClientWrapper from "./ClientWrapper";
+import ThemeToggle from "./components/ThemeToggle";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -19,7 +21,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NODE_ENV === "production"
       ? "https://johnsalama.dev"
-      : "http://localhost:3000"
+      : "http://localhost:3000",
   ),
   title: "John Salama | Software Engineer & Full-Stack Developer",
   description:
@@ -68,7 +70,13 @@ export default function RootLayout({
         className={`${inter.variable} ${poppins.variable} font-sans antialiased bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100`}
         suppressHydrationWarning
       >
-        {children}
+        <ClientWrapper>
+          {/* Theme Toggle - Fixed Position */}
+          <div className="fixed top-4 right-4 z-50">
+            <ThemeToggle />
+          </div>
+          {children}
+        </ClientWrapper>
       </body>
     </html>
   );

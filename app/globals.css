@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Enable class-based dark mode for Tailwind v4 */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* Performance optimizations */
 * {
   box-sizing: border-box;
@@ -231,12 +234,14 @@ html {
 
 .card-hover:hover {
   transform: translateY(-8px);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25),
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.25),
     0 25px 25px -15px rgba(0, 0, 0, 0.1);
 }
 
 .dark .card-hover:hover {
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6),
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.6),
     0 25px 25px -15px rgba(0, 0, 0, 0.4);
 }
 
@@ -275,12 +280,14 @@ html {
 
 .btn-primary:hover {
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4),
+  box-shadow:
+    0 15px 35px rgba(102, 126, 234, 0.4),
     0 5px 15px rgba(102, 126, 234, 0.2);
 }
 
 .dark .btn-primary:hover {
-  box-shadow: 0 15px 35px rgba(102, 126, 234, 0.6),
+  box-shadow:
+    0 15px 35px rgba(102, 126, 234, 0.6),
     0 5px 15px rgba(102, 126, 234, 0.3);
 }
 
@@ -340,7 +347,8 @@ html {
 
 .social-link:hover {
   color: rgb(37 99 235);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
   transform: translateY(-2px) scale(1.05);
 }
@@ -372,7 +380,8 @@ html {
 
 /* Dark mode transitions with smooth easing */
 * {
-  transition: background-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+  transition:
+    background-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
     border-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
     color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
@@ -638,7 +647,8 @@ a:focus-visible {
   border: 1px solid rgba(255, 255, 255, 0.3);
   overflow: hidden;
   transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37),
+  box-shadow:
+    0 8px 32px rgba(31, 38, 135, 0.37),
     inset 0 2px 4px rgba(255, 255, 255, 0.1);
   will-change: transform, box-shadow;
 }
@@ -651,19 +661,24 @@ a:focus-visible {
     rgba(0, 0, 0, 0.2) 100%
   );
   border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5),
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.5),
     inset 0 2px 4px rgba(255, 255, 255, 0.05);
 }
 
 .honeycomb-hex:hover {
   transform: scale(1.08) rotate(2deg);
-  box-shadow: 0 25px 50px rgba(31, 38, 135, 0.6),
-    inset 0 2px 4px rgba(255, 255, 255, 0.2), 0 0 30px rgba(102, 126, 234, 0.4);
+  box-shadow:
+    0 25px 50px rgba(31, 38, 135, 0.6),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2),
+    0 0 30px rgba(102, 126, 234, 0.4);
 }
 
 .dark .honeycomb-hex:hover {
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8),
-    inset 0 2px 4px rgba(255, 255, 255, 0.1), 0 0 30px rgba(139, 92, 246, 0.5);
+  box-shadow:
+    0 25px 50px rgba(0, 0, 0, 0.8),
+    inset 0 2px 4px rgba(255, 255, 255, 0.1),
+    0 0 30px rgba(139, 92, 246, 0.5);
 }
 
 /* Hexagon animation keyframes with smooth easing */
@@ -680,11 +695,13 @@ a:focus-visible {
 @keyframes hexagon-glow {
   0%,
   100% {
-    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37),
+    box-shadow:
+      0 8px 32px rgba(31, 38, 135, 0.37),
       inset 0 2px 4px rgba(255, 255, 255, 0.1);
   }
   50% {
-    box-shadow: 0 12px 40px rgba(31, 38, 135, 0.6),
+    box-shadow:
+      0 12px 40px rgba(31, 38, 135, 0.6),
       inset 0 2px 4px rgba(255, 255, 255, 0.2),
       0 0 25px rgba(102, 126, 234, 0.3);
   }

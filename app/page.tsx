@@ -1,4 +1,3 @@
-import ClientWrapper from "./ClientWrapper";
 import ProfileSection from "./components/ProfileSection";
 import ProjectsSection from "./components/ProjectsSection";
 import StaticBackground from "./components/StaticBackground";
@@ -11,9 +10,7 @@ export default async function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative">
-      {/* Client-side initialization for dark mode */}
       <Analytics />
-      <ClientWrapper />
 
       {/* Static Background */}
       <StaticBackground />

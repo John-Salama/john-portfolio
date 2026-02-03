@@ -88,7 +88,7 @@ const ContactItem = memo(
         </div>
       )}
     </div>
-  )
+  ),
 );
 
 ContactItem.displayName = "ContactItem";

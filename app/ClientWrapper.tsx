@@ -1,20 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { ThemeProvider } from "./context/ThemeContext";
 
-export default function ClientWrapper() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+interface ClientWrapperProps {
+  children: React.ReactNode;
+}
 
-  useEffect(() => {
-    const darkMode =
-      localStorage.getItem("darkMode") === "true" ||
-      (!localStorage.getItem("darkMode") &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches);
-    setIsDarkMode(darkMode);
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-    }
-  }, []);
-
-  return null; // This component only handles dark mode initialization
+export default function ClientWrapper({ children }: ClientWrapperProps) {
+  return <ThemeProvider>{children}</ThemeProvider>;
 }

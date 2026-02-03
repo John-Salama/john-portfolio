@@ -86,7 +86,7 @@ const SkillCategory = memo(
         </div>
       </div>
     );
-  }
+  },
 );
 
 SkillCategory.displayName = "SkillCategory";
